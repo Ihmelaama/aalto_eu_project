@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour {
 
@@ -10,26 +11,50 @@ public class DialogueManager : MonoBehaviour {
   // settings ---
   
     public GameObject talkButton;
-    public GameObject talkMenu;
+    public GameObject dialogueOption;
   
   // holders ---
   
-    Transform UICanvas;
-    Transform NPCHolder;
-  
+    private Camera camera;
+    private Transform UICanvas;
+    private Transform NPCHolder;
+    private List<Transform> NPCs;
+    private List<GameObject> talkButtons=new List<GameObject>();
+    private DialogueMenu dialogueMenu;
+
   // state ---
 
-    private bool userIsLookingToTalk=false;
-    private bool userIsTalking=false;
-    
+    private int state=0;
+
 //----------------------------------------------------
 // START
 
   void Start() {
   
-    NPCHolder=GameObject.Find("NPCHolder").transform;  
+    camera=GameObject.Find("PlayerCamera").GetComponent<Camera>();
     UICanvas=GameObject.Find("UI/Canvas").transform;
+    NPCHolder=GameObject.Find("NPCHolder").transform;  
+    
+    dialogueMenu=GameObject.Find("UI/Canvas/DialogueMenu").GetComponent<DialogueMenu>();
+    dialogueMenu.gameObject.SetActive(true);
+    
+  // get NPCs with dialogue ---
+    
+    NPCs=new List<Transform>();
+    Transform[] t=NPCHolder.GetComponentsInChildren<Transform>();
 
+    for(int i=0; i<t.Length; i++) {
+    
+      if(t[i].GetComponent<NPC>()!=null) {
+      
+        if(t[i].GetComponent<NPC>().dialogue!=null) {
+        NPCs.Add(t[i]);
+        }
+      
+      }
+      
+    }
+    
   }
   
 //----------------------------------------------------
@@ -37,7 +62,8 @@ public class DialogueManager : MonoBehaviour {
 
 	void Update() {
 	
-    if(userIsLookingToTalk) {
+    if(state==1) {
+    updateTalkButtons();
     }
   
   }  
@@ -45,48 +71,124 @@ public class DialogueManager : MonoBehaviour {
 //----------------------------------------------------
 // PUBLIC SETTERS
 
-  public void initDialogue() {
-
+  public void toggleDialogue() {
+  
   // show available talk targets
   
-    if(!userIsLookingToTalk) {
+    if(state==0) {
   
-      userIsLookingToTalk=true;
+      state=1;
       showCharactersWithDialogue();
-  
+
     } else {
+    
+      if(state==1) {
+      
+        hideCharactersWithDialogue();
+        state=0;
+      
+      } else {
+      
+        hideDialogueMenu();
+        showCharactersWithDialogue();
+        WorldState.allowUserInput=true; 
+        state=1;
+      
+      }
+      
     }
   
   }
 
 //------------  
   
-  public void chooseTalkTarget(Transform talkTarget) {
+  public void showDialogueMenu(Transform talkTarget) {
   
-    Debug.Log("helou!");
-    userIsTalking=true;
+    if(state!=2 && dialogueMenu!=null && UICanvas!=null) {
+    
+      NPC NPCScript=talkTarget.gameObject.GetComponent<NPC>();
+      dialogueMenu.gameObject.SetActive(true);
+      dialogueMenu.setDialogue(NPCScript.dialogue);
+      
+      state=2;
+      WorldState.allowUserInput=false;     
+      hideCharactersWithDialogue();
+
+    }  
   
   }
   
+//------------  
+
+  public void hideDialogueMenu() {
+  
+    if(dialogueMenu!=null) {
+    dialogueMenu.gameObject.SetActive(false);
+    }
+  
+  }  
+  
 //----------------------------------------------------
-// PRIVATE SETTERSS
+// PRIVATE SETTERS
 
   private void showCharactersWithDialogue() {
 
     if(talkButton!=null) {
-    
-      GameObject button=Instantiate(talkButton);
-      button.transform.SetParent(UICanvas, false);
 
-      RectTransform rect=button.GetComponent<RectTransform>() as RectTransform;
-      rect.anchoredPosition=new Vector2(100f, 100f);
-      
-      Button b=button.GetComponent<Button>() as Button;
-      b.onClick.AddListener(() => chooseTalkTarget(null));
+      for(int i=0; i<NPCs.Count; i++) {
+      createTalkButton(NPCs[i]);
+      }
 
     }
 
   }
-
   
+//------------
+
+  private void hideCharactersWithDialogue() {
+  
+    for(int i=0; i<talkButtons.Count; i++) {
+    Destroy(talkButtons[i]);
+    }
+    
+    talkButtons.Clear();  
+
+  }
+  
+//------------
+
+  private void createTalkButton(Transform target) {
+  
+    if(talkButton!=null && UICanvas!=null) {
+  
+      GameObject button=Instantiate(talkButton);
+      button.transform.SetParent(UICanvas, false);
+  
+      Vector2 pos=camera.WorldToScreenPoint(target.position);
+  
+      RectTransform rect=button.GetComponent<RectTransform>() as RectTransform;
+      rect.anchoredPosition=pos;
+      
+      Button b=button.GetComponent<Button>() as Button;
+      b.onClick.AddListener(() => showDialogueMenu(target));  
+  
+      talkButtons.Add(button);
+    
+    }
+  
+  }
+  
+//------------
+
+  private void updateTalkButtons() {
+  
+    for(int i=0; i<NPCs.Count; i++) {
+    
+      Vector2 pos=camera.WorldToScreenPoint(NPCs[i].position);  
+      talkButtons[i].transform.position=pos;  
+    
+    }
+
+  }
+
 }

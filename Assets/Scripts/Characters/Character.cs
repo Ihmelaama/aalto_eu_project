@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,8 +16,6 @@ public class Character : MonoBehaviour {
     public float minWalkSpeed=0.05f;
     public float maxWalkSpeed=0.1f;
     
-    public bool hasDialogue=false;
-
   // private settings ---
   
     private float minDistanceFromDestination=0.75f;
@@ -42,6 +41,7 @@ public class Character : MonoBehaviour {
     private GameObject graphics;
     private Animator graphicsAnimator;
     private SpriteRenderer graphicsSpriteRenderer;
+    private Dialogue dialogue;
 
   // state ---
 

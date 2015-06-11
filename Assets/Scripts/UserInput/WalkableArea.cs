@@ -24,31 +24,35 @@ public class WalkableArea : MonoBehaviour {
 // EVENTS
 	
 	void Update() {
+  
+    if(WorldState.allowUserInput && EventSystem.current.currentSelectedGameObject==null) {
 
-    if(GestureManager.isTouched && EventSystem.current.currentSelectedGameObject==null) {
+      if(GestureManager.isTouched) {
+      
+        Vector3 v=GestureManager.testTouch3D(transform);
+        
+        if(v!=Vector3.zero) {
+        
+          foreach(Character c in movableCharacters) {
+          c.moveTowards(v);
+          }
+        
+        }    
+      
+      }
     
-      Vector3 v=GestureManager.testTouch3D(transform);
-      
-      if(v!=Vector3.zero) {
-      
-        foreach(Character c in movableCharacters) {
-        c.moveTowards(v);
-        }
-      
-      }    
+    //---  
     
-    }
-  
-  //---  
-  
-    if(GestureManager.wasTouched && EventSystem.current.currentSelectedGameObject==null) {
-  
-      Vector3 v=GestureManager.testTouch3D(transform);
-      
-      if(v!=Vector3.zero) {
-      
-        foreach(Character c in movableCharacters) {
-        c.addDestination(v, true);
+      if(GestureManager.wasTouched) {
+    
+        Vector3 v=GestureManager.testTouch3D(transform);
+        
+        if(v!=Vector3.zero) {
+        
+          foreach(Character c in movableCharacters) {
+          c.addDestination(v, true);
+          }
+        
         }
       
       }

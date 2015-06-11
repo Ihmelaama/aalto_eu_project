@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class LoopingGround : MonoBehaviour {
+public class LoopingGroundBackup : MonoBehaviour {
 
 //---------------------------------------------------
 // VARIABLES
@@ -24,7 +24,7 @@ public class LoopingGround : MonoBehaviour {
     
   // definitions ---
   
-    private const float margin=1f;
+    private const float margin=0.5f;
     
     private float tileVisibilityDistance=20f;
     
@@ -92,7 +92,7 @@ public class LoopingGround : MonoBehaviour {
     // top left
     v=new Vector3(-margin, Screen.height+margin, 0f);
     screenPoints[TOPLEFT]=v;       
-    
+
 	}
   
 //---------------------------------------------------
@@ -104,7 +104,7 @@ public class LoopingGround : MonoBehaviour {
     int pointNum=-1;
     int i;
     List<int> points=new List<int>();
-
+    
   // check if world needs new tiles ---
   
     for(i=0; i<screenPoints.Length; i++) {
@@ -177,96 +177,6 @@ public class LoopingGround : MonoBehaviour {
   
   private void positionNewTiles(int pointNum) {
 
-    Transform t=raycastWorldPoint(player.transform.position);
-    
-    if(t!=null && unplacedTiles.Count>0) {
-    
-      Transform newTile=unplacedTiles[0];
-      newTile.gameObject.SetActive(true);
-      Collider newTileCollider=newTile.Find("WalkableArea").GetComponent<Collider>();
-    
-    // get closest corner in current collider ---
-
-      Collider currentTileCollider=t.gameObject.GetComponent<Collider>();      
-      Vector3 currentCenter=currentTileCollider.bounds.center;
-      
-      Vector3 closestCorner=getClosestCorner(
-      t.gameObject.transform, 
-      currentTileCollider.bounds, 
-      player.transform.position
-      );
-      
-    // get position for new tile ---
-    
-      Vector3 newTilePosition=Vector3.zero;
-      string newTileName=null;
-      Vector3 pos=Vector3.zero;
-      Vector3 dif;
-      float f;
-      
-      pos=screenPosToWorldPos(screenPoints[pointNum], transform.position.y);
-      pos.x=getBestTileX(pos, closestCorner, currentTileCollider, newTileCollider);
-      pos.z=getBestTileZ(pos, closestCorner, currentTileCollider, newTileCollider);
-      newTilePosition=pos; 
-      
-      // debug
-      switch(pointNum) {
-      
-        case TOP:
-        newTileName="tile top "+debugNum;  
-        break;   
-
-        case TOPRIGHT: 
-        newTileName="tile top right "+debugNum;  
-        break; 
-
-        case RIGHT: 
-        newTileName="tile right "+debugNum;  
-        break; 
-        
-        case BOTTOMRIGHT: 
-        newTileName="tile bottom right "+debugNum;  
-        break;
-
-        case BOTTOM: 
-        newTileName="tile bottom "+debugNum;
-        break;  
-
-        case BOTTOMLEFT: 
-        newTileName="tile bottom left "+debugNum;
-        break;    
-        
-        case LEFT: 
-        newTileName="tile left "+debugNum;
-        break;   
-        
-        case TOPLEFT: 
-        newTileName="tile top left "+debugNum;
-        break;        
-      
-      }             
-
-    // position new tile ---
-    
-      if(newTileName!=null) {
-      
-        newTile.gameObject.SetActive(true);
-        newTilePosition.y=newTile.parent.position.y;
-        newTile.position=newTilePosition;
-        
-        unplacedTiles.Remove(newTile);
-        placedTiles.Add(newTile);
-        
-        newTile.name=newTileName;
-        debugNum++;
-        
-      } else {
-      newTile.gameObject.SetActive(false);
-      } 
-
-    }
-
-    /*
     Transform t=raycastWorldPoint(player.transform.position);      
 
     if(t!=null && unplacedTiles.Count>0) {
@@ -385,6 +295,84 @@ public class LoopingGround : MonoBehaviour {
 
       }
 
+      /*
+      switch(pointNum) {
+          
+        case TOP: 
+        
+          newTile.name="tile top "+debugNum;  
+          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x;
+          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;
+          b=true; 
+        
+        break;    
+        
+        case TOPRIGHT: 
+        
+          newTile.name="tile top right "+debugNum;    
+          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x*3;
+          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;
+          b=true; 
+          
+        break; 
+
+        case RIGHT: 
+
+          newTile.name="tile right "+debugNum;    
+          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x*3;
+          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z;          
+          b=true; 
+          
+        break; 
+        
+        case BOTTOMRIGHT: 
+
+          newTile.name="tile bottom right "+debugNum;   
+          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x*3;
+          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z*3;          
+          b=true; 
+          
+        break;   
+        
+        case BOTTOM: 
+        
+          newTile.name="tile bottom "+debugNum;    
+          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x;
+          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z*3;          
+          b=true; 
+          
+        break;  
+        
+        case BOTTOMLEFT: 
+
+          newTile.name="tile bottom left "+debugNum;   
+          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x;
+          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z*3;          
+          b=true; 
+          
+        break;    
+        
+        case LEFT: 
+
+          newTile.name="tile bottom left "+debugNum;   
+          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x;
+          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z;          
+          b=true; 
+          
+        break;   
+        
+        case TOPLEFT: 
+
+          newTile.name="tile top left "+debugNum;    
+          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x;
+          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;
+          b=true; 
+          
+        break;                                               
+
+      }
+      */
+
     // set new tile position ---      
 
       if(b) {
@@ -403,7 +391,6 @@ public class LoopingGround : MonoBehaviour {
       }
 
     }
-    */
 
   }
   
@@ -443,132 +430,4 @@ public class LoopingGround : MonoBehaviour {
 
   }
   
-//---------------------------------------------------
-// HELPFUL
-
-  private Vector3 getClosestCorner(Transform parentTransform, Bounds bounds, Transform target) {
-  Vector3 pos=target.TransformPoint(target.position);
-  return getClosestCorner(parentTransform, bounds, pos);
-  }
-
-  private Vector3 getClosestCorner(Transform parentTransform, Bounds bounds, Vector3 targetPosition) {
-  
-    Vector3 center=bounds.center;
-    //Vector3 targetPos=targetPosition-center;
-    Vector3 targetPos=targetPosition;  
-
-    Vector3 closestCorner=Vector3.zero;
-    Vector3 corner;
-    float shortestMag;
-    float mag;
-    
-  //---
-
-  // bottom left ---
-  
-    corner=bounds.min;
-    shortestMag=(corner-targetPos).magnitude;
-    closestCorner=corner;
-
-  // top right ---
-
-    corner=bounds.max;
-    mag=(corner-targetPos).magnitude;
-    
-    if(mag<shortestMag) {
-    closestCorner=corner;
-    shortestMag=mag;
-    }
-    
-  // bottom right ---
-  
-    corner=bounds.min;
-    corner.x=bounds.max.x;
-    mag=(corner-targetPos).magnitude;
-    
-    if(mag<shortestMag) {
-    closestCorner=corner;
-    shortestMag=mag;
-    }    
-    
-  // top left ---  
-  
-    corner=bounds.max;
-    corner.x=bounds.min.x;
-    mag=(corner-targetPos).magnitude;
-    
-    if(mag<shortestMag) {
-    closestCorner=corner;
-    shortestMag=mag;
-    }
-
-  //---
-
-    return closestCorner;
-  
-  }  
-  
-//------------
-
-  private Vector3 screenPosToWorldPos(Vector3 screenPos, float worldY) {
-  
-    Camera camera=Camera.main;
-  
-    Vector3 pos1=Vector3.zero;
-    pos1.x=screenPos.x/Screen.width;
-    pos1.y=screenPos.y/Screen.height;
-    pos1.z=0f;
-    pos1=camera.ViewportToWorldPoint(pos1);
-    
-    worldY=worldY-pos1.y;
-
-    Vector3 pos2=Vector3.zero;
-    pos2.x=screenPos.x/Screen.width;
-    pos2.y=screenPos.y/Screen.height;
-    pos2.z=5f;
-    pos2=camera.ViewportToWorldPoint(pos2);
-      
-    Vector3 dif=pos2-pos1;
-    dif*=worldY/dif.y;
-    
-    pos1+=dif;
-    
-    Vector3 debug=new Vector3(0f, 1f, 0f);
-    //Debug.DrawLine(pos1, pos1+debug, Color.white);
-    
-  return pos1;
-  }
-  
-//------------
-
-  private float getBestTileX(Vector3 newTilePosition, Vector3 closestCorner, Collider currentTileCollider, Collider newTileCollider) {
-  
-    float dif=newTilePosition.x-closestCorner.x;
-    float dir=dif/Mathf.Abs(dif);
-    
-    float offset=Mathf.Floor(Mathf.Abs(dif/newTileCollider.bounds.size.x));
-    offset=offset*newTileCollider.bounds.size.x;
-    offset*=dir;
-    
-    offset+=dir*newTileCollider.bounds.extents.x;
-  
-  return closestCorner.x+offset;
-  }
-  
-//------------
-
-  private float getBestTileZ(Vector3 newTilePosition, Vector3 closestCorner, Collider currentTileCollider, Collider newTileCollider) {
-  
-    float dif=newTilePosition.z-closestCorner.z;
-    float dir=dif/Mathf.Abs(dif);
-    
-    float offset=Mathf.Floor(Mathf.Abs(dif/newTileCollider.bounds.size.z));
-    offset=offset*newTileCollider.bounds.size.z;
-    offset*=dir;
-    
-    offset+=dir*newTileCollider.bounds.extents.z;
-  
-  return closestCorner.z+offset;
-  }
-
 }

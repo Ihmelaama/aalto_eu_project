@@ -1,0 +1,94 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>...\nhuh?</line>
+      <line>...\nuh?</line>
+      <line>Hello.</line>
+      
+      <reply goto-item="what_are_you_doing_here">What are you doing here?</reply>
+      
+      <reply goto-item="who_are_you">Who are you?</reply>
+      
+      <reply goto-item="where_are_we">Where are we?</reply>   
+      
+      <reply>Sorry, I thought you were someone else.</reply>                 
+    
+    </item>
+    
+/// ---------------------------------------------------------------------
+/// other dialogue items 
+
+    /// what are you doing here?
+    <item name="what_are_you_doing_here">
+    
+      <line>Just standing around. I don't do much.</line>
+      <line>Nothing really.</line>
+      <line>I don't know. There's not much to do.</line>
+      
+      <reply goto-item="nothing_to_do">But you must do something? There has to be something you can do?</reply>
+      
+      <reply goto-item="nothing_to_do">Really? There's nothing to do around here?</reply>
+      
+      <reply>Look at the time! Gotta go!</reply>
+    
+    </item>
+    
+/// ---------------------------------------
+
+    /// who are you?
+    <item name="who_are_you">
+    
+      <line>I don't know. They just put me here and left.</line>    
+      
+      <reply goto-item="no_name">Do you have a name?</reply>
+      
+      <reply goto-item="earliest_memory">What's your earliest memory?</reply>      
+
+    </item>
+    
+/// ---------------------------------------
+ 
+    /// where are we?
+    <item name="where_are_we">
+    
+      <line>I have no idea. This place is weird.</line>    
+      
+      <reply>I'll let you know if I find a way out.</reply>       
+    
+    </item>   
+    
+/// ---------------------------------------
+
+    <item name="nothing_to_do">
+    
+      <line>You can walk around. That's all there is to do.</line>    
+      
+      <reply>I think I'll go for a walk.</reply>       
+    
+    </item> 
+    
+/// ---------------------------------------
+
+    <item name="no_name">
+    
+      <line>What's a name?</line>  
+      
+      <reply>Oh ... I should go.</reply>           
+    
+    </item> 
+    
+/// ---------------------------------------          
+
+    <item name="earliest_memory">
+    
+      <line>Meeting you just now.</line>     
+      
+      <reply>I have to go. Good luck with all this.</reply>       
+    
+    </item>             
+
+</xml>

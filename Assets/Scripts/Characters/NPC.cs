@@ -15,6 +15,8 @@ public class NPC : Character {
     public float avoidOtherNPC=0f;
     
     public float reactionRadius=10f;
+    
+    public string dialogueFile=null;
 
   // private settings ---
 
@@ -24,6 +26,9 @@ public class NPC : Character {
   // holders ---
   
     private GameObject player;
+    
+    [HideInInspector]
+    public Dialogue dialogue;
 
 //---------------------------------------------------
 // START
@@ -34,6 +39,11 @@ public class NPC : Character {
 
     player=GameObject.Find("Player");
 
+    if(dialogueFile!=null) {
+    dialogue=new Dialogue(dialogueFile);
+    Dialogue.DialogueItem dialogueItem=dialogue.getDefaultDialogue();
+    }
+
   // set stuff ---
 
     if(reactionRadius<minReactionRadius) {
@@ -42,7 +52,7 @@ public class NPC : Character {
     } else if(reactionRadius>maxReactionRadius) {
     reactionRadius=maxReactionRadius;
     }
-
+ 
   }
 
 //---------------------------------------------------

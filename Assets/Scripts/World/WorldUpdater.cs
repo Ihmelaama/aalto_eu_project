@@ -9,6 +9,10 @@ public class WorldUpdater : MonoBehaviour {
   // utils ---
 
     private GestureManager gestureManager;
+    
+  // state ---
+  
+    public static float wind=0;
 
 //---------------------------------------------------
 // START

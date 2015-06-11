@@ -36,9 +36,8 @@ public class LookAtCamera : MonoBehaviour {
         v=q.eulerAngles;
 
       }
-      
-      //v.x-=90f;
-      transform.rotation=Quaternion.Euler(v);    
+
+      transform.localRotation=Quaternion.Euler(v);    
 
     }
 	
