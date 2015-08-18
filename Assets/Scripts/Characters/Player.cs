@@ -9,15 +9,20 @@ public class Player : Character {
 //---------------------------------------------------
 // START
 
-  public override void Start_() {
+  protected override void Awake() {
+  base.Awake();
+  }
+
+  protected override void Start() {
+  base.Start();
   }
   
-  public override void Update_() {
-  determination=1f;
-  base.Update_();
-  }  
-
 //---------------------------------------------------
 // EVENTS
+
+  protected override void Update() {
+  base.Update();  
+  determination=1f;
+  }  
 
 }

@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -167,8 +167,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 269.600006, y: 117}
-  m_SizeDelta: {x: 55.5999985, y: 44.9000015}
+  m_AnchoredPosition: {x: 177, y: 117}
+  m_SizeDelta: {x: 155.600006, y: 144.899994}
   m_Pivot: {x: .5, y: .49999994}
 --- !u!1001 &100100000
 Prefab:

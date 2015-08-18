@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -343,6 +344,12 @@ public class GestureManager {
     } else {
     dragVelocityWorld=Vector2.zero;
     }
+    
+  // stop propagation if UI system interacted with ---
+  
+    if(EventSystem.current!=null && EventSystem.current.currentSelectedGameObject!=null) {
+    clearTouch();
+    }      
 
   }
   

@@ -100,8 +100,6 @@ public class LoopingGround : MonoBehaviour {
 	
 	void Update() {
   
-    Vector3 point=Vector3.zero;
-    int pointNum=-1;
     int i;
     List<int> points=new List<int>();
 
@@ -188,8 +186,7 @@ public class LoopingGround : MonoBehaviour {
     // get closest corner in current collider ---
 
       Collider currentTileCollider=t.gameObject.GetComponent<Collider>();      
-      Vector3 currentCenter=currentTileCollider.bounds.center;
-      
+
       Vector3 closestCorner=getClosestCorner(
       t.gameObject.transform, 
       currentTileCollider.bounds, 
@@ -201,8 +198,6 @@ public class LoopingGround : MonoBehaviour {
       Vector3 newTilePosition=Vector3.zero;
       string newTileName=null;
       Vector3 pos=Vector3.zero;
-      Vector3 dif;
-      float f;
       
       pos=screenPosToWorldPos(screenPoints[pointNum], transform.position.y);
       pos.x=getBestTileX(pos, closestCorner, currentTileCollider, newTileCollider);
@@ -452,9 +447,7 @@ public class LoopingGround : MonoBehaviour {
   }
 
   private Vector3 getClosestCorner(Transform parentTransform, Bounds bounds, Vector3 targetPosition) {
-  
-    Vector3 center=bounds.center;
-    //Vector3 targetPos=targetPosition-center;
+
     Vector3 targetPos=targetPosition;  
 
     Vector3 closestCorner=Vector3.zero;
@@ -532,10 +525,7 @@ public class LoopingGround : MonoBehaviour {
     dif*=worldY/dif.y;
     
     pos1+=dif;
-    
-    Vector3 debug=new Vector3(0f, 1f, 0f);
-    //Debug.DrawLine(pos1, pos1+debug, Color.white);
-    
+
   return pos1;
   }
   

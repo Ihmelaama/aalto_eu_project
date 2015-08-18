@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour {
   
   // holders ---
   
-    private Camera camera;
+    private Camera currentCamera;
     private Transform UICanvas;
     private Transform NPCHolder;
     private List<Transform> NPCs;
@@ -29,9 +29,13 @@ public class DialogueManager : MonoBehaviour {
 //----------------------------------------------------
 // START
 
-  void Start() {
+  void Awake() {
   
-    camera=GameObject.Find("PlayerCamera").GetComponent<Camera>();
+  }
+
+  void Start() {
+
+    currentCamera=GameObject.Find("PlayerCamera").GetComponent<Camera>();
     UICanvas=GameObject.Find("UI/Canvas").transform;
     NPCHolder=GameObject.Find("NPCHolder").transform;  
     
@@ -39,21 +43,8 @@ public class DialogueManager : MonoBehaviour {
     dialogueMenu.gameObject.SetActive(true);
     
   // get NPCs with dialogue ---
-    
-    NPCs=new List<Transform>();
-    Transform[] t=NPCHolder.GetComponentsInChildren<Transform>();
-
-    for(int i=0; i<t.Length; i++) {
-    
-      if(t[i].GetComponent<NPC>()!=null) {
-      
-        if(t[i].GetComponent<NPC>().dialogue!=null) {
-        NPCs.Add(t[i]);
-        }
-      
-      }
-      
-    }
+  
+    getCharactersWithDialogue();
     
   }
   
@@ -131,11 +122,33 @@ public class DialogueManager : MonoBehaviour {
 //----------------------------------------------------
 // PRIVATE SETTERS
 
-  private void showCharactersWithDialogue() {
+  private void getCharactersWithDialogue() {
+  
+    NPCs=new List<Transform>();
+    Transform[] t=NPCHolder.GetComponentsInChildren<Transform>();
 
+    for(int i=0; i<t.Length; i++) {
+    
+      if(t[i].GetComponent<NPC>()!=null) {
+      
+        if(t[i].GetComponent<NPC>().dialogue!=null) {
+        NPCs.Add(t[i]);
+        }
+      
+      }
+      
+    }
+  
+  }
+  
+//------------
+
+  private void showCharactersWithDialogue() {
+  
     if(talkButton!=null) {
 
       for(int i=0; i<NPCs.Count; i++) {
+      Debug.Log(i);
       createTalkButton(NPCs[i]);
       }
 
@@ -164,7 +177,7 @@ public class DialogueManager : MonoBehaviour {
       GameObject button=Instantiate(talkButton);
       button.transform.SetParent(UICanvas, false);
   
-      Vector2 pos=camera.WorldToScreenPoint(target.position);
+      Vector2 pos=currentCamera.WorldToScreenPoint(target.position);
   
       RectTransform rect=button.GetComponent<RectTransform>() as RectTransform;
       rect.anchoredPosition=pos;
@@ -184,7 +197,7 @@ public class DialogueManager : MonoBehaviour {
   
     for(int i=0; i<NPCs.Count; i++) {
     
-      Vector2 pos=camera.WorldToScreenPoint(NPCs[i].position);  
+      Vector2 pos=currentCamera.WorldToScreenPoint(NPCs[i].position);  
       talkButtons[i].transform.position=pos;  
     
     }

@@ -58,17 +58,19 @@ public class Character : MonoBehaviour {
     
 //---------------------------------------------------
 // START
+
+  protected virtual void Awake() {
+  }
+
+//------------
+
 	
-	void Start () {
+	protected virtual void Start() {
   
     getElements();
     setCharacterSprite();
-    Start_();
-  
+
   }
-  
-  public virtual void Start_() {
-  }  
   
 //------------
   
@@ -157,16 +159,12 @@ public class Character : MonoBehaviour {
 //---------------------------------------------------
 // EVENTS  
   
-	void Update() {
-	Update_();
-	}
-    
-  public virtual void Update_() {
+	protected virtual void Update() {
   
     moveToDestination();
     handleAnimations();
-     
-  }
+      
+	}
 
 //------------
 
@@ -438,7 +436,6 @@ public class Character : MonoBehaviour {
   private List<Vector3> getShortestPathAroundObstacle(GameObject obstacle, List<Transform> startNodes, Vector3 targetDestination) {
     
     List<Vector3> currentPos=new List<Vector3>();  
-    List<Vector3> nextPos=new List<Vector3>();
     List<List<Vector3>> paths=new List<List<Vector3>>();
     List<int> possiblePaths=new List<int>();
     List<int> failedPaths=new List<int>();    

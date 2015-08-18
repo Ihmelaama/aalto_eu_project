@@ -25,13 +25,14 @@ public class Dialogue {
     if(dialogueFile!=null) {
     
     // load xml ---
-    
+
+      TextAsset textAsset=(TextAsset) Resources.Load(dialogueFile);
       XmlDocument xml=new XmlDocument();
-      xml.Load(Application.dataPath+"/Dialogue/XML/"+dialogueFile+".xml");
-    
+      xml.LoadXml(textAsset.text);    
+
     // prepare stuff ---
     
-      string name, text, gotoItemName;
+      string name, text;
       XmlAttributeCollection attributes;
       XmlAttribute attribute;
       DialogueItem dialogueItem;

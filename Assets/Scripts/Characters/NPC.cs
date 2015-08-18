@@ -33,15 +33,16 @@ public class NPC : Character {
 //---------------------------------------------------
 // START
 
-  public override void Start_() {
-
+  protected override void Awake() {
+  
+    base.Awake();
+    
   // get stuff ---
 
     player=GameObject.Find("Player");
 
     if(dialogueFile!=null) {
     dialogue=new Dialogue(dialogueFile);
-    Dialogue.DialogueItem dialogueItem=dialogue.getDefaultDialogue();
     }
 
   // set stuff ---
@@ -52,13 +53,15 @@ public class NPC : Character {
     } else if(reactionRadius>maxReactionRadius) {
     reactionRadius=maxReactionRadius;
     }
- 
+
   }
 
 //---------------------------------------------------
 // EVENTS
 
-  public override void Update_() {
+  protected override void Update() {
+  
+    base.Update();  
   
   // react to player ---
   
@@ -68,10 +71,6 @@ public class NPC : Character {
   
     reactToOtherCharacters();
     
-  // update ---
-  
-    base.Update_();
-
   }
   
 //---------------------------------------------------
