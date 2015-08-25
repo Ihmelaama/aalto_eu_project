@@ -7,6 +7,7 @@ TagManager:
   - WalkableArea
   - NotWalkableArea
   - Ground
+  - ItemDatabase
   layers:
   - Default
   - TransparentFX
