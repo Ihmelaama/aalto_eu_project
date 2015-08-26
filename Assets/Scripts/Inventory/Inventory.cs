@@ -48,6 +48,9 @@ public class Inventory : MonoBehaviour {
 
 		hoverYOffset = slotSize*0.01f;
 
+        float screenWidth = Screen.width;
+         slots = (int)(screenWidth / slotSize+slotPaddingLeft);
+
 		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
 		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
 		inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, inventoryWidth);
@@ -115,7 +118,7 @@ public class Inventory : MonoBehaviour {
 		if (item.itemMaxStackSize <= 1) {
 			PlaceEmpty (item);
 			return true;
-		} 
+		}
 		else {
 			foreach(GameObject slot in allSlots){
 				Slot tmp = slot.GetComponent<Slot>();
@@ -133,7 +136,16 @@ public class Inventory : MonoBehaviour {
 		return false;
 	}
 
-	public void MoveItem(GameObject clicked){
+
+    public void HideInventory()
+    {
+        foreach(GameObject slot in allSlots)
+        {
+            slot.SetActive(!slot.activeSelf);
+        }
+    }
+
+	/*public void MoveItem(GameObject clicked){
 		if (from == null) {
 			if (!clicked.GetComponent<Slot> ().isEmpty) {
 				from = clicked.GetComponent<Slot> ();
@@ -172,6 +184,6 @@ public class Inventory : MonoBehaviour {
 			from = null;
 			hoverObject = null;
 		}
-	}
+	}*/
 
 }

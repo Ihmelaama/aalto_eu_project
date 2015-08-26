@@ -76,7 +76,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	}
 
 
-	private void UseItem(){
+	public void UseItem(){
 		if (!isEmpty) {
 			items.Pop().Use();
 
