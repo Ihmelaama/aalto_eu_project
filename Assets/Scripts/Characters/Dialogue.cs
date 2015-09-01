@@ -13,7 +13,7 @@ public class Dialogue {
     public string dialogueFile=null;
     
   // holders ---
-    
+
     private List<DialogueItem> defaultDialogueItems=new List<DialogueItem>();  
     private Dictionary<string, DialogueItem> otherDialogueItems=new Dictionary<string, DialogueItem>();
     
@@ -101,12 +101,15 @@ public class Dialogue {
   public DialogueItem getDefaultDialogue() {
   return defaultDialogueItems[Random.Range(0, defaultDialogueItems.Count)];
   }
- 
+
 //------------  
   
   public DialogueItem getDialogueByName(string name) {
   return otherDialogueItems[name];
   }  
+  
+//---------------------------------------------------
+// PUBLIC SETTERS  
 
 //---------------------------------------------------
 // HELPER CLASSES

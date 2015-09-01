@@ -7,16 +7,14 @@ public class DialogueMenu : MonoBehaviour {
 //----------------------------------------------------
 // VARIABLES
 
-  // settings ---
-
-    public string dialogueFile=null;
-    public Dialogue dialogue=null;
-
   // holders ---
   
     private GameObject playerBubble;
     private GameObject NPCBubble;
     private GameObject selector;
+    
+    private GameObject sayButton;
+    private GameObject nextButton;
   
     private Text playerBubbleText;
     private Text NPCBubbleText;
@@ -26,6 +24,7 @@ public class DialogueMenu : MonoBehaviour {
     
   // state ---
   
+    private Dialogue currentDialogue;
     private Dialogue.DialogueItem currentDialogueItem;
     private int currentSelectorPos=0;
   
@@ -44,18 +43,12 @@ public class DialogueMenu : MonoBehaviour {
     selector=transform.Find("Selector").gameObject;
     selectorText=selector.transform.Find("Text").GetComponent<Text>();
     
+    sayButton=transform.Find("Say").gameObject;
+    nextButton=transform.Find("Next").gameObject;
+    
   //---
   
     dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
-    
-  //---
-
-    if(dialogue==null && dialogueFile!=null && dialogueFile.Length>0) {
-     
-      dialogue=new Dialogue(dialogueFile);
-      setDialogue(dialogue);
-
-    }
     
   //---
   
@@ -72,11 +65,17 @@ public class DialogueMenu : MonoBehaviour {
 //----------------------------------------------------
 // PUBLIC SETTERS
 
-  public void setDialogue(Dialogue d) {
-  
-    dialogue=d;
+  public void setDialogue(NPC npc) {
+  setDialogue(npc, Constants.TALK);
+  }
 
-    Dialogue.DialogueItem dialogueItem=d.getDefaultDialogue();
+  public void setDialogue(NPC npc, int type) {
+
+    currentDialogue=npc.dialogue;
+    Dialogue.DialogueItem dialogueItem=npc.getDialogue(type);
+
+  //---
+
     currentDialogueItem=dialogueItem;
     
     NPCBubbleText.text=getRandomDialogueLine(dialogueItem);
@@ -85,6 +84,14 @@ public class DialogueMenu : MonoBehaviour {
     playerBubble.SetActive(false);
 
     selectorText.text=dialogueItem.replies[0];  
+    
+  // show/hide parts of UI that are needed/not ---
+    
+    if(dialogueItem.replies.Count==1) {
+    nextButton.SetActive(false);
+    } else {
+    nextButton.SetActive(true);
+    }
 
   }
 
@@ -120,7 +127,7 @@ public class DialogueMenu : MonoBehaviour {
     if(currentDialogueItem.gotoItems.Count>currentSelectorPos) {
     
       str=currentDialogueItem.gotoItems[currentSelectorPos];
-      currentDialogueItem=dialogue.getDialogueByName(str);
+      currentDialogueItem=currentDialogue.getDialogueByName(str);
       NPCBubbleText.text=getRandomDialogueLine();
     
       currentSelectorPos=0;

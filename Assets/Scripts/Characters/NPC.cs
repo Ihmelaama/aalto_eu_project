@@ -17,6 +17,9 @@ public class NPC : Character {
     public float reactionRadius=10f;
     
     public string dialogueFile=null;
+    
+    public int needsItemId=-1;
+    public int needsItemType=-1;
 
   // private settings ---
 
@@ -71,6 +74,35 @@ public class NPC : Character {
   
     reactToOtherCharacters();
     
+  }
+
+//---------------------------------------------------
+// PUBLIC GETTERS
+  
+  public Dialogue.DialogueItem getDialogue(int type) {
+  
+    Dialogue.DialogueItem d=dialogue.getDefaultDialogue();
+  
+    switch(type) {
+    
+      case Constants.USER_GIVES_ITEM:
+
+        if(
+        (needsItemId>-1 && ItemManager.currentItemId==needsItemId) ||
+        (needsItemType>-1 && ItemManager.currentItemType==needsItemType)
+        ) {
+        
+          d=dialogue.getDialogueByName("item_accept");
+        
+        } else {
+        d=dialogue.getDialogueByName("item_decline");
+        }
+
+      break;
+    
+    }
+  
+  return d;
   }
   
 //---------------------------------------------------

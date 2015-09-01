@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour {
   // state ---
 
     private int state=0;
+    private int dialogueType=0;
 
 //----------------------------------------------------
 // START
@@ -63,6 +64,12 @@ public class DialogueManager : MonoBehaviour {
 // PUBLIC SETTERS
 
   public void toggleDialogue() {
+  toggleDialogue(dialogueType);
+  }
+
+  public void toggleDialogue(int type) {
+  
+    dialogueType=type;
   
   // show available talk targets
   
@@ -98,9 +105,10 @@ public class DialogueManager : MonoBehaviour {
     if(state!=2 && dialogueMenu!=null && UICanvas!=null) {
     
       NPC NPCScript=talkTarget.gameObject.GetComponent<NPC>();
+
       dialogueMenu.gameObject.SetActive(true);
-      dialogueMenu.setDialogue(NPCScript.dialogue);
-      
+      dialogueMenu.setDialogue(NPCScript, dialogueType);
+
       state=2;
       WorldState.allowUserInput=false;     
       hideCharactersWithDialogue();
@@ -148,7 +156,6 @@ public class DialogueManager : MonoBehaviour {
     if(talkButton!=null) {
 
       for(int i=0; i<NPCs.Count; i++) {
-      Debug.Log(i);
       createTalkButton(NPCs[i]);
       }
 
@@ -184,11 +191,34 @@ public class DialogueManager : MonoBehaviour {
       
       Button b=button.GetComponent<Button>() as Button;
       b.onClick.AddListener(() => showDialogueMenu(target));  
+      
+      setButtonType(button, dialogueType);
   
       talkButtons.Add(button);
     
     }
   
+  }
+  
+  //--- 
+  
+  private void setButtonType(GameObject button, int type) {
+
+    Text buttonText=button.transform.Find("Text").GetComponent<Text>();
+
+    switch(type) {
+          
+      case Constants.USER_GIVES_ITEM:
+      buttonText.text="Tap to give";
+      break;
+    
+      default:
+      case Constants.TALK:
+      buttonText.text="Tap to talk";
+      break;    
+    
+    }
+
   }
   
 //------------

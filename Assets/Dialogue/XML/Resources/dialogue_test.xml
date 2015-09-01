@@ -89,6 +89,29 @@
       
       <reply>I have to go. Good luck with all this.</reply>       
     
-    </item>             
+    </item>   
+    
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="item_decline">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="item_accept">
+    
+      <line>Awesome! Thank you!</line>
+      <line>I've always wanted one of these!</line>
+      <line>THIS!</line>
+      
+      <reply>Hey, no problem! Glad you like it!</reply>
+
+    </item>
 
 </xml>

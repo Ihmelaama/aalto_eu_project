@@ -1126,6 +1126,7 @@ GameObject:
   - 114: {fileID: 559877940}
   - 114: {fileID: 559877941}
   - 114: {fileID: 559877942}
+  - 114: {fileID: 559877944}
   - 114: {fileID: 559877943}
   m_Layer: 0
   m_Name: Scripts
@@ -1190,6 +1191,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5212b9b3b376a64fb01d873a926baa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &559877944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559877938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061bc6429163f1043ab9520ae0e13cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &569829240
@@ -2815,7 +2827,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -3649,12 +3660,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 559877944}
+        m_MethodName: chooseWhoToGiveItem
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
