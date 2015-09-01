@@ -49,15 +49,15 @@ public class Inventory : MonoBehaviour {
 		emptySlot = slots;
 
 		hoverYOffset = slotSize*0.01f;
-
+        slotSize = (Screen.height / 8)-slotPaddingTop*2;
         float screenHeight = Screen.height;
-        slots = (int)(screenHeight / (slotSize+slotPaddingTop));
-        rows = slots;
+       // slots = (int)(screenHeight / (slotSize+slotPaddingTop));
+       // rows = slots;
 
 		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
 		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
-		inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, inventoryWidth);
-		inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, inventoryHeight);
+		//inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, inventoryWidth);
+		//inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, inventoryHeight);
 
 		int columns = (slots / rows);
 
@@ -69,19 +69,19 @@ public class Inventory : MonoBehaviour {
 				newSlot.transform.SetParent(this.transform.parent);
 				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft*(x+1)+(slotSize*x), 
 				         -slotPaddingTop * (y+1)-(slotSize*y));
-                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
-				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
+                //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
+				//slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
 				allSlots.Add(newSlot);
 			}
 		}
 	}
 
-    Canvas InventoryCanvas = null;
+    GameObject InventoryCanvas = null;
     public void SlideInventoryOut()
     {
         if(InventoryCanvas == null)
         {
-            
+            InventoryCanvas = GameObject.Find("InventoryCanvas");
         }
         SliderOn = true;
     }
@@ -91,7 +91,7 @@ public class Inventory : MonoBehaviour {
 
         if (SliderOn)
         {
-            this.gameObject.transform.position = this.gameObject.transform.position+new Vector3(1f,1f,1f);
+           
             SliderOn = false;
         }
         else
