@@ -8,6 +8,7 @@ TagManager:
   - NotWalkableArea
   - Ground
   - ItemDatabase
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ground
   - User Input
   - NPC
-  - 
+  - Item
   - 
   - 
   - 

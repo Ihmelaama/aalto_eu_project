@@ -19,19 +19,14 @@ public class Item : MonoBehaviour{
     void OnMouseDown()
     {
         //walk to the object first?
-        PickUp();
+        //PickUp();
     }
 
     public void PickUp()
     {
-        ///*
         Debug.Log("Picked up " + itemName);
         Inventory.instance.AddItem(this);
         Destroy(this.gameObject);
-        //*/
-        
-        //Debug.Log("pick me up!");
-        
     }
 
 

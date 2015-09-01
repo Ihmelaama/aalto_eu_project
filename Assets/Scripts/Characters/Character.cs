@@ -168,16 +168,16 @@ public class Character : MonoBehaviour {
 
 //------------
 
-  void OnTriggerEnter(Collider c) {
+  protected virtual void OnTriggerEnter(Collider c) {
 
     if(c.gameObject.tag=="NotWalkableArea") {
     }
-  
+
   }
   
 //------------
 
-  void OnTriggerStay(Collider c) {
+  protected virtual void OnTriggerStay(Collider c) {
 
     if(c.gameObject.tag=="NotWalkableArea") {
     }
@@ -186,7 +186,7 @@ public class Character : MonoBehaviour {
   
 //------------  
 
-  void OnTriggerExit(Collider c) {
+  protected virtual void OnTriggerExit(Collider c) {
   
     if(c.gameObject.tag=="NotWalkableArea") {
     }

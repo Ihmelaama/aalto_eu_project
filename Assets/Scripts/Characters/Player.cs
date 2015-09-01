@@ -24,5 +24,17 @@ public class Player : Character {
   base.Update();  
   determination=1f;
   }  
+  
+//------------
+
+  protected override void OnTriggerEnter(Collider c) {
+
+    base.OnTriggerEnter(c);
+
+    if(c.gameObject.tag=="Item") {
+    c.gameObject.GetComponent<Item>().PickUp();
+    }
+
+  }
 
 }
