@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour {
 	public RectTransform inventoryRect;
 	private float inventoryWidth, inventoryHeight;
 
+    public Button inventoryButton;
+    public bool SliderOn;
 	public int slots;
 	public int rows;
 	public float slotPaddingLeft, slotPaddingTop;
@@ -48,8 +50,9 @@ public class Inventory : MonoBehaviour {
 
 		hoverYOffset = slotSize*0.01f;
 
-        float screenWidth = Screen.width;
-         slots = (int)(screenWidth / slotSize+slotPaddingLeft);
+        float screenHeight = Screen.height;
+        slots = (int)(screenHeight / (slotSize+slotPaddingTop));
+        rows = slots;
 
 		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
 		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
@@ -73,31 +76,47 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	void TestPrint(){
-		for (int i = 0; i<inventory.Count; i++) {
-			print(inventory[i].itemName);
-		}
-	}
+    Canvas InventoryCanvas = null;
+    public void SlideInventoryOut()
+    {
+        if(InventoryCanvas == null)
+        {
+            
+        }
+        SliderOn = true;
+    }
+
 
 	void Update () {
+
+        if (SliderOn)
+        {
+            this.gameObject.transform.position = this.gameObject.transform.position+new Vector3(1f,1f,1f);
+            SliderOn = false;
+        }
+        else
+        {
+           
+        }
+
 
 		if (Input.GetMouseButtonUp (0)) {
 			if(!eventSystem.IsPointerOverGameObject(-1) && from != null){
 				from.GetComponent<Image>().color = Color.grey;
 				from.ClearSlot();
-				Destroy(GameObject.Find("Hover"));
+				/*Destroy(GameObject.Find("Hover"));
 				to = null;
 				from = null;
-				hoverObject = null;
+				hoverObject = null;*/
 			}
 		}
 
-		if (hoverObject != null) {
+		/*if (hoverObject != null) {
 			Vector2 position;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform,Input.mousePosition,canvas.worldCamera,out position);
 			position.Set (position.x,position.y-hoverYOffset);
 			hoverObject.transform.position = canvas.transform.TransformPoint(position);
-		}
+		}*/
 	}
 
 	private bool PlaceEmpty(Item item){

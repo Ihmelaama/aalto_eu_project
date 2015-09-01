@@ -53,7 +53,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
         slotPosition = rectTrans.position;
         slotHeight = rectTrans.rect.height;
         slotWidth = rectTrans.rect.width;
-        slotPosition.x += slotWidth;
+        slotPosition.x += slotWidth-20;
         slotPosition.y -= (slotHeight / 2);
 
 
