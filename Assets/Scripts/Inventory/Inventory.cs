@@ -49,26 +49,29 @@ public class Inventory : MonoBehaviour {
 		emptySlot = slots;
 
 		hoverYOffset = slotSize*0.01f;
-        slotSize = (Screen.height / 8)-slotPaddingTop*2;
+        slots = (int)(Screen.height / slotSize);
+       // slotSize = (Screen.height / 8)-slotPaddingTop*2;
         float screenHeight = Screen.height;
        // slots = (int)(screenHeight / (slotSize+slotPaddingTop));
-       // rows = slots;
+        rows = slots;
 
-		inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
-		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
+		//inventoryWidth = (slots / rows) * (slotSize + slotPaddingLeft) + slotPaddingLeft;
+		//inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop;
 		//inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, inventoryWidth);
 		//inventoryRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, inventoryHeight);
 
 		int columns = (slots / rows);
-
+        GameObject invParent = GameObject.Find("Inventory");
 		for (int y = 0; y<rows; y++) {
 			for (int x = 0; x<columns; x++) {
 				GameObject newSlot = (GameObject)Instantiate(slotPrefab);
 				RectTransform slotRect = newSlot.GetComponent<RectTransform>();
 				newSlot.name = "Slot";
-				newSlot.transform.SetParent(this.transform.parent);
-				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft*(x+1)+(slotSize*x), 
-				         -slotPaddingTop * (y+1)-(slotSize*y));
+				newSlot.transform.SetParent(invParent.transform);
+                slotRect.position = inventoryRect.position + new Vector3(0f, (-y*slotSize)-slotPaddingTop*2);
+                
+                //slotRect.position = inventoryRect.position + new Vector3(slotPaddingLeft*(x+1)+(slotSize*x), 
+				//         -slotPaddingTop * (y+1)-(slotSize*y));
                 //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
 				//slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
 				allSlots.Add(newSlot);

@@ -1266,7 +1266,7 @@ Transform:
   - {fileID: 1220997549}
   - {fileID: 1306529668}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &690805259
 Prefab:
   m_ObjectHideFlags: 0
@@ -1852,8 +1852,8 @@ MonoBehaviour:
   slots: 6
   rows: 6
   slotPaddingLeft: 10
-  slotPaddingTop: 10
-  slotSize: 140
+  slotPaddingTop: 8
+  slotSize: 102
   slotPrefab: {fileID: 149806, guid: c835e60d9a8fc0848938f610027d43c9, type: 2}
   canvas: {fileID: 945326031}
   iconPrefab: {fileID: 149806, guid: c835e60d9a8fc0848938f610027d43c9, type: 2}
