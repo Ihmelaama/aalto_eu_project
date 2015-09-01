@@ -66,7 +66,7 @@ public class Inventory : MonoBehaviour {
 				newSlot.transform.SetParent(this.transform.parent);
 				slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft*(x+1)+(slotSize*x), 
 				         -slotPaddingTop * (y+1)-(slotSize*y));
-				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
+                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
 				slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
 				allSlots.Add(newSlot);
 			}

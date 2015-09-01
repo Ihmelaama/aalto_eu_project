@@ -17,6 +17,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	public Sprite slotEmpty;
 	public Sprite slotHighlight;
 
+    private float slotWidth;
+    private float slotHeight;
+    private Vector2 slotPosition;
+  
+
+
 	public Item CurrentItem{
 		get{ return items.Peek ();}
 	}
@@ -42,7 +48,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 
 		txtRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, slotRect.sizeDelta.x);
 		txtRect.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, slotRect.sizeDelta.y);
-	}
+
+        RectTransform rectTrans = this.gameObject.GetComponent<RectTransform>();
+        slotPosition = rectTrans.position;
+        slotHeight = rectTrans.rect.height;
+        slotWidth = rectTrans.rect.width;
+        slotPosition.x += slotWidth;
+        slotPosition.y -= (slotHeight / 2);
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -78,7 +93,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 
 	public void UseItem(){
 		if (!isEmpty) {
-			items.Pop().Use();
+
+			items.Pop().Use(this, slotPosition, slotWidth);
 
 			stackText.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
 
@@ -100,8 +116,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick (PointerEventData eventData)
 	{
 		if (eventData.button == PointerEventData.InputButton.Right) {
-			UseItem();
-		}
+            UseItem();
+        }
 	}
 
 	#endregion
