@@ -20,6 +20,7 @@ public class Item : MonoBehaviour{
     {
         //walk to the object first?
         //PickUp();
+        // player now picks up items by colliding with them
     }
 
     public void PickUp()
