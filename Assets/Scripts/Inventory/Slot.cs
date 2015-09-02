@@ -10,7 +10,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 
 	public Stack<Item> Items {
 		get {return items;}
-//		set{ items = value;}
 	}
 
 	public Text stackText;
@@ -35,8 +34,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 		get{ return CurrentItem.itemMaxStackSize > items.Count;}
 	}
 
-
-	// Use this for initialization
 	void Start () {
 		items = new Stack<Item> ();
 		RectTransform slotRect = GetComponent<RectTransform> ();
@@ -58,11 +55,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	
 	public void AddItem(Item item){

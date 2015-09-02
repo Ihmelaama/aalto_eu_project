@@ -16,12 +16,6 @@ public class Item : MonoBehaviour{
 
 	public enum ItemType{Food,Quest,Test, Drop}
 
-    void OnMouseDown()
-    {
-        //walk to the object first?
-        //PickUp();
-    }
-
     public void PickUp()
     {
         Debug.Log("Picked up " + itemName);

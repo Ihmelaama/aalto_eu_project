@@ -22,6 +22,7 @@ public class ActionMenu : MonoBehaviour {
     public void DropMenu()
     {
         Debug.Log("Drop it like it's hot");
+        Inventory.instance.HideInventory();
     }
 
     public void ShowMenu(Slot parent, Vector2 pos, float width)
