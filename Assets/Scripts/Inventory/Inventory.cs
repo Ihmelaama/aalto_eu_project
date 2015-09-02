@@ -49,8 +49,8 @@ public class Inventory : MonoBehaviour {
 		emptySlot = slots;
 
 		hoverYOffset = slotSize*0.01f;
-        slots = (int)(Screen.height / slotSize);
-       // slotSize = (Screen.height / 8)-slotPaddingTop*2;
+        //slots = (int)(Screen.height / slotSize);
+        slotSize = (int)(Screen.height-slotPaddingTop*2) / slots;
         float screenHeight = Screen.height;
        // slots = (int)(screenHeight / (slotSize+slotPaddingTop));
         rows = slots;
@@ -67,6 +67,7 @@ public class Inventory : MonoBehaviour {
 				GameObject newSlot = (GameObject)Instantiate(slotPrefab);
 				RectTransform slotRect = newSlot.GetComponent<RectTransform>();
 				newSlot.name = "Slot";
+                slotRect.sizeDelta = new Vector2(slotSize, slotSize);
 				newSlot.transform.SetParent(invParent.transform);
                 slotRect.position = inventoryRect.position + new Vector3(0f, (-y*slotSize)-slotPaddingTop*2);
                 
