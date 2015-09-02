@@ -9,6 +9,8 @@ public class Inventory : MonoBehaviour {
 	//public List<Item> inventory = new List<Item>();
 	public List<Item> inventory = new List<Item>();
     public static Inventory instance;
+   
+
 
 	public RectTransform inventoryRect;
 	private float inventoryWidth, inventoryHeight;
@@ -127,8 +129,8 @@ public class Inventory : MonoBehaviour {
         }
         else
         {
-            float percentage = Screen.width / (slotSize*0.85f);
-            inventoryRect.anchoredPosition = new Vector2(-Screen.width / (percentage*2), 0f);
+            float percentage = Screen.width / (slotSize+slotPaddingLeft*2);
+            inventoryRect.anchoredPosition = new Vector2(-Screen.width / (percentage), 0f);
             inventoryVisible = true;
         }
         /*foreach(GameObject slot in allSlots)

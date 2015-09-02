@@ -25,12 +25,12 @@ public class ActionMenu : MonoBehaviour {
         Inventory.instance.HideInventory();
     }
 
-    public void ShowMenu(Slot parent, Vector2 pos, float width)
+    public void ShowMenu(Slot parent)
     {
         transform.SetParent(parent.transform);
         actMenu.gameObject.SetActive(true);
         actMenu.transform.SetAsLastSibling();
-        actMenu.transform.position = pos;
+        actMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f,0f,0f);
        
 
     }

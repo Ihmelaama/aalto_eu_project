@@ -24,12 +24,12 @@ public class Item : MonoBehaviour{
     }
 
 
-    public void Use(Slot parent, Vector2 pos, float width){
+    public void Use(Slot slot){
 		switch (itemType) {
 		    case ItemType.Food:Debug.Log("food");break;
 		    case ItemType.Quest:Debug.Log("quest");break;
 		    case ItemType.Test:Debug.Log("test");break;
-            case ItemType.Drop: ActionMenu.instance.ShowMenu(parent, pos, width); break;
+            case ItemType.Drop: ActionMenu.instance.ShowMenu(slot); break;
 		default:break;
 		}
 	}

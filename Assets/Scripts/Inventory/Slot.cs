@@ -16,7 +16,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	public Sprite slotEmpty;
 	public Sprite slotHighlight;
 
-    private float slotWidth;
+    public float slotWidth;
     private float slotHeight;
     private Vector2 slotPosition;
   
@@ -86,7 +86,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	public void UseItem(){
 		if (!isEmpty) {
 
-			items.Pop().Use(this, slotPosition, slotWidth);
+			items.Pop().Use(this);
 
 			stackText.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
 
