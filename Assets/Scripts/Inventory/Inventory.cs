@@ -133,10 +133,6 @@ public class Inventory : MonoBehaviour {
             inventoryRect.anchoredPosition = new Vector2(-Screen.width / (percentage), 0f);
             inventoryVisible = true;
         }
-        /*foreach(GameObject slot in allSlots)
-        {
-            slot.SetActive(!slot.activeSelf);
-        }*/
     }
 
 }

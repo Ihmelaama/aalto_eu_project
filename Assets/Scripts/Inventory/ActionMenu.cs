@@ -23,6 +23,7 @@ public class ActionMenu : MonoBehaviour {
     {
         Debug.Log("Drop it like it's hot");
         Inventory.instance.HideInventory();
+        actMenu.gameObject.SetActive(false);
     }
 
     public void ShowMenu(Slot parent)
