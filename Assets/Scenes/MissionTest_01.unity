@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1937a84a27e5364b933a6566373f973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 21300000, guid: 484f49662d800b2419035580fc93f149, type: 3}
+  characterSprite: {fileID: 21300000, guid: f31a2179ef71fb3498f5bb4cf016aff4, type: 3}
   characterSpriteName: 
   minWalkSpeed: .0500000007
   maxWalkSpeed: .100000001
@@ -590,6 +590,11 @@ Prefab:
       propertyPath: dialogueFile
       value: dialogue_test
       objectReference: {fileID: 0}
+    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
+      propertyPath: characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08fc6fd9fe1bdf04d9c779a5045c8b5a,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 17f3c10463917494b9319cc51b459757, type: 2}
@@ -1379,6 +1384,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
+      propertyPath: characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 75a4c658076ab6949bb0bf329ecc19a5,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17f3c10463917494b9319cc51b459757, type: 2}
   m_IsPrefabParent: 0
@@ -2796,7 +2806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210575861
 RectTransform:
   m_ObjectHideFlags: 0
