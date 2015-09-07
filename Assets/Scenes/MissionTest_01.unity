@@ -1513,7 +1513,7 @@ GameObject:
   - 222: {fileID: 713538836}
   - 114: {fileID: 713538835}
   m_Layer: 0
-  m_Name: mission_1_desc (1)
+  m_Name: mission_2_desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2507,6 +2507,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionButton: {fileID: 1474116527}
   missionBG: {fileID: 1210575862}
+  mission_1_name: {fileID: 1872441573}
+  mission_1_desc: {fileID: 1274095798}
+  mission_2_name: {fileID: 475043406}
+  mission_2_desc: {fileID: 713538835}
+  mission_3_name: {fileID: 847101181}
+  mission_3_desc: {fileID: 1869353831}
 --- !u!1 &1009838459
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,6 +4946,10 @@ Prefab:
     - target: {fileID: 141874, guid: 1b458c3937a9a114990ffdc22778aa7e, type: 2}
       propertyPath: m_Name
       value: CollectibleItem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440544, guid: 1b458c3937a9a114990ffdc22778aa7e, type: 2}
+      propertyPath: itemID
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b458c3937a9a114990ffdc22778aa7e, type: 2}
