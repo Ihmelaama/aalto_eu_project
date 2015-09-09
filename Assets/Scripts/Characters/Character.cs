@@ -16,6 +16,8 @@ public class Character : MonoBehaviour {
     public float minWalkSpeed=0.05f;
     public float maxWalkSpeed=0.1f;
     
+    public float[] defaultLifeValues;
+    
   // private settings ---
   
     private float minDistanceFromDestination=0.75f;
@@ -35,6 +37,9 @@ public class Character : MonoBehaviour {
     
     [System.NonSerialized]
     public float minDetermination=0.2f;    
+    
+    private float lifeValueLerpThreshold=0.05f;
+    private float lifeValueLerpSpeed=0.1f;
 
   // holders ---
   
@@ -56,10 +61,34 @@ public class Character : MonoBehaviour {
     [System.NonSerialized]
     public float determination=0f;
     
+    [System.NonSerialized]
+    public List<float> lifeValues=new List<float>();
+    
+    private List<float> lerpLifeValues=new List<float>();
+    
 //---------------------------------------------------
 // START
 
   protected virtual void Awake() {
+
+  // set initial life values for character ---
+
+    string name;
+    float val;
+    
+    for(int i=0; i<Constants.lifeValueNames.Count; i++) {
+
+      if(defaultLifeValues==null || defaultLifeValues.Length<=i) {
+      val=Constants.defaultLifeValues[i];
+      } else {
+      val=defaultLifeValues[i];
+      }
+      
+      lifeValues.Add(val);
+      lerpLifeValues.Add(val);
+
+    }
+
   }
 
 //------------
@@ -81,7 +110,7 @@ public class Character : MonoBehaviour {
     if(graphics!=null) graphicsSpriteRenderer=graphics.GetComponent<SpriteRenderer>();
   
   }
-
+  
 //---------------------------------------------------
 // PUBLIC SETTERS
 
@@ -149,6 +178,23 @@ public class Character : MonoBehaviour {
   
   }
   
+//------------
+
+  public void changeLifeValue(int valueNum, float change) {
+  
+    if(Mathf.Abs(change)<lifeValueLerpThreshold) {
+    
+      lifeValues[valueNum]+=change;
+      lerpLifeValues[valueNum]=lifeValues[valueNum];
+    
+    } else {
+    
+      lerpLifeValues[valueNum]=lifeValues[valueNum]+change;
+
+    }
+  
+  }  
+  
 //---------------------------------------------------
 // PUBLIC GETTERS  
   
@@ -159,10 +205,11 @@ public class Character : MonoBehaviour {
 //---------------------------------------------------
 // EVENTS  
   
-	protected virtual void Update() {
+	protected virtual void FixedUpdate() {
   
     moveToDestination();
     handleAnimations();
+    handleLifeValues();
       
 	}
 
@@ -198,6 +245,16 @@ public class Character : MonoBehaviour {
   public virtual void finalDestinationReached() {
   destinations.Clear();
   allowNewDestinations=true;  
+  }
+  
+//------------
+
+  public virtual void lifeValueFull(int lifeValueNum) {
+  }
+  
+//------------  
+  
+  public virtual void lifeValueEmpty(int lifeValueNum) {
   }
   
 //---------------------------------------------------
@@ -296,6 +353,42 @@ public class Character : MonoBehaviour {
     graphicsAnimator.SetFloat("speed", -1f);
     }
   
+  }
+  
+//------------
+
+  private void handleLifeValues() {
+  
+    for(int i=0; i<lifeValues.Count; i++) {
+    
+    // lerp to new values if needed ---
+    
+      if(lifeValues[i]!=lerpLifeValues[i]) {
+      lifeValues[i]=Mathf.Lerp(lifeValues[i], lerpLifeValues[i], lifeValueLerpSpeed);
+      
+      } else {
+      lerpLifeValues[i]=lifeValues[i];
+      }
+      
+    // limit values ---
+    
+      if(lifeValues[i]>1f) lifeValues[i]=1f;
+      if(lifeValues[i]<0f) lifeValues[i]=0f;
+
+    // full of life ---
+
+      if(lifeValues[i]==1f) {
+      lifeValueFull(i);
+      }
+   
+    // out of life ---
+    
+      if(lifeValues[i]==0f) {
+      lifeValueEmpty(i);
+      }
+   
+    }
+
   }
 
 //---------------------------------------------------

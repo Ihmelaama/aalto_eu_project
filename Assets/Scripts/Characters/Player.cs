@@ -20,8 +20,8 @@ public class Player : Character {
 //---------------------------------------------------
 // EVENTS
 
-  protected override void Update() {
-  base.Update();  
+  protected override void FixedUpdate() {
+  base.FixedUpdate();  
   determination=1f;
   }  
   
@@ -33,8 +33,29 @@ public class Player : Character {
 
     if(c.gameObject.tag=="Item") {
     c.gameObject.GetComponent<Item>().PickUp();
+
+      // debug ---
+      changeLifeValue(0, 0.3f);
+      changeLifeValue(1, -0.3f);
+
     }
 
   }
+  
+//------------
+
+  public override void lifeValueFull(int lifeValueNum) {
+
+    Debug.Log("Full of "+Constants.lifeValueNames[lifeValueNum]+".");
+
+  }
+  
+//------------  
+  
+  public override void lifeValueEmpty(int lifeValueNum) {
+  
+    Debug.Log(Constants.lifeValueNames[lifeValueNum]+" is gone.");
+    
+  }  
 
 }

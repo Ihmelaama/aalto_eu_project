@@ -62,9 +62,9 @@ public class NPC : Character {
 //---------------------------------------------------
 // EVENTS
 
-  protected override void Update() {
+  protected override void FixedUpdate() {
   
-    base.Update();  
+    base.FixedUpdate();  
   
   // react to player ---
   
