@@ -121,24 +121,24 @@ public class DialogueMenu : MonoBehaviour {
     
     str=currentDialogueItem.replies[currentSelectorPos];
     playerBubble.SetActive(true); 
-    playerBubbleText.text=str;  
-  
+    playerBubbleText.text=str;
+
     // if conversation has somewhere to go
     if(currentDialogueItem.gotoItems.Count>currentSelectorPos) {
-    
+
       str=currentDialogueItem.gotoItems[currentSelectorPos];
       currentDialogueItem=currentDialogue.getDialogueByName(str);
       NPCBubbleText.text=getRandomDialogueLine();
-    
+
       currentSelectorPos=0;
       selectorText.text=currentDialogueItem.replies[currentSelectorPos];
-      
-    // if not quit talking
+
+    // else quit talking
     } else {
-    
+
       currentSelectorPos=0;
       dialogueManager.toggleDialogue();
-    
+
     }
     
   }
