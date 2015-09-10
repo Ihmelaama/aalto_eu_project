@@ -64,13 +64,27 @@ public class DialogueManager : MonoBehaviour {
 // PUBLIC SETTERS
 
   public void toggleDialogue() {
-  toggleDialogue(dialogueType);
+  toggleDialogue(Constants.TALK);
   }
 
   public void toggleDialogue(int type) {
+
+  // reset talk state if different type of dialogue ---
   
+    if(dialogueType!=0 && dialogueType!=type) {
+    
+      hideDialogueMenu();    
+      hideCharactersWithDialogue();    
+      state=0;  
+      dialogueType=0;
+      WorldState.allowUserInput=true;       
+      
+    }
+      
+  // else show available talk targets ---        
+
     dialogueType=type;
-  
+
   // show available talk targets
   
     if(state==0) {
@@ -84,6 +98,7 @@ public class DialogueManager : MonoBehaviour {
       
         hideCharactersWithDialogue();
         state=0;
+        dialogueType=0;
       
       } else {
       
@@ -95,7 +110,7 @@ public class DialogueManager : MonoBehaviour {
       }
       
     }
-  
+
   }
 
 //------------  
@@ -126,7 +141,7 @@ public class DialogueManager : MonoBehaviour {
     }
   
   }  
-  
+
 //----------------------------------------------------
 // PRIVATE SETTERS
 

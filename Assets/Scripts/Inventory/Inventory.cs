@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour {
 	private float inventoryWidth, inventoryHeight;
 
     public Button inventoryButton;
-    public bool SliderOn;
+    //public bool SliderOn;
 	public int slots;
 	public int rows;
 	public float slotPaddingLeft, slotPaddingTop;
@@ -118,21 +118,5 @@ public class Inventory : MonoBehaviour {
 		}
 		return false;
 	}
-
-    bool inventoryVisible = false;
-    public void HideInventory()
-    {
-        if (inventoryVisible)
-        {
-            inventoryRect.anchoredPosition = new Vector2(0f, 0f);
-            inventoryVisible = false;
-        }
-        else
-        {
-            float percentage = Screen.width / (slotSize+slotPaddingLeft*2);
-            inventoryRect.anchoredPosition = new Vector2(-Screen.width / (percentage), 0f);
-            inventoryVisible = true;
-        }
-    }
 
 }

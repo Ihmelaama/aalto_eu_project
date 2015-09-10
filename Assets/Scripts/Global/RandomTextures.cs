@@ -15,7 +15,7 @@ public class RandomTextures : MonoBehaviour {
 
 	void Awake() {
   
-    reservedCharacterTextures.Add("blue_star");
+    reservedCharacterTextures.Add("human_base_marimekko");
 	
     loadCharacterSprites();
   
