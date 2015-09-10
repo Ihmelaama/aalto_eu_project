@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -22,7 +22,6 @@ public class ActionMenu : MonoBehaviour {
     public void DropMenu()
     {
         Debug.Log("Drop it like it's hot");
-        Inventory.instance.HideInventory();
         actMenu.gameObject.SetActive(false);
     }
 

@@ -77,6 +77,7 @@ public class DialogueManager : MonoBehaviour {
       hideCharactersWithDialogue();    
       state=0;  
       dialogueType=0;
+      WorldState.allowUserInput=true;       
       
     }
       
