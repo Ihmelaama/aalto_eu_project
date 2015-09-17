@@ -35,8 +35,8 @@ public class Player : Character {
     c.gameObject.GetComponent<Item>().PickUp();
 
       // debug ---
-      changeLifeValue(0, 0.3f);
-      changeLifeValue(1, -0.3f);
+      //changeLifeValue(0, 0.3f);
+      //changeLifeValue(1, -0.3f);
 
     }
 
@@ -46,7 +46,7 @@ public class Player : Character {
 
   public override void lifeValueFull(int lifeValueNum) {
 
-    Debug.Log("Full of "+Constants.lifeValueNames[lifeValueNum]+".");
+    //Debug.Log("Full of "+Constants.lifeValueNames[lifeValueNum]+".");
 
   }
   
@@ -54,7 +54,7 @@ public class Player : Character {
   
   public override void lifeValueEmpty(int lifeValueNum) {
   
-    Debug.Log(Constants.lifeValueNames[lifeValueNum]+" is gone.");
+    //Debug.Log(Constants.lifeValueNames[lifeValueNum]+" is gone.");
     
   }  
 
