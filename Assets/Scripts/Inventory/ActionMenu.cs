@@ -8,6 +8,7 @@ public class ActionMenu : MonoBehaviour {
     public Button dropButton;
     public Button useButton;
     public Button giveButton;
+    public static Slot currentSlot = null;
 
     public Text useText;
 
@@ -22,15 +23,22 @@ public class ActionMenu : MonoBehaviour {
     public void DropMenu()
     {
         Debug.Log("Drop it like it's hot");
+        currentSlot.DropItem();
+        actMenu.gameObject.SetActive(false);
+    }
+
+    public void CloseMenu()
+    {
         actMenu.gameObject.SetActive(false);
     }
 
     public void ShowMenu(Slot parent)
     {
+        currentSlot = parent;
         transform.SetParent(parent.transform);
         actMenu.gameObject.SetActive(true);
         actMenu.transform.SetAsLastSibling();
-        actMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f,0f,0f);
+        actMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-110f,0f,0f);
        
 
     }

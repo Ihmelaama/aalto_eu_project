@@ -86,7 +86,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	public void UseItem(){
 		if (!isEmpty) {
 
-			items.Pop().Use(this);
+			//items.Pop().Use(this);
+            items.Peek().Use(this);
 
 			stackText.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
 
@@ -97,7 +98,24 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 		}
 	}
 
-	public void ClearSlot(){
+    public void DropItem()
+    {
+        if (!isEmpty)
+        {
+
+            items.Pop().Use(this);
+
+            stackText.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
+
+            if (isEmpty)
+            {
+                ChangeSprite(slotEmpty, slotHighlight);
+                Inventory.EmptySlot++;
+            }
+        }
+    }
+
+    public void ClearSlot(){
 		items.Clear ();
 		ChangeSprite (slotEmpty, slotHighlight);
 		stackText.text = string.Empty;

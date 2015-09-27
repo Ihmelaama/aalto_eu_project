@@ -25,13 +25,14 @@ public class Item : MonoBehaviour{
 
 
     public void Use(Slot slot){
-		switch (itemType) {
+        ActionMenu.instance.ShowMenu(slot);
+        /*switch (itemType) {
 		    case ItemType.Food:Debug.Log("food");break;
 		    case ItemType.Quest:Debug.Log("quest");break;
 		    case ItemType.Test:Debug.Log("test");break;
             case ItemType.Drop: ActionMenu.instance.ShowMenu(slot); break;
 		default:break;
-		}
+		}*/
 	}
 	
 
