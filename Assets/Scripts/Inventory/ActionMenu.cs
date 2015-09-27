@@ -38,7 +38,7 @@ public class ActionMenu : MonoBehaviour {
         transform.SetParent(parent.transform);
         actMenu.gameObject.SetActive(true);
         actMenu.transform.SetAsLastSibling();
-        actMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-110f,0f,0f);
+        actMenu.GetComponent<RectTransform>().anchoredPosition = new Vector3(-120f,0f,0f);
        
 
     }
