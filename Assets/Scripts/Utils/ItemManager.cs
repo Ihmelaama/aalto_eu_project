@@ -7,9 +7,10 @@ public class ItemManager : MonoBehaviour {
 // VARIABLES
 
   // holders ---
-  
-    private DialogueManager dialogueManager;
-    
+
+    private Inventory inventory;
+    private SlidingDashboard inventorySlider;
+
   // state ---
   
     public static int currentItemId=-1;
@@ -19,8 +20,9 @@ public class ItemManager : MonoBehaviour {
 // START
 
 	void Start() {
-  
-    dialogueManager=gameObject.GetComponent<DialogueManager>();
+
+    inventory=GameObject.Find("Inv/Inventory").GetComponent<Inventory>();
+    inventorySlider=GameObject.Find("Inv").GetComponent<SlidingDashboard>();
 	
 	}
   
@@ -44,10 +46,36 @@ public class ItemManager : MonoBehaviour {
   
 //---------  
                        
-  public void chooseWhoToGiveItem(int itemType) {
+  public void giveItemToNPC(int itemType) {
   
-    dialogueManager.toggleDialogue(Constants.USER_GIVES_ITEM);
+    if(DialogueManager.currentTalkTarget) {
+    
+      NPC npc=DialogueManager.currentTalkTarget.gameObject.GetComponent<NPC>();
+      if(npc!=null) npc.receiveItem(itemType);
+    
+    }
 
-  }  
+  } 
+  
+//--------- 
+
+  public void toggleInventory(bool b) {
+  toggleInventory(b, 0);
+  }
+
+  public void toggleInventory(bool b, int mode) {
+  
+    if(b && inventory.getItemCount()>0) {
+    
+      if(mode!=0) inventory.setMode(mode);    
+      inventorySlider.toggleDashboard(true);
+    
+    } else {
+    
+      inventorySlider.toggleDashboard(false);
+    
+    }
+
+  }   
 
 }

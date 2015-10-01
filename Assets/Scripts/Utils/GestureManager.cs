@@ -105,10 +105,14 @@ public class GestureManager {
 // PUBLIC GETTERS   
 
   public static Vector3 testTouch3D(Transform target) {
-  return GestureManager.testTouch3D(target, null);
+  return GestureManager.testTouch3D(target, null, null);
   }
   
-  public static Vector3 testTouch3D(Transform target, Camera c) {
+  public static Vector3 testTouch3D(Transform target, string layer) {
+  return GestureManager.testTouch3D(target, null, layer);
+  }  
+  
+  public static Vector3 testTouch3D(Transform target, Camera c, string layer) {
   
     if(c==null) {
     c=Camera.main;
@@ -118,13 +122,18 @@ public class GestureManager {
     Ray ray=c.ScreenPointToRay(t);
     RaycastHit hit;
     
+    int layerMask=Physics.DefaultRaycastLayers;
+
+    if(layer!=null) {
     int layerIndex=LayerMask.NameToLayer("User Input");
-    LayerMask layerMask=(1 << layerIndex);
+    layerMask=(1 << layerIndex);
+    }
+
     if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
 
       if(hit.collider.transform==target) return hit.point;
 
-    }  
+    }     
 
   return Vector3.zero;  
   }

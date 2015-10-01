@@ -13,7 +13,7 @@ public class NPC : Character {
 
     public float followOtherNPC=0f;
     public float avoidOtherNPC=0f;
-    
+
     public float reactionRadius=10f;
     
     public string dialogueFile=null;
@@ -32,6 +32,8 @@ public class NPC : Character {
     
     [HideInInspector]
     public Dialogue dialogue;
+    
+    private DialogueManager dialogueManager;
 
 //---------------------------------------------------
 // START
@@ -47,6 +49,8 @@ public class NPC : Character {
     if(dialogueFile!=null) {
     dialogue=new Dialogue(dialogueFile);
     }
+    
+    dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
 
   // set stuff ---
 
@@ -73,6 +77,10 @@ public class NPC : Character {
   // react to other characters ---
   
     reactToOtherCharacters();
+    
+  // test user touch ---
+  
+    testUserTouch();
     
   }
 
@@ -134,6 +142,12 @@ public class NPC : Character {
 
   }  
   
+//------------
+
+  public void receiveItem(int itemType) {
+  Debug.Log("I was given: "+itemType);
+  }  
+  
 //---------------------------------------------------
 // PRIVATE SETTERS
 
@@ -189,6 +203,15 @@ public class NPC : Character {
 
   private void reactToOtherCharacters() {
   }
-    
+  
+//------------
+
+  private void testUserTouch() {
+
+    if(dialogueManager!=null && GestureManager.wasTouched && GestureManager.testTouch3D(transform)!=Vector3.zero) {
+    dialogueManager.showDialogueMenu(transform, 2);
+    }
+
+  }
 
 }
