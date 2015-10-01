@@ -11,7 +11,8 @@ public class CharScript : MonoBehaviour {
 	}
 
 	public void setAsPlayerCharacter(){
-		//make the global player character this.character
+        //make the global player character this.character
+        Application.LoadLevel(1);
 	}
 
 }
