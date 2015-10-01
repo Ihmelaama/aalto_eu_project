@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Hamburger
-  itemID: 0
+  itemID: 1
   itemDesc: 
   itemIcon: {fileID: 2800000, guid: 524f7ca443b1baa4b86a5461e75473f3, type: 3}
   itemSprite: {fileID: 21300000, guid: 524f7ca443b1baa4b86a5461e75473f3, type: 3}
@@ -136,7 +136,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: itemID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 160908}

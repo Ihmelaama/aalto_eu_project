@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class MissionManager : MonoBehaviour {
 
-
-    public static List<Mission> missions;
     public List<Mission> publicMissionList;
+    public static List<Mission> missions;
+    
 
     void Start()
     {
@@ -37,6 +37,7 @@ public class MissionManager : MonoBehaviour {
             if (doneHere)
             {
                 //we are so done here
+                Debug.Log("we are so done here");
             }
             //make UI changes
         }
@@ -45,11 +46,3 @@ public class MissionManager : MonoBehaviour {
 }
 
 
-public class Mission
-{
-        public string name;
-        public int amountItemsNeeded;
-        public int itemIDNeeded;
-
-        public bool missionDone { get{ return (amountItemsNeeded <= 0); }}
-}
