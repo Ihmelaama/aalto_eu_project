@@ -43,6 +43,17 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
+    public static void checkIfMission(Item item)
+    {
+        foreach(Mission mis in missions)
+        {
+            if(mis.itemNeeded.itemID == item.itemID)
+            {
+                changeMissionStatus(mis.name);
+            }
+        }
+    }
+
 }
 
 

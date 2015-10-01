@@ -25,8 +25,6 @@ public class Inventory : MonoBehaviour {
 	public Canvas canvas;
 
 	public GameObject iconPrefab;
-	//private static GameObject hoverObject;
-	//private float hoverYOffset;
 
 	public EventSystem eventSystem;
   

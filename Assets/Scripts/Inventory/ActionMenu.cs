@@ -35,6 +35,7 @@ public class ActionMenu : MonoBehaviour {
     public void UseMenu()
     {
         Debug.Log("Use it!");
+        MissionManager.checkIfMission(currentSlot.CurrentItem);
     }    
     
     public void GiveMenu()
