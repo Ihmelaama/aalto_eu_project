@@ -29,6 +29,10 @@ public class Inventory : MonoBehaviour {
 	//private float hoverYOffset;
 
 	public EventSystem eventSystem;
+  
+  // 1=use, 2=give ---
+  [HideInInspector]
+  public int inventoryMode=1;
 
 	private static Slot from, to;
 
@@ -48,6 +52,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	private void CreateLayout(){
+
 		emptySlot = slots;
 
         slotSize = (Screen.height-slotPaddingTop*2) / slots;
@@ -118,5 +123,26 @@ public class Inventory : MonoBehaviour {
 		}
 		return false;
 	}
+  
+  // set inventory to use mode (1) or give mode (2)
+  public void setMode(int mode) {
+  
+    if(inventoryMode!=mode) {
+    inventoryMode=mode;
+    }
+
+  }
+
+  public int getItemCount() {
+  
+    int num=0;
+    
+    foreach(GameObject slot in allSlots){
+    Slot tmp=slot.GetComponent<Slot>();
+    if(!tmp.isEmpty) num++;
+    }
+  
+  return num;
+  }
 
 }

@@ -29,7 +29,7 @@ public class WalkableArea : MonoBehaviour {
 
       if(GestureManager.isTouched) {
       
-        Vector3 v=GestureManager.testTouch3D(transform);
+        Vector3 v=GestureManager.testTouch3D(transform, "User Input");
         
         if(v!=Vector3.zero) {
         
@@ -45,7 +45,7 @@ public class WalkableArea : MonoBehaviour {
     
       if(GestureManager.wasTouched) {
     
-        Vector3 v=GestureManager.testTouch3D(transform);
+        Vector3 v=GestureManager.testTouch3D(transform, "User Input");
         
         if(v!=Vector3.zero) {
         

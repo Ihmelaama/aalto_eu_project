@@ -137,7 +137,7 @@ public class DialogueMenu : MonoBehaviour {
     } else {
 
       currentSelectorPos=0;
-      dialogueManager.toggleDialogue();
+      dialogueManager.hideDialogueMenu();
 
     }
     
