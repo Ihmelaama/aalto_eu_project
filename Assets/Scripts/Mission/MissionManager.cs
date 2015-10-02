@@ -12,6 +12,9 @@ public class MissionManager : MonoBehaviour {
     public static List<GameObject> missionUIElements;
     
 
+    public enum ActionType { use, give, find};
+
+
     void Start()
     {
         missions = new List<Mission>();
@@ -28,7 +31,7 @@ public class MissionManager : MonoBehaviour {
             go.GetComponent<Text>().text = missions[i].name;
             GameObject goChild = go.transform.GetChild(0).gameObject;
             goChild.GetComponent<Text>().text = missions[i].missionDescription;
-            //i--;
+            i--;
         }
 
 
@@ -60,13 +63,16 @@ public class MissionManager : MonoBehaviour {
         MakeUiChanges(currentMission);
     }
 
-    public static void checkIfMission(Item item)
+    public static void checkIfMission(Item item, ActionType action)
     {
         foreach(Mission mis in missions)
         {
             if(mis.itemNeeded.itemID == item.itemID)
             {
-                changeMissionStatus(mis.name);
+                if (mis.actionNeeded == action)
+                {
+                    changeMissionStatus(mis.name);
+                }
             }
         }
     }

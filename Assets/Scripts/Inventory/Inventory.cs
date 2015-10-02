@@ -101,6 +101,9 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public bool AddItem(Item item){
+
+        MissionManager.checkIfMission(item, MissionManager.ActionType.find);
+
 		if (item.itemMaxStackSize <= 1) {
 			PlaceEmpty (item);
 			return true;

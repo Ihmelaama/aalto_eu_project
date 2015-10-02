@@ -10,6 +10,7 @@ public class Mission : MonoBehaviour {
     [HideInInspector]
     public int targetAmount;
     public Item itemNeeded;
+    public MissionManager.ActionType actionNeeded;
 
     void Start()
     {
