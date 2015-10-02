@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MissionManager : MonoBehaviour {
 
     public List<Mission> publicMissionList;
     public static List<Mission> missions;
+
+    public List<GameObject> publicMissionUIElements;
+    public static List<GameObject> missionUIElements;
     
 
     void Start()
@@ -15,6 +19,19 @@ public class MissionManager : MonoBehaviour {
         {
             missions.Add(mis);
         }
+
+        missionUIElements = new List<GameObject>();
+        int i = missions.Count -1;
+        foreach(GameObject go in publicMissionUIElements)
+        {
+            missionUIElements.Add(go);
+            go.GetComponent<Text>().text = missions[i].name;
+            GameObject goChild = go.transform.GetChild(0).gameObject;
+            goChild.GetComponent<Text>().text = missions[i].missionDescription;
+            //i--;
+        }
+
+
     }
 
     public static void changeMissionStatus(string MissionName)
@@ -39,8 +56,8 @@ public class MissionManager : MonoBehaviour {
                 //we are so done here
                 Debug.Log("we are so done here");
             }
-            //make UI changes
         }
+        MakeUiChanges(currentMission);
     }
 
     public static void checkIfMission(Item item)
@@ -52,6 +69,19 @@ public class MissionManager : MonoBehaviour {
                 changeMissionStatus(mis.name);
             }
         }
+    }
+
+    public static void MakeUiChanges(Mission mission)
+    {
+        Text target = null;
+        foreach (GameObject go in missionUIElements)
+        {
+            if (go.GetComponent<Text>().text.Equals(mission.name))
+            {
+                target = go.transform.GetChild(0).gameObject.GetComponent<Text>();
+            }
+        }
+        target.text = mission.missionDescription + "\n Found " +  (mission.targetAmount - mission.amountItemsNeeded) + " of " + mission.targetAmount;
     }
 
 }

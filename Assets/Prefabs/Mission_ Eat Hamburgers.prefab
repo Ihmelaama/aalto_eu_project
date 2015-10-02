@@ -40,8 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Eat Hamburger
+  missionDescription: Find Hamburgers to eat.
   amountItemsNeeded: 3
-  itemNeeded: {fileID: 0}
+  targetAmount: 0
+  itemNeeded: {fileID: 11455754, guid: 33f9d18a2a0e0984fa295352c12470eb, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

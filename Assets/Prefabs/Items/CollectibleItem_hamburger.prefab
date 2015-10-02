@@ -53,8 +53,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.79999995, y: .116999999, z: .949999988}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.11999989, y: .116999999, z: 4.67000008}
+  m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 421426}
   m_Father: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
     type: 3}
   itemValue: 0
   itemType: 3
-  itemMaxStackSize: 2
+  itemMaxStackSize: 10
 --- !u!212 &21253638
 SpriteRenderer:
   m_ObjectHideFlags: 1
