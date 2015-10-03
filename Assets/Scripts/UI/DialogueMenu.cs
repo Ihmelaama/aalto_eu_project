@@ -101,6 +101,10 @@ public class DialogueMenu : MonoBehaviour {
     }
     
     selectorText.text=currentDialogueItem.replies[currentSelectorPos];
+    
+  //---  
+    
+    Fabric.EventManager.Instance.PostEvent("UI/Button");
   
   }  
   

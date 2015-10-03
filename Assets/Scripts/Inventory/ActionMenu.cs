@@ -29,13 +29,13 @@ public class ActionMenu : MonoBehaviour {
     {
         Debug.Log("Drop it like it's hot");
         currentSlot.DropItem();
-        actMenu.gameObject.SetActive(false);
+        actMenu.gameObject.SetActive(false);   
     }
     
     public void UseMenu()
     {
         Debug.Log("Use it!");
-        MissionManager.checkIfMission(currentSlot.CurrentItem, MissionManager.ActionType.use);
+        MissionManager.checkIfMission(currentSlot.CurrentItem, MissionManager.ActionType.use);         
     }    
     
     public void GiveMenu()
@@ -46,7 +46,7 @@ public class ActionMenu : MonoBehaviour {
         if(b) {
         currentSlot.DropItem();
         actMenu.gameObject.SetActive(false);
-        }
+        }         
          
     }    
 

@@ -81,6 +81,10 @@ public class DialogueManager : MonoBehaviour {
       itemManager.toggleInventory(true, 2);
       //dashboard.toggleDashboard(true);
 
+      // construct event string for fabric: "Chars/Hello/"+GameState.currentPlayerCharacterName or something
+      Debug.Log("say hello!");
+      Fabric.EventManager.Instance.PostEvent("Chars/Hello/Name");    
+
     }  
   
   }

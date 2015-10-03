@@ -102,6 +102,10 @@ public class SlidingDashboard : MonoBehaviour {
     } else {
     }
     */
+  
+  //---
+  
+    Fabric.EventManager.Instance.PostEvent("UI/Button");    
         
   }
   
@@ -126,6 +130,10 @@ public class SlidingDashboard : MonoBehaviour {
     } else {
     }
     */
+    
+  //---    
+    
+    Fabric.EventManager.Instance.PostEvent("UI/Button");    
 
   }
 

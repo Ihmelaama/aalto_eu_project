@@ -298,8 +298,7 @@ public class LoopingGround : MonoBehaviour {
       } 
       
       hit=raycastScreenPoint(centerOfSCreen);
-      Debug.Log(hit);
-      
+
       if(hit==tileWalkableArea) {
       b=true;
       }

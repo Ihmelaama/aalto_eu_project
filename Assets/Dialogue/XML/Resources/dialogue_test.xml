@@ -13,7 +13,9 @@
       
       <reply goto-item="who_are_you">Who are you?</reply>
       
-      <reply goto-item="where_are_we">Where are we?</reply>   
+      <reply goto-item="where_are_we">Where are we?</reply> 
+      
+      <reply goto-item="hows_life">How's life?</reply>   
       
       <reply>Sorry, I thought you were someone else.</reply>                 
     
@@ -89,7 +91,18 @@
       
       <reply>I have to go. Good luck with all this.</reply>       
     
-    </item>   
+    </item>  
+    
+/// ---------------------------------------    
+    
+    /// how's life?
+    <item name="hows_life">
+    
+      <line>Life?</line>    
+      
+      <reply>You know, breathing, thinking, laughing, crying. That sort of stuff. Yes?</reply>       
+    
+    </item>       
     
 /// ---------------------------------------------------------------------
 /// dialogue items when given stuff from inventory  
