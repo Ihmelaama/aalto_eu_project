@@ -6,6 +6,8 @@ public class SoundTestScript : MonoBehaviour {
 	public string T;
 	public string Y;
 	public string U;
+	public string Mouse;
+	public Fabric.AudioComponent sound;
 
 
 	void Update () {
@@ -20,6 +22,9 @@ public class SoundTestScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.U)) {
 			Fabric.EventManager.Instance.PostEvent(U);
 		}
-
+		if (Input.GetMouseButtonDown (0)) {
+		
+			sound.Stop();
 	}
+}
 }

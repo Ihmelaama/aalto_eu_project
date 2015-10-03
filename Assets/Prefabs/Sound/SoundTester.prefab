@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   T: Char/Name/Hello
   Y: Char/Name/Laugh
-  U: UI/Button
+  U: Music/Demo Stop
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
