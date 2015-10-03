@@ -19,6 +19,8 @@ public class SlidingDashboard : MonoBehaviour {
   
     public bool visible=false;
     private bool isAnimating=false;
+    
+    private float position=0f;
 
 //------------------------------------------------------
 // EVENTS
@@ -32,11 +34,17 @@ public class SlidingDashboard : MonoBehaviour {
     anchoredPosition=rect.anchoredPosition;
     
     if(!visible) {
-    Hide();
-
-    } else {
-    Show();
+    Hide(false);
     }
+
+  }
+  
+//------------  
+  
+  void Update() { 
+  
+    anchoredPosition.x=hideDirection*(rect.sizeDelta.x/2f)*(1f-position); 
+    rect.anchoredPosition=anchoredPosition;
 
   }
   
@@ -44,17 +52,21 @@ public class SlidingDashboard : MonoBehaviour {
 // PUBLIC SETTERS  
 
   public void toggleDashboard() {
-  toggleDashboard(!visible);
+  toggleDashboard(!visible, true);
   }
-
+  
   public void toggleDashboard(bool b) {
+  toggleDashboard(b, true);
+  }  
+
+  public void toggleDashboard(bool b, bool animate) {
   
     if(b!=visible) {
     
       if(b) {
-      Show(false);
+      Show(animate);
       } else {
-      Hide(false);
+      Hide(animate);
       }
  
     }
@@ -69,9 +81,27 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Show(bool animate) {
   
-    anchoredPosition.x=0f;
-    rect.anchoredPosition=anchoredPosition;
-    visible=true;
+    //if(!animate) {
+    
+      position=1f;
+      visible=true;
+    
+    //} else {
+    
+      //DOTween.To(position
+    
+    //}
+  
+    /*
+    if(!animate) {
+  
+      anchoredPosition.x=0f;
+      rect.anchoredPosition=anchoredPosition;
+      visible=true;
+      
+    } else {
+    }
+    */
         
   }
   
@@ -83,9 +113,19 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Hide(bool animate) {
   
-    anchoredPosition.x=hideDirection*rect.sizeDelta.x/2f;
-    rect.anchoredPosition=anchoredPosition;  
+    position=0f;
     visible=false;
+  
+    /*
+    if(!animate) {
+  
+      anchoredPosition.x=hideDirection*rect.sizeDelta.x/2f;
+      rect.anchoredPosition=anchoredPosition;  
+      visible=false;
+    
+    } else {
+    }
+    */
 
   }
 
