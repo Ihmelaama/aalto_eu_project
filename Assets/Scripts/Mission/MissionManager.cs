@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
+using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine.UI;      
 
 public class MissionManager : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class MissionManager : MonoBehaviour {
 
     void Start()
     {
+    
         missions = new List<Mission>();
         foreach(Mission mis in publicMissionList)
         {
@@ -63,8 +65,8 @@ public class MissionManager : MonoBehaviour {
         MakeUiChanges(currentMission);
     }
 
-    public static void checkIfMission(Item item, ActionType action)
-    {
+    public static bool checkIfMission(Item item, ActionType action) {
+    
         foreach(Mission mis in missions)
         {
             if(mis.itemNeeded.itemID == item.itemID)
@@ -72,10 +74,14 @@ public class MissionManager : MonoBehaviour {
                 if (mis.actionNeeded == action)
                 {
                     changeMissionStatus(mis.name);
+                    return true;
                 }
             }
         }
+
+    return false;    
     }
+    
 
     public static void MakeUiChanges(Mission mission)
     {

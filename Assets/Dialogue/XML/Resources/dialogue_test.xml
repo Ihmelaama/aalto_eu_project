@@ -94,7 +94,7 @@
 /// ---------------------------------------------------------------------
 /// dialogue items when given stuff from inventory  
 
-    <item name="item_decline">
+    <item name="decline_item">
     
       <line>I don't really need that but thanks.</line>
       <line>Mmm ... no.</line>
@@ -104,14 +104,24 @@
 
     </item>
 
-    <item name="item_accept">
+    <item name="accept_item">
     
-      <line>Awesome! Thank you!</line>
-      <line>I've always wanted one of these!</line>
-      <line>THIS!</line>
+      <line>That's pretty cool, I guess. Thanks.</line>
+      <line>Ok. Whatever. Thanks</line>
+      <line>Yeah, sure I'll have one. Thanks.</line>
       
-      <reply>Hey, no problem! Glad you like it!</reply>
+      <reply>No problem.</reply>
 
     </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>THIS! THANK YOU!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>        
 
 </xml>

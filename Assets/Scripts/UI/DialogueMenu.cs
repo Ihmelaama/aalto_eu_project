@@ -12,11 +12,9 @@ public class DialogueMenu : MonoBehaviour {
     private GameObject playerBubble;
     private GameObject NPCBubble;
     private GameObject selector;
-    
-    private GameObject sayButton;
     private GameObject nextButton;
   
-    private Text playerBubbleText;
+    //private Text playerBubbleText;
     private Text NPCBubbleText;
     private Text selectorText;
     
@@ -33,9 +31,9 @@ public class DialogueMenu : MonoBehaviour {
 
 	void Start() {
   
-    playerBubble=transform.Find("DialogueHistory/Player").gameObject;
-    playerBubbleText=playerBubble.transform.Find("Text").GetComponent<Text>();
-    playerBubble.SetActive(false);
+    //playerBubble=transform.Find("DialogueHistory/Player").gameObject;
+    //playerBubbleText=playerBubble.transform.Find("Text").GetComponent<Text>();
+    //playerBubble.SetActive(false);
     
     NPCBubble=transform.Find("DialogueHistory/NPC").gameObject;
     NPCBubbleText=NPCBubble.transform.Find("Text").GetComponent<Text>();
@@ -43,17 +41,12 @@ public class DialogueMenu : MonoBehaviour {
     selector=transform.Find("Selector").gameObject;
     selectorText=selector.transform.Find("Text").GetComponent<Text>();
     
-    sayButton=transform.Find("Say").gameObject;
     nextButton=transform.Find("Next").gameObject;
     
   //---
   
     dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
-    
-  //---
-  
-    gameObject.SetActive(false);
-    
+
 	}
 	
 //------------
@@ -66,22 +59,20 @@ public class DialogueMenu : MonoBehaviour {
 // PUBLIC SETTERS
 
   public void setDialogue(NPC npc) {
-  setDialogue(npc, Constants.TALK);
+
+    Dialogue.DialogueItem dialogueItem=npc.getDialogue();
+    setDialogue(npc, dialogueItem);
+      
   }
 
-  public void setDialogue(NPC npc, int type) {
+  public void setDialogue(NPC npc, Dialogue.DialogueItem dialogueItem) {
 
     currentDialogue=npc.dialogue;
-    Dialogue.DialogueItem dialogueItem=npc.getDialogue(type);
-
-  //---
-
     currentDialogueItem=dialogueItem;
-    
     NPCBubbleText.text=getRandomDialogueLine(dialogueItem);
 
-    playerBubbleText.text="";    
-    playerBubble.SetActive(false);
+    //playerBubbleText.text="";    
+    //playerBubble.SetActive(false);
 
     selectorText.text=dialogueItem.replies[0];  
     
@@ -116,12 +107,10 @@ public class DialogueMenu : MonoBehaviour {
 //---------
 
   public void sayThing() {
-  
-    string str;
     
-    str=currentDialogueItem.replies[currentSelectorPos];
-    playerBubble.SetActive(true); 
-    playerBubbleText.text=str;
+    string str=currentDialogueItem.replies[currentSelectorPos];
+    //playerBubble.SetActive(true); 
+    //playerBubbleText.text=str;
 
     // if conversation has somewhere to go
     if(currentDialogueItem.gotoItems.Count>currentSelectorPos) {

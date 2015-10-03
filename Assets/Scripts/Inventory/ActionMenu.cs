@@ -40,9 +40,14 @@ public class ActionMenu : MonoBehaviour {
     
     public void GiveMenu()
     {
-        itemManager.giveItemToNPC(currentSlot.CurrentItem.itemID);
-        currentSlot.DropItem();       
-        actMenu.gameObject.SetActive(false);         
+
+        bool b=itemManager.giveItemToNPC(currentSlot.CurrentItem);
+        
+        if(b) {
+        currentSlot.DropItem();
+        actMenu.gameObject.SetActive(false);
+        }
+         
     }    
 
     public void CloseMenu()

@@ -10,6 +10,7 @@ public class ItemManager : MonoBehaviour {
 
     private Inventory inventory;
     private SlidingDashboard inventorySlider;
+    private DialogueManager dialogueManager;
 
   // state ---
   
@@ -23,6 +24,8 @@ public class ItemManager : MonoBehaviour {
 
     inventory=GameObject.Find("Inv/Inventory").GetComponent<Inventory>();
     inventorySlider=GameObject.Find("Inv").GetComponent<SlidingDashboard>();
+    
+    dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
 	
 	}
   
@@ -46,15 +49,20 @@ public class ItemManager : MonoBehaviour {
   
 //---------  
                        
-  public void giveItemToNPC(int itemType) {
+  public bool giveItemToNPC(Item item) {
   
+    bool b=false;
     if(DialogueManager.currentTalkTarget) {
     
       NPC npc=DialogueManager.currentTalkTarget.gameObject.GetComponent<NPC>();
-      if(npc!=null) npc.receiveItem(itemType);
-    
+
+      if(npc!=null) {
+      b=npc.receiveItem(item);      
+      }
+      
     }
 
+  return b;
   } 
   
 //--------- 
