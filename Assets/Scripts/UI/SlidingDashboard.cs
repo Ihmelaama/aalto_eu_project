@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class SlidingDashboard : MonoBehaviour {
 
 //------------------------------------------------------
 // VARIABLES
+
+  // settings ---
+  
+    private float slideDuration=0.5f;
 
   // holders ---
 
@@ -81,27 +86,15 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Show(bool animate) {
   
-    //if(!animate) {
-    
-      position=1f;
-      visible=true;
-    
-    //} else {
-    
-      //DOTween.To(position
-    
-    //}
+    visible=true;
   
-    /*
     if(!animate) {
-  
-      anchoredPosition.x=0f;
-      rect.anchoredPosition=anchoredPosition;
-      visible=true;
-      
+    position=1f;
+    
     } else {
+    Tween t=DOTween.To(()=>position, x=>position=x, 1f, slideDuration);
+    t.SetEase(Ease.OutQuint);
     }
-    */
   
   //---
   
@@ -117,20 +110,16 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Hide(bool animate) {
   
-    position=0f;
     visible=false;
   
-    /*
     if(!animate) {
-  
-      anchoredPosition.x=hideDirection*rect.sizeDelta.x/2f;
-      rect.anchoredPosition=anchoredPosition;  
-      visible=false;
-    
+    position=0f;
+
     } else {
+    Tween t=DOTween.To(()=>position, x=>position=x, 0f, slideDuration);   
+    t.SetEase(Ease.OutQuint);
     }
-    */
-    
+
   //---    
     
     Fabric.EventManager.Instance.PostEvent("UI/Button");    

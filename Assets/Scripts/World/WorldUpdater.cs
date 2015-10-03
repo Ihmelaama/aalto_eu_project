@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class WorldUpdater : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class WorldUpdater : MonoBehaviour {
 
 	void Awake() {
 	
+    DOTween.Init();
     gestureManager=new GestureManager();
 
 	}
