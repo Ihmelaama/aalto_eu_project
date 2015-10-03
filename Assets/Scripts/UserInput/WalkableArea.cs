@@ -29,8 +29,8 @@ public class WalkableArea : MonoBehaviour {
 
       if(GestureManager.isTouched) {
       
-        Vector3 v=GestureManager.testTouch3D(transform, "User Input");
-        
+        Vector3 v=GestureManager.testTouch3D(transform, new string[] {"User Input", "NPC"});
+
         if(v!=Vector3.zero) {
         
           foreach(Character c in movableCharacters) {

@@ -18,8 +18,8 @@ public class NPC : Character {
     
     public string dialogueFile=null;
     
+    public bool willAcceptAnyItem=true;
     public int needsItemId=-1;
-    public int needsItemType=-1;
 
   // private settings ---
 
@@ -87,29 +87,8 @@ public class NPC : Character {
 //---------------------------------------------------
 // PUBLIC GETTERS
   
-  public Dialogue.DialogueItem getDialogue(int type) {
-  
-    Dialogue.DialogueItem d=dialogue.getDefaultDialogue();
-  
-    switch(type) {
-    
-      case Constants.USER_GIVES_ITEM:
-
-        if(
-        (needsItemId>-1 && ItemManager.currentItemId==needsItemId) ||
-        (needsItemType>-1 && ItemManager.currentItemType==needsItemType)
-        ) {
-        
-          d=dialogue.getDialogueByName("item_accept");
-        
-        } else {
-        d=dialogue.getDialogueByName("item_decline");
-        }
-
-      break;
-    
-    }
-  
+  public Dialogue.DialogueItem getDialogue() {
+  Dialogue.DialogueItem d=dialogue.getDefaultDialogue();
   return d;
   }
   
@@ -144,8 +123,43 @@ public class NPC : Character {
   
 //------------
 
-  public void receiveItem(int itemType) {
-  Debug.Log("I was given: "+itemType);
+  public bool receiveItem(Item item) {
+  
+    Dialogue.DialogueItem d;
+  
+  // NPC accepts item ---
+  
+    if(willAcceptAnyItem || needsItemId==item.itemID) {
+     
+      bool wasMission=MissionManager.checkIfMission(item, MissionManager.ActionType.give);
+      
+      // give mission success feedback      
+      if(wasMission) {
+      
+        d=dialogue.getDialogueByName("accept_mission_item");
+        dialogueManager.setNewDialogue(this, d);
+      
+      // give other feedback
+      } else {
+      
+        d=dialogue.getDialogueByName("accept_item");
+        dialogueManager.setNewDialogue(this, d);
+      
+      }
+       
+      if(needsItemId==item.itemID) needsItemId=-1;
+      return true;
+
+  // NPC declines item ---
+  
+    } else {
+    
+      d=dialogue.getDialogueByName("decline_item");    
+      dialogueManager.setNewDialogue(this, d);
+    
+    }
+  
+  return false;
   }  
   
 //---------------------------------------------------
@@ -209,7 +223,7 @@ public class NPC : Character {
   private void testUserTouch() {
 
     if(dialogueManager!=null && GestureManager.wasTouched && GestureManager.testTouch3D(transform)!=Vector3.zero) {
-    dialogueManager.showDialogueMenu(transform, 2);
+    dialogueManager.showDialogueMenu(transform, 1);
     }
 
   }

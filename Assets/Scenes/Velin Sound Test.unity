@@ -1501,18 +1501,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 466854, guid: 17f3c10463917494b9319cc51b459757, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
-      propertyPath: avoidPlayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
-      propertyPath: followPlayer
-      value: .800000012
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17f3c10463917494b9319cc51b459757, type: 2}
   m_IsPrefabParent: 0
@@ -4527,6 +4515,8 @@ MonoBehaviour:
   allowAxisX: 1
   allowAxisY: 0
   allowAxisZ: 1
+  needsUserInput: 1
+  enabled: 1
 --- !u!1 &1226016187
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,6 +4590,8 @@ MonoBehaviour:
   allowAxisX: 1
   allowAxisY: 0
   allowAxisZ: 1
+  needsUserInput: 1
+  enabled: 1
 --- !u!108 &1306529670
 Light:
   m_ObjectHideFlags: 0

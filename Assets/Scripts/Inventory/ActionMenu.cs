@@ -29,20 +29,25 @@ public class ActionMenu : MonoBehaviour {
     {
         Debug.Log("Drop it like it's hot");
         currentSlot.DropItem();
-        actMenu.gameObject.SetActive(false);
+        actMenu.gameObject.SetActive(false);   
     }
     
     public void UseMenu()
     {
         Debug.Log("Use it!");
-        MissionManager.checkIfMission(currentSlot.CurrentItem);
+        MissionManager.checkIfMission(currentSlot.CurrentItem, MissionManager.ActionType.use);         
     }    
     
     public void GiveMenu()
     {
-        itemManager.giveItemToNPC(currentSlot.CurrentItem.itemID);
-        currentSlot.DropItem();       
-        actMenu.gameObject.SetActive(false);         
+
+        bool b=itemManager.giveItemToNPC(currentSlot.CurrentItem);
+        
+        if(b) {
+        currentSlot.DropItem();
+        actMenu.gameObject.SetActive(false);
+        }         
+         
     }    
 
     public void CloseMenu()

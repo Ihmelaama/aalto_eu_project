@@ -20,13 +20,12 @@ public class LoopingGround : MonoBehaviour {
     private const int BOTTOM=4;
     private const int BOTTOMLEFT=5;
     private const int LEFT=6;
-    private const int TOPLEFT=7;  
-    
+    private const int TOPLEFT=7; 
+
   // definitions ---
   
-    private const float margin=1f;
-    
-    private float tileVisibilityDistance=20f;
+    private const float margin=2f;
+    private string raycastLayer="User Input";
     
   // holders ---
 
@@ -35,6 +34,8 @@ public class LoopingGround : MonoBehaviour {
 
     private List<Transform> placedTiles=new List<Transform>();
     private List<Transform> unplacedTiles=new List<Transform>();
+    
+    private Vector3 centerOfSCreen;
 
 //---------------------------------------------------
 // START
@@ -93,6 +94,10 @@ public class LoopingGround : MonoBehaviour {
     v=new Vector3(-margin, Screen.height+margin, 0f);
     screenPoints[TOPLEFT]=v;       
     
+  // get screen center ---
+  
+    centerOfSCreen=new Vector3(Screen.width/2f, Screen.height/2f, 0f);
+    
 	}
   
 //---------------------------------------------------
@@ -129,7 +134,8 @@ public class LoopingGround : MonoBehaviour {
 // PRIVATE GETTERS
 
   private Transform raycastScreenPoint(Vector3 point) {
-  return raycastScreenPoint(point, -1);
+  int layer=LayerMask.NameToLayer(raycastLayer);
+  return raycastScreenPoint(point, layer);
   }
 
   private Transform raycastScreenPoint(Vector3 point, int layerToTest) {
@@ -172,7 +178,7 @@ public class LoopingGround : MonoBehaviour {
   
 //---------------------------------------------------
 // PRIVATE SETTERS  
-  
+
   private void positionNewTiles(int pointNum) {
 
     Transform t=raycastWorldPoint(player.transform.position);
@@ -261,145 +267,6 @@ public class LoopingGround : MonoBehaviour {
 
     }
 
-    /*
-    Transform t=raycastWorldPoint(player.transform.position);      
-
-    if(t!=null && unplacedTiles.Count>0) {
-
-    // prepare stuff ---
-
-      Collider currentTileCollider=t.gameObject.GetComponent<Collider>();      
-      Vector3 currentCenter=currentTileCollider.bounds.center;
-      Vector3 currentCorner=currentCenter;
-      
-      Transform newTile=unplacedTiles[0];
-      newTile.gameObject.SetActive(true);
-      Collider newTileCollider=newTile.Find("WalkableArea").GetComponent<Collider>();
-
-      Vector3 topLeftCorner=currentCenter;
-      //topLeftCorner.x+=currentTileCollider.bounds.extents.x;
-      //topLeftCorner.z-=currentTileCollider.bounds.extents.z;
-      
-      topLeftCorner.x-=currentTileCollider.bounds.extents.x;
-      topLeftCorner.z+=currentTileCollider.bounds.extents.z;
-
-      //Vector3 playerOffset=topLeftCorner-player.transform.position;
-      Vector3 playerOffset=player.transform.position-topLeftCorner;
-      //playerOffset.z=Mathf.Abs(playerOffset.z);
-
-      float difX=playerOffset.x/newTileCollider.bounds.size.x;
-      float ratioX=Mathf.Floor(difX);
-
-      float difZ=playerOffset.z/newTileCollider.bounds.size.z;
-      float ratioZ=Mathf.Floor(difZ);
-      
-      //currentCorner.x=topLeftCorner.x-ratioX*newTileCollider.bounds.size.x;
-      //currentCorner.z=topLeftCorner.z+ratioZ*newTileCollider.bounds.size.z;
-
-      currentCorner.x=topLeftCorner.x+ratioX*newTileCollider.bounds.size.x;
-      currentCorner.z=topLeftCorner.z+ratioZ*newTileCollider.bounds.size.z;
-    
-    // get new tile position ---
-
-      Vector3 newTilePos=currentCenter;  
-      bool b=false;
-
-      switch(pointNum) {
-          
-        case TOP: 
-        
-          newTile.name="tile top "+debugNum;  
-          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x;
-          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z;
-          b=true; 
-        
-        break;    
-        
-        case TOPRIGHT: 
-        
-          newTile.name="tile top right "+debugNum;    
-          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x*3;
-          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z;
-          b=true; 
-          
-        break; 
-
-        case RIGHT: 
-
-          newTile.name="tile right "+debugNum;    
-          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x*3;
-          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;          
-          b=true; 
-          
-        break; 
-        
-        case BOTTOMRIGHT: 
-
-          newTile.name="tile bottom right "+debugNum;   
-          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x*3;
-          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;        
-          b=true; 
-          
-        break;   
-        
-        case BOTTOM: 
-        
-          newTile.name="tile bottom "+debugNum;    
-          newTilePos.x=currentCorner.x+newTileCollider.bounds.extents.x;
-          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;          
-          b=true; 
-          
-        break;  
-        
-        case BOTTOMLEFT: 
-
-          newTile.name="tile bottom left "+debugNum;   
-          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x;
-          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;          
-          b=true; 
-          
-        break;    
-        
-        case LEFT: 
-
-          newTile.name="tile bottom left "+debugNum;   
-          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x;
-          newTilePos.z=currentCorner.z-newTileCollider.bounds.extents.z;          
-          b=true; 
-          
-        break;   
-        
-        case TOPLEFT: 
-
-          newTile.name="tile top left "+debugNum;    
-          newTilePos.x=currentCorner.x-newTileCollider.bounds.extents.x;
-          newTilePos.z=currentCorner.z+newTileCollider.bounds.extents.z;
-          b=true; 
-          
-        break;                                               
-
-      }
-
-    // set new tile position ---      
-
-      if(b) {
-      
-        newTile.gameObject.SetActive(true);
-        newTilePos.y=newTile.parent.position.y;
-        newTile.position=newTilePos;
-        
-        unplacedTiles.Remove(newTile);
-        placedTiles.Add(newTile);
-        
-        debugNum++;
-        
-      } else {
-      newTile.gameObject.SetActive(false);
-      }
-
-    }
-    */
-
   }
   
 //------------
@@ -411,6 +278,7 @@ public class LoopingGround : MonoBehaviour {
 
     Transform tile;
     Transform tileWalkableArea;
+    Transform hit;
     
     for(i=0; i<placedTiles.Count; i++) {
     
@@ -420,19 +288,27 @@ public class LoopingGround : MonoBehaviour {
       b=false;
       for(j=0; j<screenPoints.Length; j++) {
       
-        if(raycastScreenPoint(screenPoints[j])==tileWalkableArea) {
+        hit=raycastScreenPoint(screenPoints[j]);
+      
+        if(hit==tileWalkableArea) {  
         b=true;
         break;
         }
       
       } 
       
+      hit=raycastScreenPoint(centerOfSCreen);
+
+      if(hit==tileWalkableArea) {
+      b=true;
+      }
+
       if(!b) {
       tile.gameObject.SetActive(false);
       tile.name="tile";
       unplacedTiles.Add(tile); 
       placedTiles.Remove(tile);      
-      }     
+      } 
 
     }
 

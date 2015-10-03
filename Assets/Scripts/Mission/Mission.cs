@@ -4,11 +4,20 @@ using System.Collections;
 public class Mission : MonoBehaviour {
 
     
-        public string name;
-        public int amountItemsNeeded;
-        public Item itemNeeded;
+    public string name;
+    public string missionDescription;
+    public int amountItemsNeeded;
+    [HideInInspector]
+    public int targetAmount;
+    public Item itemNeeded;
+    public MissionManager.ActionType actionNeeded;
 
-        public bool missionDone { get { return (amountItemsNeeded <= 0); } }
+    void Start()
+    {
+        targetAmount = amountItemsNeeded;
+    }
+
+    public bool missionDone { get { return (amountItemsNeeded <= 0); } }
 
 
 }

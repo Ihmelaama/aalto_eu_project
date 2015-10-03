@@ -73,7 +73,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 		ChangeSprite (CurrentItem.itemSprite, CurrentItem.itemSpriteHighlighted);
 	}
 
-	private void ChangeSprite(Sprite normal, Sprite highlight){
+	private void ChangeSprite(Sprite normal, Sprite highlight){  
 		GetComponent<Image> ().sprite = normal;
 		SpriteState st = new SpriteState ();
 		st.highlightedSprite = highlight;
@@ -83,7 +83,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 	}
 
 
-	public void UseItem(){
+	public void UseItem(){  
 		if (!isEmpty) {
 
 			//items.Pop().Use(this);
@@ -102,16 +102,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
     {
         if (!isEmpty)
         {
-
+                 
             items.Pop().Use(this);
-
+             
             stackText.text = items.Count > 1 ? items.Count.ToString() : string.Empty;
 
             if (isEmpty)
             {
                 ChangeSprite(slotEmpty, slotHighlight);
                 Inventory.EmptySlot++;
-            }
+            } 
         }
     }
 

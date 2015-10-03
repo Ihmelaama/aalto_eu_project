@@ -21,7 +21,7 @@ public class Dialogue {
 // START
 
 	public Dialogue(string dialogueFile) {
-  
+
     if(dialogueFile!=null) {
     
     // load xml ---

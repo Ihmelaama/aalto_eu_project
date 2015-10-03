@@ -22,6 +22,8 @@ public class DialogueManager : MonoBehaviour {
     private List<GameObject> talkButtons=new List<GameObject>();
     private DialogueMenu dialogueMenu;
     private ItemManager itemManager;
+    private LazyFollow playerCameraFollow;
+    private SlidingDashboard dashboard;
 
   // state ---
 
@@ -43,10 +45,14 @@ public class DialogueManager : MonoBehaviour {
     NPCHolder=GameObject.Find("NPCHolder").transform;  
     
     dialogueMenu=GameObject.Find("UI/Canvas/DialogueMenu").GetComponent<DialogueMenu>();
-    dialogueMenu.gameObject.SetActive(true);
+    dialogueMenu.gameObject.SetActive(false);
     
     itemManager=gameObject.GetComponent<ItemManager>();
     
+    playerCameraFollow=Camera.main.GetComponent<LazyFollow>();
+    
+    dashboard=GameObject.Find("UI/Canvas/Dashboard").GetComponent<SlidingDashboard>();
+                                 
   }
   
 //----------------------------------------------------
@@ -67,11 +73,17 @@ public class DialogueManager : MonoBehaviour {
       NPC NPCScript=talkTarget.gameObject.GetComponent<NPC>();
 
       dialogueMenu.gameObject.SetActive(true);
-      dialogueMenu.setDialogue(NPCScript, dialogueType);
+      dialogueMenu.setDialogue(NPCScript);
+      moveCameraToTarget(talkTarget);
 
       WorldState.allowUserInput=false;     
 
       itemManager.toggleInventory(true, 2);
+      //dashboard.toggleDashboard(true);
+
+      // construct event string for fabric: "Chars/Hello/"+GameState.currentPlayerCharacterName or something
+      Debug.Log("say hello!");
+      Fabric.EventManager.Instance.PostEvent("Chars/Hello/Name");    
 
     }  
   
@@ -86,10 +98,26 @@ public class DialogueManager : MonoBehaviour {
     itemManager.toggleInventory(false);
     }
     
-    WorldState.allowUserInput=true;   
-    currentTalkTarget=null;
+    //dashboard.toggleDashboard(false);
+    
+    WorldState.allowUserInput=true;
+    playerCameraFollow.enabled=true;       
+    currentTalkTarget=null;    
   
   }  
+  
+//------------  
+
+  public void setNewDialogue(NPC npc, Dialogue.DialogueItem d) {
+  dialogueMenu.setDialogue(npc, d);  
+  moveCameraToTarget(npc.transform);
+  }  
+  
+//------------
+
+  public void moveCameraToTarget(Transform t) {
+  playerCameraFollow.enabled=false;
+  }
 
 //----------------------------------------------------
 // PRIVATE SETTERS

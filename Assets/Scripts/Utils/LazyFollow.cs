@@ -13,12 +13,17 @@ public class LazyFollow : MonoBehaviour {
     public bool allowAxisX=true;
     public bool allowAxisY=true;
     public bool allowAxisZ=true;
+    
+    public bool needsUserInput=true;
 
     private float laziness=0.05f;
     
   // state ---
   
     private Vector3 initialOffset=Vector3.zero;
+    
+    [HideInInspector]
+    public bool enabled=true;
 
 //---------------------------------------------------
 // START
@@ -36,7 +41,7 @@ public class LazyFollow : MonoBehaviour {
 	
 	void Update() {
   
-    if(followTarget!=null) {
+    if(enabled && followTarget!=null) {
     
       Vector3 dif=followTarget.transform.position-transform.position-initialOffset;
       Vector3 move=Vector3.zero;

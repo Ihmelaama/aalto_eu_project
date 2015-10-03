@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class SlidingDashboard : MonoBehaviour {
 
 //------------------------------------------------------
 // VARIABLES
+
+  // settings ---
+  
+    private float slideDuration=0.5f;
 
   // holders ---
 
@@ -19,6 +24,8 @@ public class SlidingDashboard : MonoBehaviour {
   
     public bool visible=false;
     private bool isAnimating=false;
+    
+    private float position=0f;
 
 //------------------------------------------------------
 // EVENTS
@@ -32,11 +39,17 @@ public class SlidingDashboard : MonoBehaviour {
     anchoredPosition=rect.anchoredPosition;
     
     if(!visible) {
-    Hide();
-
-    } else {
-    Show();
+    Hide(false);
     }
+
+  }
+  
+//------------  
+  
+  void Update() { 
+  
+    anchoredPosition.x=hideDirection*(rect.sizeDelta.x/2f)*(1f-position); 
+    rect.anchoredPosition=anchoredPosition;
 
   }
   
@@ -44,17 +57,21 @@ public class SlidingDashboard : MonoBehaviour {
 // PUBLIC SETTERS  
 
   public void toggleDashboard() {
-  toggleDashboard(!visible);
+  toggleDashboard(!visible, true);
   }
-
+  
   public void toggleDashboard(bool b) {
+  toggleDashboard(b, true);
+  }  
+
+  public void toggleDashboard(bool b, bool animate) {
   
     if(b!=visible) {
     
       if(b) {
-      Show(false);
+      Show(animate);
       } else {
-      Hide(false);
+      Hide(animate);
       }
  
     }
@@ -69,9 +86,19 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Show(bool animate) {
   
-    anchoredPosition.x=0f;
-    rect.anchoredPosition=anchoredPosition;
     visible=true;
+  
+    if(!animate) {
+    position=1f;
+    
+    } else {
+    Tween t=DOTween.To(()=>position, x=>position=x, 1f, slideDuration);
+    t.SetEase(Ease.OutQuint);
+    }
+  
+  //---
+  
+    Fabric.EventManager.Instance.PostEvent("UI/Button");    
         
   }
   
@@ -83,9 +110,19 @@ public class SlidingDashboard : MonoBehaviour {
   
   public void Hide(bool animate) {
   
-    anchoredPosition.x=hideDirection*rect.sizeDelta.x/2f;
-    rect.anchoredPosition=anchoredPosition;  
     visible=false;
+  
+    if(!animate) {
+    position=0f;
+
+    } else {
+    Tween t=DOTween.To(()=>position, x=>position=x, 0f, slideDuration);   
+    t.SetEase(Ease.OutQuint);
+    }
+
+  //---    
+    
+    Fabric.EventManager.Instance.PostEvent("UI/Button");    
 
   }
 

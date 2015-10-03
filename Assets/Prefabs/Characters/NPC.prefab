@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25999999, y: 0, z: 5.0999999}
+  m_LocalPosition: {x: 5.34000015, y: 0, z: 3.68000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466854}
@@ -86,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 192656}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49b8045b62ed741439487264b3dc37b5, type: 2}
+  m_Controller: {fileID: 9100000, guid: f5b5ab16bd1c5a24aac40402b0c1555e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -122,14 +122,14 @@ MonoBehaviour:
   minWalkSpeed: .0500000007
   maxWalkSpeed: .100000001
   defaultLifeValues: []
-  followPlayer: 0
-  avoidPlayer: .800000012
+  followPlayer: .800000012
+  avoidPlayer: 0
   followOtherNPC: 0
   avoidOtherNPC: 0
   reactionRadius: 3
   dialogueFile: dialogue_test
+  willAcceptAnyItem: 1
   needsItemId: -1
-  needsItemType: -1
 --- !u!136 &13628756
 CapsuleCollider:
   m_ObjectHideFlags: 1
