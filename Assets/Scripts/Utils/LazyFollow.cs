@@ -16,7 +16,7 @@ public class LazyFollow : MonoBehaviour {
     
     public bool needsUserInput=true;
 
-    private float laziness=0.05f;
+    public float laziness=0.05f;
     
   // state ---
   

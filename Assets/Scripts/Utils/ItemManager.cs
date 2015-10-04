@@ -10,6 +10,8 @@ public class ItemManager : MonoBehaviour {
 
     private Inventory inventory;
     private SlidingDashboard inventorySlider;
+    private ActionMenu inventoryActionMenu;
+        
     private DialogueManager dialogueManager;
 
   // state ---
@@ -24,6 +26,7 @@ public class ItemManager : MonoBehaviour {
 
     inventory=GameObject.Find("Inv/Inventory").GetComponent<Inventory>();
     inventorySlider=GameObject.Find("Inv").GetComponent<SlidingDashboard>();
+    inventoryActionMenu=GameObject.Find("Inv/Inventory/ActionMenu").GetComponent<ActionMenu>();
     
     dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
 	
@@ -76,11 +79,12 @@ public class ItemManager : MonoBehaviour {
     if(b && inventory.getItemCount()>0) {
     
       if(mode!=0) inventory.setMode(mode);    
-      inventorySlider.toggleDashboard(true);
+      inventorySlider.toggleDashboard(true);          
     
     } else {
     
       inventorySlider.toggleDashboard(false);
+      inventoryActionMenu.CloseMenu();
     
     }
 

@@ -17,13 +17,18 @@ public class DialogueManager : MonoBehaviour {
   
     private Camera currentCamera;
     private Transform UICanvas;
+    
+    private GameObject player;
+    private LazyFollow playerCameraFollow;
+    
     private Transform NPCHolder;
     private List<Transform> NPCs;
+    
     private List<GameObject> talkButtons=new List<GameObject>();
     private DialogueMenu dialogueMenu;
-    private ItemManager itemManager;
-    private LazyFollow playerCameraFollow;
     private SlidingDashboard dashboard;
+    
+    private ItemManager itemManager;
 
   // state ---
 
@@ -42,15 +47,17 @@ public class DialogueManager : MonoBehaviour {
 
     currentCamera=GameObject.Find("PlayerCamera").GetComponent<Camera>();
     UICanvas=GameObject.Find("UI/Canvas").transform;
+    
+    player=GameObject.Find("PlayerHolder/Player");
+    playerCameraFollow=Camera.main.GetComponent<LazyFollow>();
+     
     NPCHolder=GameObject.Find("NPCHolder").transform;  
     
     dialogueMenu=GameObject.Find("UI/Canvas/DialogueMenu").GetComponent<DialogueMenu>();
     dialogueMenu.gameObject.SetActive(false);
     
     itemManager=gameObject.GetComponent<ItemManager>();
-    
-    playerCameraFollow=Camera.main.GetComponent<LazyFollow>();
-    
+        
     dashboard=GameObject.Find("UI/Canvas/Dashboard").GetComponent<SlidingDashboard>();
                                  
   }
@@ -66,15 +73,15 @@ public class DialogueManager : MonoBehaviour {
 
   public void showDialogueMenu(Transform talkTarget, int type) {
   
-    if(dialogueMenu!=null && UICanvas!=null) {
+    if(dialogueMenu!=null && UICanvas!=null && currentTalkTarget==null) {
     
-      DialogueManager.currentTalkTarget=talkTarget;
+      currentTalkTarget=talkTarget;
     
       NPC NPCScript=talkTarget.gameObject.GetComponent<NPC>();
 
       dialogueMenu.gameObject.SetActive(true);
       dialogueMenu.setDialogue(NPCScript);
-      moveCameraToTarget(talkTarget);
+      moveCameraToTarget(talkTarget.gameObject);
 
       WorldState.allowUserInput=false;     
 
@@ -103,6 +110,9 @@ public class DialogueManager : MonoBehaviour {
     WorldState.allowUserInput=true;
     playerCameraFollow.enabled=true;       
     currentTalkTarget=null;    
+    
+    moveCameraToTarget(player);
+    itemManager.toggleInventory(false, 1);
   
   }  
   
@@ -110,13 +120,17 @@ public class DialogueManager : MonoBehaviour {
 
   public void setNewDialogue(NPC npc, Dialogue.DialogueItem d) {
   dialogueMenu.setDialogue(npc, d);  
-  moveCameraToTarget(npc.transform);
+  moveCameraToTarget(npc.gameObject);
   }  
   
 //------------
 
-  public void moveCameraToTarget(Transform t) {
-  playerCameraFollow.enabled=false;
+  public void moveCameraToTarget(GameObject g) {
+  
+    Transform head=g.transform.Find("HeadMarker");
+    playerCameraFollow.followTarget= head==null ? g : head.gameObject ;
+    
+  
   }
 
 //----------------------------------------------------

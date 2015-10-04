@@ -22,7 +22,9 @@ public class SlidingDashboard : MonoBehaviour {
     
   // state ---
   
+    [HideInInspector]
     public bool visible=false;
+  
     private bool isAnimating=false;
     
     private float position=0f;
@@ -96,10 +98,6 @@ public class SlidingDashboard : MonoBehaviour {
     t.SetEase(Ease.OutQuint);
     }
   
-  //---
-  
-    Fabric.EventManager.Instance.PostEvent("UI/Button");    
-        
   }
   
 //------------  
@@ -119,10 +117,6 @@ public class SlidingDashboard : MonoBehaviour {
     Tween t=DOTween.To(()=>position, x=>position=x, 0f, slideDuration);   
     t.SetEase(Ease.OutQuint);
     }
-
-  //---    
-    
-    Fabric.EventManager.Instance.PostEvent("UI/Button");    
 
   }
 
