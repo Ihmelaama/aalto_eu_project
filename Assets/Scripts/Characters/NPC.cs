@@ -132,6 +132,7 @@ public class NPC : Character {
     if(willAcceptAnyItem || needsItemId==item.itemID) {
      
       bool wasMission=MissionManager.checkIfMission(item, MissionManager.ActionType.give);
+      if(wasMission) Debug.Log("it was mission!");
       
       // give mission success feedback      
       if(wasMission) {
@@ -158,7 +159,7 @@ public class NPC : Character {
       dialogueManager.setNewDialogue(this, d);
     
     }
-  
+
   return false;
   }  
   

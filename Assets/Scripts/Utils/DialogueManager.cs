@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour {
       WorldState.allowUserInput=false;     
 
       itemManager.toggleInventory(true, 2);
-      //dashboard.toggleDashboard(true);
+      dashboard.toggleDashboard(true);
 
       // construct event string for fabric: "Chars/Hello/"+GameState.currentPlayerCharacterName or something
       Debug.Log("say hello!");
@@ -103,9 +103,8 @@ public class DialogueManager : MonoBehaviour {
     if(dialogueMenu!=null) {
     dialogueMenu.gameObject.SetActive(false);
     itemManager.toggleInventory(false);
+    dashboard.toggleDashboard(false);
     }
-    
-    //dashboard.toggleDashboard(false);
     
     WorldState.allowUserInput=true;
     playerCameraFollow.enabled=true;       

@@ -18,7 +18,6 @@ public class Item : MonoBehaviour{
 
     public void PickUp()
     {
-        Debug.Log("Picked up " + itemName);
         Inventory.instance.AddItem(this);
         Destroy(this.gameObject);
     }

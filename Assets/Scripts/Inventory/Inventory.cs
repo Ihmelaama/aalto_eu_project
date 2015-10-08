@@ -55,7 +55,6 @@ public class Inventory : MonoBehaviour {
 
         slotSize = (Screen.height-slotPaddingTop*2) / slots;
         rows = slots;
-        Debug.Log(slotSize);
         //inventoryRect.anchoredPosition = new Vector3(-slotSize, 0f); For som reason moves too far in on tablet
 
 		int columns = (slots / rows);
@@ -101,8 +100,6 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public bool AddItem(Item item){
-
-        MissionManager.checkIfMission(item, MissionManager.ActionType.find);
 
 		if (item.itemMaxStackSize <= 1) {
 			PlaceEmpty (item);

@@ -155,7 +155,7 @@ MonoBehaviour:
   followOtherNPC: 0
   avoidOtherNPC: 0
   reactionRadius: 3
-  dialogueFile: dialogue_test
+  dialogueFile: Dialogue/dialogue_test
   willAcceptAnyItem: 1
   needsItemId: -1
 --- !u!136 &13628756

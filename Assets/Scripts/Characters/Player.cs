@@ -35,7 +35,9 @@ public class Player : Character {
     base.OnTriggerEnter(c);
 
     if(c.gameObject.tag=="Item") {
-    c.gameObject.GetComponent<Item>().PickUp();
+    
+      Item item=c.gameObject.GetComponent<Item>();
+      ItemManager.foundItem(item);
 
       // debug ---
       //changeLifeValue(0, 0.3f);

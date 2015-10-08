@@ -59,14 +59,32 @@ public class ItemManager : MonoBehaviour {
     
       NPC npc=DialogueManager.currentTalkTarget.gameObject.GetComponent<NPC>();
 
+      // check if npc wants item
       if(npc!=null) {
       b=npc.receiveItem(item);      
+      }
+      
+      if(b) {
       }
       
     }
 
   return b;
   } 
+  
+//---------  
+
+  public static bool foundItem(Item item) {
+  
+      item.PickUp();
+      
+      bool b=MissionManager.checkIfMission(item, MissionManager.ActionType.find);
+    
+      // debug
+      // if(b) mission progressed! Give feedback
+    
+  return b;
+  }  
   
 //--------- 
 

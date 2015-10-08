@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class Mission : MonoBehaviour {
+public class Mission {
 
     
     public string name;
@@ -9,13 +9,8 @@ public class Mission : MonoBehaviour {
     public int amountItemsNeeded;
     [HideInInspector]
     public int targetAmount;
-    public Item itemNeeded;
+    public int itemNeeded;
     public MissionManager.ActionType actionNeeded;
-
-    void Start()
-    {
-        targetAmount = amountItemsNeeded;
-    }
 
     public bool missionDone { get { return (amountItemsNeeded <= 0); } }
 

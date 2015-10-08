@@ -1273,7 +1273,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
       propertyPath: willAcceptAnyItem
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
+      propertyPath: dialogueFile
+      value: Dialogue/dialogue_test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17f3c10463917494b9319cc51b459757, type: 2}
@@ -1808,7 +1812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1909e41143e3e82408f54d9f10873bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicMissionList: []
   publicMissionUIElements: []
 --- !u!114 &559877946
 MonoBehaviour:
@@ -2470,6 +2473,10 @@ Prefab:
     - target: {fileID: 479324, guid: 17f3c10463917494b9319cc51b459757, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493272, guid: 17f3c10463917494b9319cc51b459757, type: 2}
+      propertyPath: willAcceptAnyItem
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17f3c10463917494b9319cc51b459757, type: 2}

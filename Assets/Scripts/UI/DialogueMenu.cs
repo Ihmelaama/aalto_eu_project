@@ -30,7 +30,7 @@ public class DialogueMenu : MonoBehaviour {
 // EVENTS
 
 	void Start() {
-  
+
     //playerBubble=transform.Find("DialogueHistory/Player").gameObject;
     //playerBubbleText=playerBubble.transform.Find("Text").GetComponent<Text>();
     //playerBubble.SetActive(false);

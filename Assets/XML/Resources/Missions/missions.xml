@@ -1,0 +1,59 @@
+<xml>
+
+/// actions: use=0, give=1, find=2
+
+/// ---------------------------------------------------------------------
+/// world 1
+
+    <world number="1">
+
+      <mission>
+      <name>mission1</name>
+      <description>Eat some burgers</description>
+      <action>0</action>
+      <itemID>1</itemID>
+      <amount>1</amount>
+      </mission>
+
+      <mission>
+      <name>mission2</name>
+      <description>Give some burgers to other people</description>
+      <action>1</action>
+      <itemID>1</itemID>
+      <amount>1</amount>      
+      </mission>
+      
+      <mission>
+      <name>mission3</name>
+      <description>Go find some more burgers</description>
+      <action>2</action>
+      <itemID>1</itemID>
+      <amount>3</amount>      
+      </mission>      
+
+    </world>
+    
+/// ---------------------------------------------------------------------
+/// world 2
+
+    <world number="2">
+    
+      <mission>
+      <description>Lorem ipsumission/description</description>
+      </mission>    
+    
+    </world>
+    
+/// ---------------------------------------------------------------------
+/// world 3
+
+    <world number="3">
+
+      <mission>
+      <description>jees joo hei hoi</description>
+      </mission>    
+
+    </world>    
+    
+
+</xml>
