@@ -22,8 +22,12 @@ public class RandomTextures : MonoBehaviour {
 
 	void Awake() {
   
-    reservedCharacterTextures.Add("human_base_marimekko");
+    //reservedCharacterTextures.Add("human_base_marimekko");
 	
+  	if(GameState.playerCharacterSprite!=null) {
+  	reservedCharacterTextures.Add(GameState.playerCharacterSprite.texture.name);
+  	}
+
     loadSprites(CHARACTER);
     loadSprites(NATURE);
     loadSprites(BUILDING);

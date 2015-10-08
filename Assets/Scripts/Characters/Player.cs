@@ -14,7 +14,10 @@ public class Player : Character {
   }
 
   protected override void Start() {
-  base.Start();
+  
+    characterSprite=GameState.playerCharacterSprite;
+    base.Start();
+  
   }
   
 //---------------------------------------------------

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CharScript : MonoBehaviour {
@@ -11,8 +11,10 @@ public class CharScript : MonoBehaviour {
 	}
 
 	public void setAsPlayerCharacter(){
-        //make the global player character this.character
-        Application.LoadLevel(1);
+
+		GameState.playerCharacterSprite=this.character;
+		Application.LoadLevel(1);
+
 	}
 
 }

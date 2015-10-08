@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSprite: {fileID: 0}
-  characterSpriteName: human_base_marimekko
+  characterSpriteName: 
   minWalkSpeed: .0500000007
   maxWalkSpeed: .100000001
   defaultLifeValues: []
