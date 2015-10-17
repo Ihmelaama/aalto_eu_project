@@ -17,7 +17,7 @@ public class Player : Character {
   
     characterSprite=GameState.playerCharacterSprite;
     base.Start();
-  
+
   }
   
 //---------------------------------------------------

@@ -41,17 +41,7 @@ public class ItemManager : MonoBehaviour {
   
 //----------------------------------------------------
 // PUBLIC SETTERS
-
-  public void dropItem(int itemType) {
-  }
-  
-//---------  
-  
-  public void useItem(int itemType) {
-  }
-  
-//---------  
-                       
+                
   public bool giveItemToNPC(Item item) {
   
     bool b=false;
@@ -80,9 +70,10 @@ public class ItemManager : MonoBehaviour {
       
       bool b=MissionManager.checkIfMission(item, MissionManager.ActionType.find);
     
-      // debug
-      // if(b) mission progressed! Give feedback
-    
+      if(b) {
+      // mission progressed! Give visual feedback
+      }
+
   return b;
   }  
   

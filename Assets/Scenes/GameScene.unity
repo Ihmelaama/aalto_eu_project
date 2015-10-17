@@ -2771,6 +2771,10 @@ Prefab:
       propertyPath: m_Name
       value: FabricManager
       objectReference: {fileID: 0}
+    - target: {fileID: 154684, guid: 4996fee76024f41eb895b79835400e4f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4996fee76024f41eb895b79835400e4f, type: 2}
   m_IsPrefabParent: 0
@@ -4551,6 +4555,57 @@ Transform:
   - {fileID: 1277249272}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!1 &1042344897 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 182214, guid: e1a0f1331058c384dbfb64a6561685c8, type: 2}
+  m_PrefabInternal: {fileID: 318955457}
+--- !u!114 &1042344899 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11487526, guid: e1a0f1331058c384dbfb64a6561685c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 318955457}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1042344901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042344897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1042344899}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1048383877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,6 +5069,8 @@ GameObject:
   - 114: {fileID: 1173342359}
   - 114: {fileID: 1173342358}
   - 114: {fileID: 1173342357}
+  - 114: {fileID: 1173342365}
+  - 114: {fileID: 1173342366}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -5116,6 +5173,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &1173342365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173342356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874bf307eca483545ba0497ae6bf1f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionProgressedParticlesPrefab: {fileID: 19830518, guid: e8a75459d209fcb438e5f3e8f3ff1e0f,
+    type: 2}
+  missionDoneParticlesPrefab: {fileID: 19830518, guid: 4ebe6045377ffee478607fd86c6f4a47,
+    type: 2}
+--- !u!114 &1173342366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173342356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cc16b4a411c2a4492001a84ce8b843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1176164129 stripped
 Transform:
   m_PrefabParentObject: {fileID: 428288, guid: 0cf1ddca882148d46bd75860cf30a415, type: 2}
@@ -7091,7 +7174,7 @@ Transform:
   - {fileID: 355109860}
   - {fileID: 1535633074}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1795124073
 MonoBehaviour:
   m_ObjectHideFlags: 0

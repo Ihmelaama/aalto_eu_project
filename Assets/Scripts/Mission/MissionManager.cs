@@ -65,7 +65,18 @@ public class MissionManager : MonoBehaviour {
                 Debug.Log("we are so done here");
             }
         }
+        
+        if(!currentMission.missionDone) {
+        VisualFeedbackManager.instance.MissionProgressed();
+
+        } else {
+        VisualFeedbackManager.instance.MissionDone();        
+        }
+        
         MakeUiChanges(currentMission);
+        
+        checkIfAllMissionsComplete();
+        
     }
 
     public static bool checkIfMission(Item item, ActionType action) {
@@ -76,8 +87,15 @@ public class MissionManager : MonoBehaviour {
             {
                 if (mis.actionNeeded == action)
                 {
-                    changeMissionStatus(mis.name);
-                    return true;
+                
+                    if(!mis.missionDone) 
+                    {
+                    
+                      changeMissionStatus(mis.name);
+                      return true;
+                    
+                    }
+
                 }
             }
         }
@@ -103,6 +121,26 @@ public class MissionManager : MonoBehaviour {
         
     }
     
+    public static void checkIfAllMissionsComplete() {
+    
+        bool b=true;
+    
+        foreach(Mission mis in missions)
+        {
+        
+          if(!mis.missionDone) {
+          b=false;
+          break;
+          }
+        
+        }    
+        
+        if(b) {
+        SceneManager.instance.gotoGameWin();
+        }
+
+    }
+  
 //---------------------------------------------------
 // PRIVATE GETTERS    
     

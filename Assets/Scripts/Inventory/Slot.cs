@@ -23,7 +23,17 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 
 
 	public Item CurrentItem{
-		get{ return items.Peek ();}
+
+		get{
+    
+      if(items.Count>0) {
+      return items.Peek();
+      } else {
+      return null;
+      }
+
+    }
+    
 	}
 
 	public bool isEmpty{
@@ -98,7 +108,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
 		}
 	}
 
-    public void DropItem()
+    public void DropItem(bool returnToWorld)
     {
         if (!isEmpty)
         {
@@ -112,14 +122,20 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
                 ChangeSprite(slotEmpty, slotHighlight);
                 Inventory.EmptySlot++;
             } 
+            
+            if(returnToWorld) {
+            // return to world
+            Debug.Log("return item to world");
+            }
+            
         }
     }
-
+  
     public void ClearSlot(){
 		items.Clear ();
 		ChangeSprite (slotEmpty, slotHighlight);
 		stackText.text = string.Empty;
-	}
+	  }
 
 	#region IPointerClickHandler implementation
 

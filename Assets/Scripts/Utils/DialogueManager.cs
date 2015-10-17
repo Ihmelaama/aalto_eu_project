@@ -90,7 +90,9 @@ public class DialogueManager : MonoBehaviour {
 
       // construct event string for fabric: "Chars/Hello/"+GameState.currentPlayerCharacterName or something
       Debug.Log("say hello!");
-      Fabric.EventManager.Instance.PostEvent("Chars/Hello/Name");    
+      Fabric.EventManager.Instance.PostEvent("Chars/Hello/Name");  
+      
+      WorldState.playerIsTalking=true;  
 
     }  
   
@@ -112,6 +114,8 @@ public class DialogueManager : MonoBehaviour {
     
     moveCameraToTarget(player);
     itemManager.toggleInventory(false, 1);
+    
+    WorldState.playerIsTalking=false;
   
   }  
   

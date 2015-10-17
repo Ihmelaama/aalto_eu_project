@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueMenu : MonoBehaviour {
 
@@ -13,8 +14,8 @@ public class DialogueMenu : MonoBehaviour {
     private GameObject NPCBubble;
     private GameObject selector;
     private GameObject nextButton;
+    private GameObject prevButton;
   
-    //private Text playerBubbleText;
     private Text NPCBubbleText;
     private Text selectorText;
     
@@ -31,10 +32,6 @@ public class DialogueMenu : MonoBehaviour {
 
 	void Start() {
 
-    //playerBubble=transform.Find("DialogueHistory/Player").gameObject;
-    //playerBubbleText=playerBubble.transform.Find("Text").GetComponent<Text>();
-    //playerBubble.SetActive(false);
-    
     NPCBubble=transform.Find("DialogueHistory/NPC").gameObject;
     NPCBubbleText=NPCBubble.transform.Find("Text").GetComponent<Text>();
     
@@ -42,6 +39,7 @@ public class DialogueMenu : MonoBehaviour {
     selectorText=selector.transform.Find("Text").GetComponent<Text>();
     
     nextButton=transform.Find("Next").gameObject;
+    prevButton=transform.Find("Previous").gameObject;
     
   //---
   
@@ -52,6 +50,12 @@ public class DialogueMenu : MonoBehaviour {
 //------------
 
 	void Update() {
+  
+    // hide dialogue if user touched somewhere else than interactable dialogue objects
+    if(GestureManager.wasTouched) {
+    dialogueManager.hideDialogueMenu();
+    GestureManager.clearTouch();
+    }
 	
 	}
   
@@ -71,17 +75,15 @@ public class DialogueMenu : MonoBehaviour {
     currentDialogueItem=dialogueItem;
     NPCBubbleText.text=getRandomDialogueLine(dialogueItem);
 
-    //playerBubbleText.text="";    
-    //playerBubble.SetActive(false);
-
     selectorText.text=dialogueItem.replies[0];  
     
   // show/hide parts of UI that are needed/not ---
     
-    if(dialogueItem.replies.Count==1) {
-    nextButton.SetActive(false);
+    if(dialogueItem.replies.Count>1) {
+    toggleSelectorButtons(true);
+    
     } else {
-    nextButton.SetActive(true);
+    toggleSelectorButtons(false);
     }
 
   }
@@ -109,8 +111,6 @@ public class DialogueMenu : MonoBehaviour {
   public void sayThing() {
     
     string str=currentDialogueItem.replies[currentSelectorPos];
-    //playerBubble.SetActive(true); 
-    //playerBubbleText.text=str;
 
     // if conversation has somewhere to go
     if(currentDialogueItem.gotoItems.Count>currentSelectorPos) {
@@ -120,7 +120,16 @@ public class DialogueMenu : MonoBehaviour {
       NPCBubbleText.text=getRandomDialogueLine();
 
       currentSelectorPos=0;
-      selectorText.text=currentDialogueItem.replies[currentSelectorPos];
+      List<string> replies=currentDialogueItem.replies;
+      
+      selectorText.text=replies[currentSelectorPos];
+      
+      if(replies.Count>1) {
+      toggleSelectorButtons(true);
+      
+      } else {
+      toggleSelectorButtons(false);
+      }
 
     // else quit talking
     } else {
@@ -130,6 +139,16 @@ public class DialogueMenu : MonoBehaviour {
 
     }
     
+  }
+  
+//----------------------------------------------------
+// PRIVATE SETTERS
+
+  private void toggleSelectorButtons(bool b) {
+  
+    nextButton.SetActive(b);
+    prevButton.SetActive(b);
+  
   }
   
 //----------------------------------------------------

@@ -28,7 +28,7 @@
       <description>Go find some more burgers</description>
       <action>2</action>
       <itemID>1</itemID>
-      <amount>3</amount>      
+      <amount>2</amount>      
       </mission>      
 
     </world>
