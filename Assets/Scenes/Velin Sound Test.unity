@@ -831,6 +831,7 @@ MonoBehaviour:
   minWalkSpeed: .0500000007
   maxWalkSpeed: .100000001
   defaultLifeValues: []
+  movable: 1
 --- !u!54 &313510044
 Rigidbody:
   m_ObjectHideFlags: 0
