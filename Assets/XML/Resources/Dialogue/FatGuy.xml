@@ -39,7 +39,7 @@
     
       <line>Cake's the best. There's nothing in the world like cake.</line>
       <line>Yup, I do love cake. You have a problem with that?</line>
-      <line>Angel cake, apple cake, babka, Boston cream pie, banana cake, Battenberg cake, birthday cake. I could go on all day. What can I say, I love cake!</line>
+      <line>Angel cake, apple cake, babka, Boston cream pie, banana cake, Battenberg cake, birthday cake. I could go on all day. What can I say. I just love cake!</line>
 
       <reply goto-item="get_cake_mission">Ok, ok. I'll go see if I can find you some cake.</reply>
 

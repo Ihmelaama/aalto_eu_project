@@ -34,6 +34,7 @@ public class SceneManager : MonoBehaviour {
 //------------
 
   public void gotoIntro() {
+  SoundManager.playUISound(SoundManager.UISound.Button6);
   Application.LoadLevel("Intro");  
   }
 

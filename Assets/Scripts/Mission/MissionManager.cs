@@ -85,7 +85,8 @@ public class MissionManager : MonoBehaviour {
         VisualFeedbackManager.instance.MissionProgressed();
 
         } else {
-        VisualFeedbackManager.instance.MissionDone();        
+        VisualFeedbackManager.instance.MissionDone();      
+        SoundManager.playGameSound(SoundManager.GameSound.Laugh);  
         }
         
         MakeUiChanges(currentMission);

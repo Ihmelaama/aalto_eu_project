@@ -1,0 +1,71 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>Bawk ba.</line>
+      <line>Bak bak baaawww ... Ba-GAWK!</line>
+      <line>...</line>
+
+      <reply goto-item="want_eggs">Hey there. Can I have some of your eggs? Please?</reply>
+      
+      <reply goto-item="cross_road">I've always wondered why the chicken crossed the road. You, being a chicken and all that, might now. Did you ever cross a road? Why would you?</reply>
+      
+      <reply>Oh, I have to go. See you later!</reply>                 
+    
+    </item>
+    
+/// ---------------------------------------------------------------------
+/// other dialogue items 
+
+    /// cross road
+    <item name="want_eggs">
+    
+      <line>Ba ba ba.</line>
+      <line>...</line>
+      <line>Ba GAWK!</line>
+
+      <reply goto-item="done">I hear you, friend. I have the exact same problem.</reply>
+
+    </item>
+
+    /// cross road
+    <item name="cross_road">
+    
+      <line>Ba BAWK!</line>
+      <line>...</line>
+      <line>Ba GAWK!</line>
+
+      <reply goto-item="done">Now that you put it that way I think you might be right.</reply>
+    
+    </item>
+    
+/// ---------------------------------------
+ 
+    /// done
+    <item name="done">
+    
+      <line>Ba bak baawk.</line>
+      <line>...</line>
+      <line>Baw</line>
+      
+      <reply>Thank you, wise chicken. I will remember what you have taught me.</reply>
+
+    </item> 
+
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>Ba BAWK!</line>
+      <line>Bwaaa...</line>
+      <line>...</line>
+      
+      <reply>You are right, I guess. Life is better without unnecessary material possessions. Thank you, wise chicken.</reply> 
+
+    </item>
+
+</xml>

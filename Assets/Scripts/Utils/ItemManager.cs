@@ -52,6 +52,8 @@ public class ItemManager : MonoBehaviour {
     bool b=false;
     if(DialogueManager.currentTalkTarget) {
     
+      SoundManager.playGameSound(SoundManager.GameSound.GiveItem);    
+    
       NPC npc=DialogueManager.currentTalkTarget.gameObject.GetComponent<NPC>();
 
       // check if npc wants item
@@ -81,6 +83,10 @@ public class ItemManager : MonoBehaviour {
   // check if mission ---
       
       MissionManager.checkIfMission(item, MissionManager.ActionType.find);
+      
+  // play sound ---
+
+      SoundManager.playGameSound(SoundManager.GameSound.PickUpItem);
 
   }  
   

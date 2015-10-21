@@ -3,7 +3,27 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
+  public enum UISound {
+  Button,
+  Button1,
+  Button2,
+  Button3,
+  Button4,
+  Button5,
+  Button6,
+  Button7,
+  ButtonError
+  };
+  
+  public enum GameSound {
+  PickUpItem,
+  GiveItem,
+  Laugh
+  }
+
   public static SoundManager instance;
+
+//------------
 
   void Awake() {
   instance=this;
@@ -11,45 +31,78 @@ public class SoundManager : MonoBehaviour {
   
 //------------
 
-/*
-UI/Button Kaikki muut
-UI/Button1 dialogi
-UI/Button2 Reppu auki
-UI/Button3 Reppu kiinni
-UI/Button4 Missio auki
-UI/Button5 Missio kiinni
-*/
-
-  public void playUISound(int type) {
+  public static void playUISound(UISound type) {
   
     switch(type) {
     
-      case 1:
+      case UISound.Button1:
       Fabric.EventManager.Instance.PostEvent("UI/Button1");      
       break;
       
-      case 2:
+      case UISound.Button2:
       Fabric.EventManager.Instance.PostEvent("UI/Button2");      
       break;     
       
-      case 3:
+      case UISound.Button3:
       Fabric.EventManager.Instance.PostEvent("UI/Button3");      
       break;     
       
-      case 4:
+      case UISound.Button4:
       Fabric.EventManager.Instance.PostEvent("UI/Button4");      
       break;                
 
-      case 5:
+      case UISound.Button5:
       Fabric.EventManager.Instance.PostEvent("UI/Button5");      
       break;
-    
-      default:
-      Fabric.EventManager.Instance.PostEvent("UI/Button");
+      
+      case UISound.Button6:
+      Fabric.EventManager.Instance.PostEvent("UI/Button6");      
+      break;    
+      
+      case UISound.Button7:
+      Fabric.EventManager.Instance.PostEvent("UI/Button7");      
+      break;              
+      
+      case UISound.ButtonError:
+      Fabric.EventManager.Instance.PostEvent("UI/Error");      
       break;
+      
+      default:
+      SoundManager.instance.playUIDefaultSound();
+      break;  
+
+    }  
+          
+  }
+
+  public void playUIDefaultSound() {
+  Fabric.EventManager.Instance.PostEvent("UI/Button");    
+  } 
+  
+  public void playUIErrorSound() {
+  Fabric.EventManager.Instance.PostEvent("UI/Error");    
+  }       
+  
+//------------
+
+  public static void playGameSound(GameSound type) {  
+  
+    switch(type) {
+    
+      case GameSound.PickUpItem:
+      Fabric.EventManager.Instance.PostEvent("Game/Item");   
+      break;
+      
+      case GameSound.GiveItem:
+      Fabric.EventManager.Instance.PostEvent("Game/Give");   
+      break;     
+      
+      case GameSound.Laugh:
+      Fabric.EventManager.Instance.PostEvent("Game/Laugh");   
+      break;          
     
     }
-        
+  
   }
   
 //------------
@@ -98,6 +151,6 @@ UI/Button5 Missio kiinni
     yield return new WaitForSeconds(delay);
     Fabric.EventManager.Instance.PostEvent(eventName);  
   
-  }    
+  } 
 
 }

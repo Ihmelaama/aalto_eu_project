@@ -104,7 +104,7 @@ public class DialogueMenu : MonoBehaviour {
     
     selectorText.text=currentDialogueItem.replies[currentSelectorPos];
     
-    SoundManager.instance.playUISound(1);    
+    SoundManager.playUISound(SoundManager.UISound.Button1);    
 
   }  
   
@@ -141,7 +141,7 @@ public class DialogueMenu : MonoBehaviour {
 
     }
     
-    SoundManager.instance.playUISound(1);
+    SoundManager.playUISound(SoundManager.UISound.Button7);
     
   }
   
