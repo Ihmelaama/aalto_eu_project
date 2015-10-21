@@ -114,11 +114,11 @@ public class Character : MonoBehaviour {
     graphicsAnimator=graphics.GetComponent<Animator>();
     if(graphics!=null) graphicsSpriteRenderer=graphics.GetComponent<SpriteRenderer>();
     
-    StartCoroutine(doUglyThings(0.1f, graphicsAnimator.speed));
+    StartCoroutine(uglyAnimationPositionHack(0.1f, graphicsAnimator.speed));
 
   }
   
-  IEnumerator doUglyThings(float delay, float originalSpeed) {
+  IEnumerator uglyAnimationPositionHack(float delay, float originalSpeed) {
   graphicsAnimator.speed=UnityEngine.Random.Range(0f, 2000f);  
   yield return new WaitForSeconds(delay);
   graphicsAnimator.speed=originalSpeed; 
@@ -309,6 +309,7 @@ public class Character : MonoBehaviour {
     
     } else {
     s=RandomTextures.getRandomCharacterSprite();
+    Debug.Log("wat: "+s);
     }
     
   //---

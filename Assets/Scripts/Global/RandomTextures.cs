@@ -8,10 +8,13 @@ public class RandomTextures : MonoBehaviour {
 // VARIABLES
 
   public const int CHARACTER=1;
-  public const int NATURE=2;
-  public const int BUILDING=3;
+  public const int SECONDARY_CHARACTER=2;
+  public const int NATURE=3;
+  public const int BUILDING=4;
 
   public static List<Sprite> characterTextures=new List<Sprite>();
+  public static List<Sprite> secondaryCharacterTextures=new List<Sprite>();
+  public static List<Sprite> usedCharacterTextures=new List<Sprite>();
   public static List<string> reservedCharacterTextures=new List<string>();
 
   public static List<Sprite> natureTextures=new List<Sprite>();
@@ -22,14 +25,12 @@ public class RandomTextures : MonoBehaviour {
 
 	void Awake() {
   
-    //reservedCharacterTextures.Add("human_base_marimekko");
-	
   	if(GameState.playerCharacterSprite!=null) {
     
       // current selected player ---
       reservedCharacterTextures.Add(GameState.playerCharacterSprite.texture.name);
   	
-      // mission specific
+      // mission specific ---
       
         // Prague: "Sweet friendship, fat friendship"
         reservedCharacterTextures.Add("FatGuy");
@@ -37,6 +38,7 @@ public class RandomTextures : MonoBehaviour {
     }
 
     loadSprites(CHARACTER);
+    loadSprites(SECONDARY_CHARACTER);
     loadSprites(NATURE);
     loadSprites(BUILDING);
   
@@ -58,7 +60,14 @@ public class RandomTextures : MonoBehaviour {
     switch(type) {
     
       case CHARACTER:
-      textures=characterTextures;
+      
+        textures=characterTextures;
+        if(usedCharacterTextures.Count==characterTextures.Count) textures=secondaryCharacterTextures;
+
+      break;
+      
+      case SECONDARY_CHARACTER:
+      textures=secondaryCharacterTextures;
       break;
       
       case NATURE:
@@ -76,6 +85,18 @@ public class RandomTextures : MonoBehaviour {
     if(textures!=null && textures.Count>0) {
     
       int rand=(int) Mathf.Floor(Random.Range(0f, textures.Count));
+      Sprite s=textures[rand];
+      int i=0;
+      
+      while(usedCharacterTextures.Contains(s)) {
+      rand=(int) Mathf.Floor(Random.Range(0f, textures.Count));
+      s=textures[rand];
+      if(i>1000) break;
+      i++;
+      }
+      
+      if(type==CHARACTER) usedCharacterTextures.Add(textures[rand]);
+      
       return textures[rand];
 
     }
@@ -92,23 +113,27 @@ public class RandomTextures : MonoBehaviour {
     string path=null;
   
   //---  
-
+  
     switch(type) {
     
       case CHARACTER:
-      path="Assets/Textures/Characters/Resources";
+      path="Assets/Textures/"+GameState.currentWorldName+"/Characters/Resources";
       break;
       
+      case SECONDARY_CHARACTER:
+      path="Assets/Textures/"+GameState.currentWorldName+"/SecondaryCharacters/Resources";
+      break;      
+      
       case NATURE:
-      path="Assets/Textures/Environment/Nature/Resources";
+      path="Assets/Textures/"+GameState.currentWorldName+"/Environment/Nature/Resources/";
       break;
       
       case BUILDING:
-      path="Assets/Textures/Environment/Buildings/Resources";
+      path="Assets/Textures/"+GameState.currentWorldName+"/Environment/Buildings/Resources/";
       break;
     
     }
-  
+    
   //---  
       
     if(path!=null) {  
@@ -136,6 +161,10 @@ public class RandomTextures : MonoBehaviour {
       case CHARACTER:
       characterTextures=textures;
       break;
+      
+      case SECONDARY_CHARACTER:
+      secondaryCharacterTextures=textures;
+      break;      
       
       case NATURE:
       natureTextures=textures;
