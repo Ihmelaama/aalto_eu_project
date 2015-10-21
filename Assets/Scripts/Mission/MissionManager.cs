@@ -32,11 +32,25 @@ public class MissionManager : MonoBehaviour {
         int i = missions.Count -1;
         foreach(GameObject go in publicMissionUIElements)
         {
+        
             missionUIElements.Add(go);
-            go.GetComponent<Text>().text = missions[i].name;
-            GameObject goChild = go.transform.GetChild(0).gameObject;
-            goChild.GetComponent<Text>().text = missions[i].missionDescription;
+            
+            if(i>-1 && i<missions.Count-1) {
+            
+              go.GetComponent<Text>().text = missions[i].name;
+              GameObject goChild = go.transform.GetChild(0).gameObject;
+              goChild.GetComponent<Text>().text = missions[i].missionDescription;
+              
+            } else {
+            
+              go.GetComponent<Text>().text = "";
+              GameObject goChild = go.transform.GetChild(0).gameObject;
+              goChild.GetComponent<Text>().text = "";
+                          
+            }
+            
             i--;
+
         }
 
 

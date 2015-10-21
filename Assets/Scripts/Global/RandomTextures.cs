@@ -25,8 +25,16 @@ public class RandomTextures : MonoBehaviour {
     //reservedCharacterTextures.Add("human_base_marimekko");
 	
   	if(GameState.playerCharacterSprite!=null) {
-  	reservedCharacterTextures.Add(GameState.playerCharacterSprite.texture.name);
-  	}
+    
+      // current selected player ---
+      reservedCharacterTextures.Add(GameState.playerCharacterSprite.texture.name);
+  	
+      // mission specific
+      
+        // Prague: "Sweet friendship, fat friendship"
+        reservedCharacterTextures.Add("FatGuy");
+    
+    }
 
     loadSprites(CHARACTER);
     loadSprites(NATURE);

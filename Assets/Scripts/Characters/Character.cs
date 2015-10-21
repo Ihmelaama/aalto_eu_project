@@ -18,7 +18,11 @@ public class Character : MonoBehaviour {
     
     public float[] defaultLifeValues;
     
+    public bool movable=true;
+    
   // private settings ---
+  
+    private string characterIdString=null;
   
     private float minDistanceFromDestination=0.75f;
     private float stopDistanceFromDestination=0.25f;
@@ -98,7 +102,8 @@ public class Character : MonoBehaviour {
   
     getElements();
     setCharacterSprite();
-
+    getCharacterId();
+    
   }
   
 //------------
@@ -108,7 +113,15 @@ public class Character : MonoBehaviour {
     graphics=transform.Find("Graphics").gameObject; 
     graphicsAnimator=graphics.GetComponent<Animator>();
     if(graphics!=null) graphicsSpriteRenderer=graphics.GetComponent<SpriteRenderer>();
+    
+    StartCoroutine(doUglyThings(0.1f, graphicsAnimator.speed));
+
+  }
   
+  IEnumerator doUglyThings(float delay, float originalSpeed) {
+  graphicsAnimator.speed=UnityEngine.Random.Range(0f, 2000f);  
+  yield return new WaitForSeconds(delay);
+  graphicsAnimator.speed=originalSpeed; 
   }
   
 //---------------------------------------------------
@@ -116,7 +129,7 @@ public class Character : MonoBehaviour {
 
   public void moveTowards(Vector3 d) {
   
-    if(allowNewDestinations) {
+    if(movable && allowNewDestinations) {
     
       Vector3 dif=d-transform.position;
       d=transform.position+dif.normalized*(minDistanceFromDestination*2);
@@ -195,6 +208,24 @@ public class Character : MonoBehaviour {
   
   }  
   
+//------------
+
+  public void sayHello() {
+  SoundManager.PlayCharacterHello(characterIdString);
+  }
+
+  public void sayHello(float delay) {
+  SoundManager.PlayCharacterHello(characterIdString, delay);
+  }
+  
+  public void sayYes() {
+  SoundManager.PlayCharacterYes(characterIdString);
+  }
+  
+  public void sayNo() {
+  SoundManager.PlayCharacterNo(characterIdString);
+  }
+  
 //---------------------------------------------------
 // PUBLIC GETTERS  
   
@@ -270,7 +301,7 @@ public class Character : MonoBehaviour {
     s=characterSprite as Sprite;
 
   // if only name is defined load that (a Texture2D by that name should be somewhere in a Resources folder)
-    
+   
     } else if(characterSpriteName.Length>0) {
     s=Resources.Load<Sprite>(characterSpriteName) as Sprite;
 
@@ -286,6 +317,19 @@ public class Character : MonoBehaviour {
     graphicsSpriteRenderer.sprite=s;
     }
 
+  }
+  
+//------------
+
+  private void getCharacterId() {
+  
+    if(graphicsSpriteRenderer.sprite!=null) {
+    
+      String s=graphicsSpriteRenderer.sprite.name;
+      characterIdString=s;
+    
+    }
+  
   }
   
 //------------

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ItemManager : MonoBehaviour {
 
@@ -55,6 +56,9 @@ public class ItemManager : MonoBehaviour {
       }
       
       if(b) {
+      npc.sayYes();
+      } else {
+      npc.sayNo();
       }
       
     }
@@ -64,17 +68,28 @@ public class ItemManager : MonoBehaviour {
   
 //---------  
 
-  public static bool foundItem(Item item) {
+  public static void foundItem(Item item) {
+  
+  // pick up ---
   
       item.PickUp();
       
-      bool b=MissionManager.checkIfMission(item, MissionManager.ActionType.find);
-    
-      if(b) {
-      // mission progressed! Give visual feedback
+  // check if mission ---
+      
+      MissionManager.checkIfMission(item, MissionManager.ActionType.find);
+
+  // check if crafts ---
+  
+      bool b=true;
+      List<Item> items=Inventory.instance.inventory;
+      for(int i=0; i<items.Count; i++) {
+      
+        if(items[i]!=item) {
+        b=item.craftWith(items[i].itemID);
+        }
+      
       }
 
-  return b;
   }  
   
 //--------- 

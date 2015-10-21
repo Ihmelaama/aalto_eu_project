@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour {
     private Transform UICanvas;
     
     private GameObject player;
+    private Player playerScript;
     private LazyFollow playerCameraFollow;
     
     private Transform NPCHolder;
@@ -49,6 +50,7 @@ public class DialogueManager : MonoBehaviour {
     UICanvas=GameObject.Find("UI/Canvas").transform;
     
     player=GameObject.Find("PlayerHolder/Player");
+    playerScript=player.GetComponent<Player>();
     playerCameraFollow=Camera.main.GetComponent<LazyFollow>();
      
     NPCHolder=GameObject.Find("NPCHolder").transform;  
@@ -88,10 +90,8 @@ public class DialogueManager : MonoBehaviour {
       itemManager.toggleInventory(true, 2);
       dashboard.toggleDashboard(true);
 
-      // construct event string for fabric: "Chars/Hello/"+GameState.currentPlayerCharacterName or something
-      Debug.Log("say hello!");
-      Fabric.EventManager.Instance.PostEvent("Chars/Hello/Name");  
-      
+      NPCScript.sayHello();
+
       WorldState.playerIsTalking=true;  
 
     }  

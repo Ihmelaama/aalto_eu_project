@@ -8,13 +8,14 @@
     <world number="1">
 
       <mission>
-      <name>mission1</name>
-      <description>Eat some burgers</description>
-      <action>0</action>
-      <itemID>1</itemID>
+      <name>Sweet friendship, fat friendship</name>
+      <description>Find Fat Guy and give him a cake. Find milk, eggs, flavor and sugar to bake a cake for mr. Guy.</description>
+      <action>1</action>
+      <itemID>1234</itemID>
       <amount>1</amount>
       </mission>
 
+      <!--
       <mission>
       <name>mission2</name>
       <description>Give some burgers to other people</description>
@@ -30,6 +31,7 @@
       <itemID>1</itemID>
       <amount>2</amount>      
       </mission>      
+      -->
 
     </world>
     
