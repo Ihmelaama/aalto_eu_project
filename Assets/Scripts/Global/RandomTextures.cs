@@ -117,19 +117,25 @@ public class RandomTextures : MonoBehaviour {
     switch(type) {
     
       case CHARACTER:
-      path="Assets/Textures/"+GameState.currentWorldName+"/Characters/Resources";
+      //path="Assets/Textures/"+GameState.currentWorldName+"/Characters/Resources";
+      //path=Application.streamingAssetsPath+"/Textures/"+GameState.currentWorldName+"/Characters/Resources";
+      //path="Textures/"+GameState.currentWorldName+"/Characters/Resources";
+      path=GameState.currentWorldName+"/Characters";
       break;
       
       case SECONDARY_CHARACTER:
-      path="Assets/Textures/"+GameState.currentWorldName+"/SecondaryCharacters/Resources";
+      //path="Textures/"+GameState.currentWorldName+"/SecondaryCharacters/Resources";
+      path=GameState.currentWorldName+"/SecondaryCharacters";
       break;      
       
       case NATURE:
-      path="Assets/Textures/"+GameState.currentWorldName+"/Environment/Nature/Resources/";
+      //path="Textures/"+GameState.currentWorldName+"/Environment/Nature/Resources/";
+      path=GameState.currentWorldName+"/Nature";
       break;
       
       case BUILDING:
-      path="Assets/Textures/"+GameState.currentWorldName+"/Environment/Buildings/Resources/";
+      //path="Textures/"+GameState.currentWorldName+"/Environment/Buildings/Resources/";
+      path=GameState.currentWorldName+"/Buildings";
       break;
     
     }
@@ -137,21 +143,25 @@ public class RandomTextures : MonoBehaviour {
   //---  
       
     if(path!=null) {  
-      
-      DirectoryInfo dir=new DirectoryInfo(path);
-      FileInfo[] files=dir.GetFiles("*.png");
-      
-      foreach(FileInfo f in files) {
-      
-        string n=f.Name.Split('.')[0];
-        Sprite s=Resources.Load<Sprite>(n) as Sprite;
-        
-        if(!reservedCharacterTextures.Contains(n)) {
-        textures.Add(s);
-        }
-  
-      }
     
+      Object[] sprites=Resources.LoadAll(path);
+      Sprite s;
+      
+      foreach(Object obj in sprites) {
+      
+        if(obj.GetType()==typeof(Sprite)) {
+        
+          s=(Sprite) obj;
+          string n=s.name;   
+                 
+          if(!reservedCharacterTextures.Contains(n)) {
+          textures.Add(s);
+          }
+        
+        }
+      
+      }
+      
     }
     
   //---    

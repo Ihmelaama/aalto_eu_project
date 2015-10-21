@@ -11,5 +11,15 @@ public class Helpful : MonoBehaviour {
   
   return false;
   }
+  
+//------------  
+  
+  public static string getRandomString(string[] strings, string notThis) {
+
+    int rand=Random.Range(0, strings.Length);
+    while(strings[rand]==notThis) rand=Random.Range(0, strings.Length);
+    return strings[rand];
+
+  }
 
 }

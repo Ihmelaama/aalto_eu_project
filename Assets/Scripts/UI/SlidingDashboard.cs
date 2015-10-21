@@ -10,6 +10,9 @@ public class SlidingDashboard : MonoBehaviour {
 
   // settings ---
   
+    public int soundIn=0;
+    public int soundOut=0;
+  
     private float slideDuration=0.5f;
 
   // holders ---
@@ -94,6 +97,7 @@ public class SlidingDashboard : MonoBehaviour {
     position=1f;
     
     } else {
+    SoundManager.instance.playUISound(soundIn);
     Tween t=DOTween.To(()=>position, x=>position=x, 1f, slideDuration);
     t.SetEase(Ease.OutQuint);
     }
@@ -114,6 +118,7 @@ public class SlidingDashboard : MonoBehaviour {
     position=0f;
 
     } else {
+    SoundManager.instance.playUISound(soundOut);     
     Tween t=DOTween.To(()=>position, x=>position=x, 0f, slideDuration);   
     t.SetEase(Ease.OutQuint);
     }

@@ -8,6 +8,13 @@ public class Dialogue {
 //---------------------------------------------------
 // VARIABLES
 
+  // general dialogue files ---
+  
+    string[] randomDialogueFiles={
+    "Dialogue/general_dialogue_01",
+    "Dialogue/general_dialogue_02"
+    };
+
   // settings ---
   
     public string dialogueFile=null;
@@ -21,6 +28,10 @@ public class Dialogue {
 // START
 
 	public Dialogue(string dialogueFile) {
+  
+    if(dialogueFile==null || dialogueFile.Length==0) {
+    dialogueFile=Helpful.getRandomString(randomDialogueFiles, null);
+    }
 
     if(dialogueFile!=null) {
     

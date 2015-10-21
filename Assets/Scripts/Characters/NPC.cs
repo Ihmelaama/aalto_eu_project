@@ -20,6 +20,7 @@ public class NPC : Character {
     
     public bool willAcceptAnyItem=true;
     public int needsItemId=-1;
+    public int[] willDeclineItems;
 
   // private settings ---
 
@@ -29,7 +30,8 @@ public class NPC : Character {
   // holders ---
   
     private GameObject player;
-    
+    private Player playerScript;
+
     [HideInInspector]
     public Dialogue dialogue;
     
@@ -45,6 +47,7 @@ public class NPC : Character {
   // get stuff ---
 
     player=GameObject.Find("Player");
+    playerScript=player.GetComponent<Player>();
 
     if(dialogueFile!=null) {
     dialogue=new Dialogue(dialogueFile);
@@ -67,13 +70,13 @@ public class NPC : Character {
 // EVENTS
 
   protected override void FixedUpdate() {
-  
+
     base.FixedUpdate();  
-  
+
   // react to player ---
-  
+
     reactToPlayer();
-    
+
   // react to other characters ---
   
     reactToOtherCharacters();
@@ -98,7 +101,7 @@ public class NPC : Character {
   public void followThis(Transform target, float strength) {
   
     determination=strength;
-      
+    
     Vector3 dif=target.position-transform.position; 
     dif=dif.normalized;    
     
@@ -129,15 +132,22 @@ public class NPC : Character {
   
   // NPC accepts item ---
   
-    if(willAcceptAnyItem || needsItemId==item.itemID) {
+    if(
+    (willAcceptAnyItem || needsItemId==item.itemID) && 
+    !Helpful.ArrayContainsInt(willDeclineItems, item.itemID)
+    ) {
      
-      bool wasMission=MissionManager.checkIfMission(item, MissionManager.ActionType.give);
-      if(wasMission) Debug.Log("it was mission!");
+      int wasMission=MissionManager.checkIfMission(item, MissionManager.ActionType.give);
       
       // give mission success feedback      
-      if(wasMission) {
+      if(wasMission!=0) {
       
-        d=dialogue.getDialogueByName("accept_mission_item");
+        if(wasMission==1) {
+        d=dialogue.getDialogueByName("accept_mission_progress");
+        } else {
+        d=dialogue.getDialogueByName("accept_mission_done");
+        }
+        
         dialogueManager.setNewDialogue(this, d);
       
       // give other feedback
@@ -174,12 +184,12 @@ public class NPC : Character {
 
       if(dif.magnitude<reactionRadius) {
       
-        //float sum=followPlayer+avoidPlayer;
         float sum=1f;
         
         float follow=followPlayer/sum;
         float avoid=avoidPlayer/sum;
         float distanceRatio=1f;
+        float strength=0f;
             
       // follow ---
               
@@ -190,10 +200,16 @@ public class NPC : Character {
           }
        
           if(dif.magnitude<minReactionRadius) {   
-          avoidThis(player.transform, 1f);
           
+            strength=1f;
+            avoidThis(player.transform, strength);
+            
           } else {
-          followThis(player.transform, follow*distanceRatio);
+          
+            strength=follow*distanceRatio;
+            if(playerScript.walkVector.magnitude==0f) strength=0f;          
+            followThis(player.transform, follow*distanceRatio);
+          
           }
         
       // avoid ---
@@ -224,7 +240,7 @@ public class NPC : Character {
   private void testUserTouch() {
   
     if(dialogueManager!=null && GestureManager.wasTouched && !GestureManager.wasDragged && GestureManager.testTouch3D(transform)!=Vector3.zero) {
-    dialogueManager.showDialogueMenu(transform, 1);
+    dialogueManager.showDialogueMenu(transform);
     }
 
   }

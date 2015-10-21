@@ -29,23 +29,23 @@ public class VisualFeedbackManager : MonoBehaviour {
 // PUBLIC SETTERS  
 
   public void MissionProgressed() {
-  
+
     if(missionProgressedParticlesPrefab!=null) {
     ParticleSystem p=Instantiate(missionProgressedParticlesPrefab) as ParticleSystem;
     parentToPlayer(p.transform);
     }
-  
+
   }
   
 //------------
   
   public void MissionDone() {
-  
+
     if(missionDoneParticlesPrefab!=null) {
     ParticleSystem p=Instantiate(missionDoneParticlesPrefab) as ParticleSystem;
     parentToPlayer(p.transform);
     }
-  
+
   }
   
 //---------------------------------------------
@@ -62,8 +62,7 @@ public class VisualFeedbackManager : MonoBehaviour {
     pos.y+=1.5f;
 
     targetTransform.position=pos;
-    targetTransform.parent=player.transform;
-        
+    
   }
   
 }

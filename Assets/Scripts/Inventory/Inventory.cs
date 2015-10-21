@@ -109,7 +109,9 @@ public class Inventory : MonoBehaviour {
 			foreach(GameObject slot in allSlots){
 				Slot tmp = slot.GetComponent<Slot>();
 				if(!tmp.isEmpty){
-					if(tmp.CurrentItem.itemType == item.itemType && tmp.isAvailable){
+					//if(tmp.CurrentItem.itemType == item.itemType && tmp.isAvailable){
+          //if(tmp.CurrentItem.itemID == item.itemID && tmp.isAvailable){
+          if(tmp.CurrentItem.itemName == item.itemName && tmp.isAvailable){
 						tmp.AddItem(item);
 						return true;
 					}
@@ -142,5 +144,17 @@ public class Inventory : MonoBehaviour {
   
   return num;
   }
+  
+  public List<Item> getItems() {
+  
+    List<Item> items=new List<Item>();
+    
+    foreach(GameObject slot in allSlots){
+    Slot tmp=slot.GetComponent<Slot>();
+    if(!tmp.isEmpty) items.Add(tmp.CurrentItem);
+    }
+  
+  return items;
+  }  
 
 }

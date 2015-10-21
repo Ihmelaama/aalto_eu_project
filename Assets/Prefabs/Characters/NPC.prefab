@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25999999, y: 0, z: 5.0999999}
+  m_LocalPosition: {x: 10.2600002, y: 0, z: 11.9499998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466854}
@@ -97,9 +97,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123498}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Mass: 10
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -150,12 +150,13 @@ MonoBehaviour:
   minWalkSpeed: .0500000007
   maxWalkSpeed: .100000001
   defaultLifeValues: []
+  movable: 1
   followPlayer: .800000012
   avoidPlayer: 0
   followOtherNPC: 0
   avoidOtherNPC: 0
   reactionRadius: 3
-  dialogueFile: Dialogue/dialogue_test
+  dialogueFile: 
   willAcceptAnyItem: 1
   needsItemId: -1
 --- !u!136 &13628756
@@ -208,7 +209,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 75a4c658076ab6949bb0bf329ecc19a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3832f14371e58e4bbcee24e735c72e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

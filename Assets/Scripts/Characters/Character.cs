@@ -54,7 +54,8 @@ public class Character : MonoBehaviour {
 
   // state ---
 
-    private Vector3 walkVector=Vector3.zero;
+    [System.NonSerialized]
+    public Vector3 walkVector=Vector3.zero;
 
     [System.NonSerialized]
     public List<Vector3> destinations=new List<Vector3>();
@@ -250,7 +251,7 @@ public class Character : MonoBehaviour {
 
     if(c.gameObject.tag=="NotWalkableArea") {
     }
-
+    
   }
   
 //------------
@@ -309,7 +310,6 @@ public class Character : MonoBehaviour {
     
     } else {
     s=RandomTextures.getRandomCharacterSprite();
-    Debug.Log("wat: "+s);
     }
     
   //---

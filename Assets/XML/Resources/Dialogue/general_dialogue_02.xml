@@ -24,7 +24,7 @@
     
       <line>Because the sun is shining.</line>
 
-      <reply goto-item="sunshine1">Do you like sunshine?</reply>
+      <reply goto-item="sunshine">Do you like sunshine?</reply>
       
       <reply goto-item="favourite_season">What is your favorite season?</reply>
       

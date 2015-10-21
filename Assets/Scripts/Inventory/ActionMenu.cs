@@ -34,10 +34,15 @@ public class ActionMenu : MonoBehaviour {
     
     public void UseMenu()
     {
-        Debug.Log("Use it!");
+        
+        Item item=currentSlot.CurrentItem;
+        
+        if(item.canBeUsed) {
         MissionManager.checkIfMission(currentSlot.CurrentItem, MissionManager.ActionType.use);
         currentSlot.DropItem(false);     
-        actMenu.gameObject.SetActive(false);           
+        actMenu.gameObject.SetActive(false);  
+        }
+                 
     }    
     
     public void GiveMenu()
@@ -64,6 +69,8 @@ public class ActionMenu : MonoBehaviour {
         if(currentSlot==null) {
     
           currentSlot = parent;
+          Item currentItem=currentSlot.CurrentItem;
+          
           transform.SetParent(parent.transform);
           actMenu.gameObject.SetActive(true);
           actMenu.transform.SetAsLastSibling();
@@ -75,8 +82,12 @@ public class ActionMenu : MonoBehaviour {
   
           if(!WorldState.playerIsTalking) {
           
-            dropButton.gameObject.SetActive(true);
+            //dropButton.gameObject.SetActive(true);
             useButton.gameObject.SetActive(true);
+            
+            if(!currentItem.canBeUsed) {
+            useButton.gameObject.SetActive(true);
+            }
                       
           } else {
             

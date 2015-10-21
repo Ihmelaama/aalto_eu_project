@@ -10,7 +10,7 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: aalto_eu
-  productName: aalto_eu_aimless_game
+  productName: Prague Game
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1

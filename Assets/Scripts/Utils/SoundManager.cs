@@ -11,9 +11,38 @@ public class SoundManager : MonoBehaviour {
   
 //------------
 
+/*
+UI/Button Kaikki muut
+UI/Button1 dialogi
+UI/Button2 Reppu auki
+UI/Button3 Reppu kiinni
+UI/Button4 Missio auki
+UI/Button5 Missio kiinni
+*/
+
   public void playUISound(int type) {
   
     switch(type) {
+    
+      case 1:
+      Fabric.EventManager.Instance.PostEvent("UI/Button1");      
+      break;
+      
+      case 2:
+      Fabric.EventManager.Instance.PostEvent("UI/Button2");      
+      break;     
+      
+      case 3:
+      Fabric.EventManager.Instance.PostEvent("UI/Button3");      
+      break;     
+      
+      case 4:
+      Fabric.EventManager.Instance.PostEvent("UI/Button4");      
+      break;                
+
+      case 5:
+      Fabric.EventManager.Instance.PostEvent("UI/Button5");      
+      break;
     
       default:
       Fabric.EventManager.Instance.PostEvent("UI/Button");

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Item : MonoBehaviour{
@@ -47,31 +48,58 @@ public class Item : MonoBehaviour{
   public void PickUp()
   {
       Inventory.instance.AddItem(this);
+      
+      bool b=checkIfCraftable();
+      
       Destroy(this.gameObject);
   }
 
 //------------
 
   public void Use(Slot slot){
+
+      if(canBeGiven || canBeUsed) {
       ActionMenu.instance.ShowMenu(slot);
-      /*switch (itemType) {
-	    case ItemType.Food:Debug.Log("food");break;
-	    case ItemType.Quest:Debug.Log("quest");break;
-	    case ItemType.Test:Debug.Log("test");break;
-      case ItemType.Drop: ActionMenu.instance.ShowMenu(slot); break;
-	    default:break;
-      */
+      
+      } else if(craftableWith.Length>0) {
+      Craft();
+      }
+
 	}                
   
 //------------
-    
-  public bool craftWith(int ID) {
+
+  public bool checkIfCraftable() {
   
+    List<Item> items=Inventory.instance.getItems();
+    int count=0;
+
+    foreach(Item item in items) {
+    
+      if(Helpful.ArrayContainsInt(craftableWith, item.itemID)) {
+      count++;
+      }
+    
+    }
+    
+    if(count>=craftableWith.Length) {
+    Debug.Log("craft result: "+craftResult);
+    }
+  
+  return false;
+  }
+    
+  public bool Craft() {
+  
+    /*
     if(Helpful.ArrayContainsInt(craftableWith, ID)) {
     
       return true;
     
     }
+    */
+    
+    Debug.Log("so how the fuck do we craft this item?");
   
   return false;
   }

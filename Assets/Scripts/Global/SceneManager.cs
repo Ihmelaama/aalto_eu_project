@@ -26,9 +26,15 @@ public class SceneManager : MonoBehaviour {
   
   IEnumerator gotoGameWin_() {
   
-    yield return new WaitForSeconds(3f);
+    yield return new WaitForSeconds(4f);
     Application.LoadLevel("GameWin");
   
+  }
+  
+//------------
+
+  public void gotoIntro() {
+  Application.LoadLevel("Intro");  
   }
 
 }

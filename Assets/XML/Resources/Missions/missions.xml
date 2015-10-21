@@ -11,8 +11,8 @@
       <name>Sweet friendship, fat friendship</name>
       <description>Find Fat Guy and give him a cake. Find milk, eggs, flavor and sugar to bake a cake for mr. Guy.</description>
       <action>1</action>
-      <itemID>1234</itemID>
-      <amount>1</amount>
+      <itemID>1</itemID>
+      <amount>4</amount>
       </mission>
 
       <!--

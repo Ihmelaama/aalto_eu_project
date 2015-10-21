@@ -58,10 +58,11 @@ public class MissionManager : MonoBehaviour {
 
     public static void changeMissionStatus(string MissionName)
     {
+
         Mission currentMission = null;
         foreach (Mission mis in missions)
         {
-            if (mis.name.Equals(MissionName)){
+            if (mis.name!=null && mis.name.Equals(MissionName)){
                 currentMission = mis;
             }
         }
@@ -93,7 +94,7 @@ public class MissionManager : MonoBehaviour {
         
     }
 
-    public static bool checkIfMission(Item item, ActionType action) {
+    public static int checkIfMission(Item item, ActionType action) {
     
         foreach(Mission mis in missions)
         {
@@ -106,7 +107,12 @@ public class MissionManager : MonoBehaviour {
                     {
                     
                       changeMissionStatus(mis.name);
-                      return true;
+                      
+                      if(mis.missionDone) {
+                      return 2;
+                      } else {
+                      return 1;
+                      }
                     
                     }
 
@@ -114,7 +120,7 @@ public class MissionManager : MonoBehaviour {
             }
         }
 
-    return false;    
+    return 0;    
     }
     
 

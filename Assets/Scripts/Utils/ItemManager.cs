@@ -8,6 +8,8 @@ public class ItemManager : MonoBehaviour {
 // VARIABLES
 
   // holders ---
+  
+    public static ItemManager instance;
 
     private Inventory inventory;
     private SlidingDashboard inventorySlider;
@@ -24,6 +26,8 @@ public class ItemManager : MonoBehaviour {
 // START
 
 	void Start() {
+  
+    instance=this;
 
     inventory=GameObject.Find("Inv/Inventory").GetComponent<Inventory>();
     inventorySlider=GameObject.Find("Inv").GetComponent<SlidingDashboard>();
@@ -78,18 +82,6 @@ public class ItemManager : MonoBehaviour {
       
       MissionManager.checkIfMission(item, MissionManager.ActionType.find);
 
-  // check if crafts ---
-  
-      bool b=true;
-      List<Item> items=Inventory.instance.inventory;
-      for(int i=0; i<items.Count; i++) {
-      
-        if(items[i]!=item) {
-        b=item.craftWith(items[i].itemID);
-        }
-      
-      }
-
   }  
   
 //--------- 
@@ -113,5 +105,11 @@ public class ItemManager : MonoBehaviour {
     }
 
   }   
+  
+//--------- 
+
+  public void craftNewItem(int[] craftees, int craftResult) {
+  //Debug.Log(craftResult);  
+  }  
 
 }

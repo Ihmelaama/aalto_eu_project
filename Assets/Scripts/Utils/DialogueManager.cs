@@ -23,8 +23,7 @@ public class DialogueManager : MonoBehaviour {
     private LazyFollow playerCameraFollow;
     
     private Transform NPCHolder;
-    private List<Transform> NPCs;
-    
+
     private List<GameObject> talkButtons=new List<GameObject>();
     private DialogueMenu dialogueMenu;
     private SlidingDashboard dashboard;
@@ -73,7 +72,7 @@ public class DialogueManager : MonoBehaviour {
 //----------------------------------------------------
 // PUBLIC SETTERS
 
-  public void showDialogueMenu(Transform talkTarget, int type) {
+  public void showDialogueMenu(Transform talkTarget) {
   
     if(dialogueMenu!=null && UICanvas!=null && currentTalkTarget==null) {
     

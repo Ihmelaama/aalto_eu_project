@@ -30,11 +30,11 @@ public class DialogueMenu : MonoBehaviour {
 //----------------------------------------------------
 // EVENTS
 
-	void Start() {
+	void Awake() {
 
     NPCBubble=transform.Find("DialogueHistory/NPC").gameObject;
     NPCBubbleText=NPCBubble.transform.Find("Text").GetComponent<Text>();
-    
+
     selector=transform.Find("Selector").gameObject;
     selectorText=selector.transform.Find("Text").GetComponent<Text>();
     
@@ -103,6 +103,8 @@ public class DialogueMenu : MonoBehaviour {
     }
     
     selectorText.text=currentDialogueItem.replies[currentSelectorPos];
+    
+    SoundManager.instance.playUISound(1);    
 
   }  
   
@@ -110,7 +112,7 @@ public class DialogueMenu : MonoBehaviour {
 
   public void sayThing() {
     
-    string str=currentDialogueItem.replies[currentSelectorPos];
+    string str=currentDialogueItem.replies[currentSelectorPos];      
 
     // if conversation has somewhere to go
     if(currentDialogueItem.gotoItems.Count>currentSelectorPos) {
@@ -138,6 +140,8 @@ public class DialogueMenu : MonoBehaviour {
       dialogueManager.hideDialogueMenu();
 
     }
+    
+    SoundManager.instance.playUISound(1);
     
   }
   

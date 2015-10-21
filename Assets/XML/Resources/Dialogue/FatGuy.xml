@@ -1,0 +1,102 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>Hello!</line>
+      <line>Hi!</line>
+
+      <reply goto-item="want_cake">Hi! How are you Fat Guy?</reply>
+      
+      <reply goto-item="want_cake">What's up, Fats?</reply>
+      
+      <reply>Oh, I have to go. See you later!</reply>                 
+    
+    </item>
+    
+/// ---------------------------------------------------------------------
+/// other dialogue items 
+
+    /// nice day
+    <item name="want_cake">
+    
+      <line>Everything's cool. I would love to have some cake, though.</line>
+      <line>I have a craving for cake.</line>
+      <line>Have you seen any cake around?</line>
+
+      <reply goto-item="get_cake_mission">Hmm. Cakes, cakes, cakes. I think I saw some ingredients lying around.</reply>
+      <reply goto-item="get_cake_mission">I think I know where to get some.</reply>
+      <reply goto-item="like_cake">You really do like that cake, don't you?</reply>
+    
+    </item>
+    
+/// ---------------------------------------
+ 
+    /// he likes them cakes
+    <item name="like_cake">
+    
+      <line>Cake's the best. There's nothing in the world like cake.</line>
+      <line>Yup, I do love cake. You have a problem with that?</line>
+      <line>Angel cake, apple cake, babka, Boston cream pie, banana cake, Battenberg cake, birthday cake. I could go on all day. What can I say, I love cake!</line>
+
+      <reply goto-item="get_cake_mission">Ok, ok. I'll go see if I can find you some cake.</reply>
+
+    </item> 
+    
+/// ---------------------------------------
+ 
+    /// get cake mission
+    <item name="get_cake_mission">
+    
+      <line>Yeah? If you get me some cake, I'll be your best buddy for life.</line>
+
+      <reply>One cake coming right up!</reply>
+
+    </item>     
+    
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>Yeah, I guess. You really only want cake.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's pretty cool. Guess what would make it way cooler. A cake on the side.</line>
+      <line>Thanks! I wish it was more cake shaped you know.</line>
+      <line>Thanks, buddy. Maybe I can trade it for a cake.</line>
+      
+      <reply>I'll try to find you some cake. Hang tight, Fats.</reply>
+
+    </item>
+    
+    <item name="accept_mission_progress">
+    
+      <line>Yeah! I can use this to make a cake! Thank you!</line>
+      <line>Almost cake time! You're the best!</line>
+      <line>Aww yiss! Thank you!</line>
+      
+      <reply>Hey, no problem. Let's keep working towards your dream, man. We'll get there, buddy!</reply>
+        
+    </item>          
+    
+    <item name="accept_mission_done">
+    
+      <line>THE CAKE IS NOT A LIE!</line>
+      <line>I love you! Will you marry me? I mean the cake, dude, not you. I will marry this cake. There will be cake at the wedding.</line>
+      <line>It is the bringer of cake who returns with the missing ingredient! Forever may you be praised!</line>
+      
+      <reply>No problem at all. I know how you like that cake. But remember that you can't have your cake and eat it too. Soon you'll be all cakeless and sad. Think about it, dude.</reply>
+        
+    </item>        
+
+</xml>
