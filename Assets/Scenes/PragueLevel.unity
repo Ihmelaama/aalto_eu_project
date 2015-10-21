@@ -952,7 +952,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
@@ -3497,7 +3497,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
@@ -8382,8 +8382,8 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 153, y: -204}
-  m_SizeDelta: {x: 215.800003, y: 21.1000004}
+  m_AnchoredPosition: {x: 153, y: -236}
+  m_SizeDelta: {x: 215.800003, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1549835006
 MonoBehaviour:
@@ -9156,7 +9156,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
@@ -10161,8 +10161,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 153, y: -80.5204468}
-  m_SizeDelta: {x: 215.800003, y: 21.1000004}
+  m_AnchoredPosition: {x: 153, y: -113}
+  m_SizeDelta: {x: 215.800003, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1817949276
 MonoBehaviour:
@@ -11494,8 +11494,8 @@ RectTransform:
   m_RootOrder: 8
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 153, y: -320}
-  m_SizeDelta: {x: 215.800003, y: 21.1000004}
+  m_AnchoredPosition: {x: 153, y: -352}
+  m_SizeDelta: {x: 215.800003, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2126145068
 MonoBehaviour:
@@ -11529,7 +11529,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Mission: Find Food'
+  m_Text: 'Mission: Find Food
+
+    fooo'
 --- !u!222 &2126145069
 CanvasRenderer:
   m_ObjectHideFlags: 0
