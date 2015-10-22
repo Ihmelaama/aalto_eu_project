@@ -17662,7 +17662,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: .809085667
+  _volume: .588843644
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -18057,8 +18057,8 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: Game/Laugh
-  _eventID: 0
+  _eventName: Game/Give
+  _eventID: 1553106468
   _overrideEventTriggerAction: 0
   _overrideParameters:
     _overrideIncomingEventAction: 0
@@ -18470,7 +18470,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: .0266072471
+  _volume: .0462380983
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -18510,7 +18510,7 @@ MonoBehaviour:
     _RTPParameters: []
     _reference: {fileID: 0}
   Guid: 
-  _playMode: 0
+  _playMode: 1
   _looped: 0
   _delayOnFirstPlay: 0
   _delay: 0
