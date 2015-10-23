@@ -1,0 +1,117 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>Hello!</line>
+      <line>Hi!</line>
+          
+      <reply goto-item="go_out">Hi! how are you? Do you want to go out today?</reply>
+
+    </item>
+    
+/// ---------------------------------------------------------------------
+/// other dialogue items 
+
+    /// go out
+    <item name="go_out">
+    
+      <line>Hello! I'm fine. Yes of course!</line>
+
+      <reply goto-item="where_out">Where do you want to go?</reply>
+      <reply goto-item="what_out">What do you want to do out?</reply>
+
+    </item>
+    
+/// ---------------------------------------
+
+    /// where out
+    <item name="where_out">
+    
+      <line>I want to go shopping.</line>    
+      
+      <reply goto-item="buy_what">And what do you want to buy?</reply>
+      <reply goto-item="shop_where">And where will you go shopping?</reply>
+
+    </item>
+    
+    <item name="buy_what">
+    
+      <line>I want to buy some new shoes.</line>    
+      
+      <reply>Ok, let's go!</reply>
+    
+    </item>
+    
+    <item name="shop_where">
+    
+      <line>I want to go to Parížská street or O2 Arena.</line>    
+      
+      <reply>Let's go check them both out!</reply>
+    
+    </item>    
+    
+/// ---------------------------------------
+
+    /// what to od out
+    <item name="what_out">  
+    
+      <line>I want to play football.</line>    
+      
+      <reply goto-item="real_madrid_or_fbc">Do you like Real Madrid or FBC?</reply>
+      <reply goto-item="have_football">Do you have a football?</reply>
+    
+    </item>  
+    
+    <item name="real_madrid_or_fbc">
+    
+      <line>Yes, I like Real Madrid.</line>    
+      
+      <reply>Long live Spain!</reply>
+    
+    </item>
+    
+    <item name="have_football">
+    
+      <line>I think I saw one lying around somewhere.</line>    
+      
+      <reply>Let's go find it!</reply>
+    
+    </item>      
+    
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>     
+
+</xml>

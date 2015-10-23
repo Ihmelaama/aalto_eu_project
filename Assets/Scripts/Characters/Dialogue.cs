@@ -12,7 +12,8 @@ public class Dialogue {
   
     string[] randomDialogueFiles={
     "Dialogue/general_dialogue_01",
-    "Dialogue/general_dialogue_02"
+    "Dialogue/general_dialogue_02",
+    "Dialogue/general_dialogue_03"
     };
 
   // settings ---

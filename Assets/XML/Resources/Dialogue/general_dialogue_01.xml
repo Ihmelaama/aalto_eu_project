@@ -11,9 +11,7 @@
       <reply goto-item="nice_day">Hi! Nice day, isn’t it?</reply>
       
       <reply goto-item="go_out">Do you want to go out with me?</reply>
-      
-      <reply>Oh, I have to go. See you later!</reply>                 
-    
+
     </item>
     
 /// ---------------------------------------------------------------------
@@ -24,12 +22,10 @@
     
       <line>Because the sun is shining.</line>
 
-      <reply goto-item="sunshine1">Do you like sunshine?</reply>
+      <reply goto-item="sunshine">Do you like sunshine?</reply>
       
       <reply goto-item="favourite_season">What is your favorite season?</reply>
       
-      <reply>It was nice meeting you. Sorry, I have to go. I'm in a hurry!</reply>
-    
     </item>
     
 /// ---------------------------------------

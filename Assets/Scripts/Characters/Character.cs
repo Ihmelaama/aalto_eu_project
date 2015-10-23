@@ -239,6 +239,7 @@ public class Character : MonoBehaviour {
   }
   
   public void sayNo() {
+  Debug.Log("say no!");
   SoundManager.PlayCharacterNo(characterIdString);
   }
   

@@ -8,87 +8,43 @@
       <line>Hello!</line>
       <line>Hi!</line>
 
-      <reply goto-item="nice_day">Hi! Nice day, isn’t it?</reply>
+      <reply goto-item="einstein">Why did the chicken cross the road?</reply>
       
-      <reply goto-item="go_out">Do you want to go out with me?</reply>
-      
-      <reply>Oh, I have to go. See you later!</reply>                 
-    
     </item>
     
 /// ---------------------------------------------------------------------
 /// other dialogue items 
 
-    /// nice day
-    <item name="nice_day">
+    /// einstein
+    <item name="einstein">
     
-      <line>Because the sun is shining.</line>
+      <line>A. Einstein said: "The chicken didn't cross the road. The road passed beneath the chicken."</line>
 
-      <reply goto-item="sunshine">Do you like sunshine?</reply>
-      
-      <reply goto-item="favourite_season">What is your favorite season?</reply>
-      
-      <reply>It was nice meeting you. Sorry, I have to go. I'm in a hurry!</reply>
-    
-    </item>
-    
-/// ---------------------------------------
-
-    /// sunshine
-    <item name="sunshine">
-    
-      <line>I love sunshine. And you?</line>    
-      
-      <reply>Me too.</reply>
+      <reply goto-item="einstein_who">Do you know who A. Einstein was?</reply>
 
     </item>
     
 /// ---------------------------------------
- 
-    /// favourite season
-    <item name="favourite_season">
-    
-      <line>My favorite season is summer.</line>    
-      
-      <reply>Summer is pretty awesome!</reply>
-      
-    </item>   
-    
-/// ---------------------------------------
-  
-    /// go out    
-    <item name="go_out">
-    
-      <line>Yeah, sure!</line>    
-      
-      <reply goto-item="park">Where do you want to go?</reply>
-      
-      <reply goto-item="when">When do you want to go?</reply>
- 
-    </item>  
-    
-/// ---------------------------------------
-  
-    /// go out    
-    <item name="park">
-    
-      <line>I want to go to park.</line>    
-      
-      <reply>Me too! Let's go!</reply>
 
-    </item>     
+    /// einstein_who
+    <item name="einstein_who">
     
+      <line>He was the one with the white hair and funny jokes, right?</line>
+      
+      <reply goto-item="intelligent_person">You look like an intelligent person.</reply>
+
+    </item>
     
 /// ---------------------------------------
-  
-    /// when    
-    <item name="when">
-    
-      <line>How about tomorrow?</line>    
-      
-      <reply>Sounds good! See you tomorrow!</reply>
 
-    </item>      
+    /// einstein_who
+    <item name="intelligent_person">
+    
+      <line>You look like one yourself.</line>
+      
+      <reply>Thank you!</reply>
+ 
+    </item>    
     
 /// ---------------------------------------------------------------------
 /// dialogue items when given stuff from inventory  
@@ -121,6 +77,6 @@
       
       <reply>Hey, no problem at all! Glad you like it!</reply>
         
-    </item>        
+    </item>     
 
 </xml>

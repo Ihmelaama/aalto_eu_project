@@ -99,8 +99,9 @@ public class ItemManager : MonoBehaviour {
   public void toggleInventory(bool b, int mode) {
   
     if(b && inventory.getItemCount()>0) {
-    
+                                               
       if(mode!=0) inventory.setMode(mode);    
+      inventoryActionMenu.ShowActions();
       inventorySlider.toggleDashboard(true);          
     
     } else {
@@ -112,10 +113,4 @@ public class ItemManager : MonoBehaviour {
 
   }   
   
-//--------- 
-
-  public void craftNewItem(int[] craftees, int craftResult) {
-  //Debug.Log(craftResult);  
-  }  
-
 }

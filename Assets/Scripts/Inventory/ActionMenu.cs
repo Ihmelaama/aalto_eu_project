@@ -34,13 +34,16 @@ public class ActionMenu : MonoBehaviour {
     
     public void UseMenu()
     {
-        
+    
         Item item=currentSlot.CurrentItem;
-        
+  
         if(item.canBeUsed) {
         MissionManager.checkIfMission(currentSlot.CurrentItem, MissionManager.ActionType.use);
         currentSlot.DropItem(false);     
-        actMenu.gameObject.SetActive(false);  
+        actMenu.gameObject.SetActive(false);
+  
+        } else {
+        Player.instance.sayNo();
         }
                  
     }    
@@ -79,25 +82,37 @@ public class ActionMenu : MonoBehaviour {
           dropButton.gameObject.SetActive(false);
           useButton.gameObject.SetActive(false);
           giveButton.gameObject.SetActive(false);
-  
-          if(!WorldState.playerIsTalking) {
           
-            //dropButton.gameObject.SetActive(true);
-            useButton.gameObject.SetActive(true);
-            
-            if(!currentItem.canBeUsed) {
-            useButton.gameObject.SetActive(true);
-            }
-                      
-          } else {
-            
-            giveButton.gameObject.SetActive(true);
-          
-          }
+          ShowActions();
 
         } else {
         CloseMenu();
         }
+
+    }
+    
+    public void ShowActions() {
+    
+      if(currentSlot!=null) {
+    
+        Item currentItem=currentSlot.CurrentItem;    
+      
+        if(!WorldState.playerIsTalking) {
+        
+          //dropButton.gameObject.SetActive(true);
+          useButton.gameObject.SetActive(true);
+          
+          if(!currentItem.canBeUsed) {
+          useButton.gameObject.SetActive(true);
+          }
+                    
+        } else {
+          
+          giveButton.gameObject.SetActive(true);
+        
+        }
+      
+      }
 
     }
 	
