@@ -16,7 +16,8 @@ public class GestureManager {
   // settings ---
 
     private int historySize=10;
-    private float minDragDistance=0.1f;
+    //private float minDragDistance=0.1f;
+    private float minDragDistance=0.75f;
 
   // holders ---
   

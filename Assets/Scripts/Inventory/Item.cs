@@ -20,9 +20,6 @@ public class Item : MonoBehaviour{
     public bool canBeGiven=true;
     public bool canBeUsed=true;
     
-    public int[] craftableWith;
-    public int craftResult;
-  
   	public enum ItemType{Food,Quest,Test, Drop}
 
   //---
@@ -47,11 +44,15 @@ public class Item : MonoBehaviour{
 
   public void PickUp()
   {
+        
+      if(Inventory.instance.getItemCount()<5) {
       Inventory.instance.AddItem(this);
-      
-      bool b=checkIfCraftable();
-      
       Destroy(this.gameObject);
+      
+      } else {
+      Player.instance.sayNo();
+      }
+      
   }
 
 //------------
@@ -60,49 +61,9 @@ public class Item : MonoBehaviour{
 
       if(canBeGiven || canBeUsed) {
       ActionMenu.instance.ShowMenu(slot);
-      
-      } else if(craftableWith.Length>0) {
-      Craft();
       }
 
 	}                
-  
-//------------
-
-  public bool checkIfCraftable() {
-  
-    List<Item> items=Inventory.instance.getItems();
-    int count=0;
-
-    foreach(Item item in items) {
-    
-      if(Helpful.ArrayContainsInt(craftableWith, item.itemID)) {
-      count++;
-      }
-    
-    }
-    
-    if(count>=craftableWith.Length) {
-    Debug.Log("craft result: "+craftResult);
-    }
-  
-  return false;
-  }
-    
-  public bool Craft() {
-  
-    /*
-    if(Helpful.ArrayContainsInt(craftableWith, ID)) {
-    
-      return true;
-    
-    }
-    */
-    
-    Debug.Log("so how the fuck do we craft this item?");
-  
-  return false;
-  }
   
 //--------------------------------------------------------
 // PRIVATE SETTERS 

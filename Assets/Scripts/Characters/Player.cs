@@ -6,11 +6,14 @@ public class Player : Character {
 //---------------------------------------------------
 // VARIABLES
 
+  public static Player instance;
+
 //---------------------------------------------------
 // START
 
   protected override void Awake() {
   base.Awake();
+  instance=this;
   }
 
   protected override void Start() {
@@ -19,6 +22,10 @@ public class Player : Character {
     base.Start();
 
   }
+  
+  protected override void randomizeAnimationPosition() {
+  // do nothing
+  }  
   
 //---------------------------------------------------
 // EVENTS

@@ -141,6 +141,16 @@ public class SoundManager : MonoBehaviour {
   }
   
 //------------  
+
+  public void PlayMusic_() {
+  Fabric.EventManager.Instance.PostEvent("Music/Demo");
+  }
+
+  public static void PlayMusic() {
+  Fabric.EventManager.Instance.PostEvent("Music/Demo");
+  }  
+  
+//------------  
   
   public void PostEventWithDelay(string eventName, float delay) {
   StartCoroutine(PostEventWithDelay_(eventName, delay));

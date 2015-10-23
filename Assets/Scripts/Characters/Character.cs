@@ -105,6 +105,8 @@ public class Character : MonoBehaviour {
     setCharacterSprite();
     getCharacterId();
     
+    randomizeAnimationPosition();
+    
   }
   
 //------------
@@ -115,18 +117,22 @@ public class Character : MonoBehaviour {
     graphicsAnimator=graphics.GetComponent<Animator>();
     if(graphics!=null) graphicsSpriteRenderer=graphics.GetComponent<SpriteRenderer>();
     
-    StartCoroutine(uglyAnimationPositionHack(0.1f, graphicsAnimator.speed));
+  }
+  
+//---------------------------------------------------
+// PUBLIC SETTERS
 
+  protected virtual void randomizeAnimationPosition() {
+  StartCoroutine(uglyAnimationPositionHack(0.1f, graphicsAnimator.speed));
   }
   
   IEnumerator uglyAnimationPositionHack(float delay, float originalSpeed) {
   graphicsAnimator.speed=UnityEngine.Random.Range(0f, 2000f);  
   yield return new WaitForSeconds(delay);
   graphicsAnimator.speed=originalSpeed; 
-  }
-  
-//---------------------------------------------------
-// PUBLIC SETTERS
+  }  
+
+//------------
 
   public void moveTowards(Vector3 d) {
   
@@ -191,7 +197,16 @@ public class Character : MonoBehaviour {
     }
   
   }
+
+//------------
+
+  public void clearDestination() {
   
+    walkVector=Vector3.zero;
+    destinations.Clear();
+  
+  }
+    
 //------------
 
   public void changeLifeValue(int valueNum, float change) {

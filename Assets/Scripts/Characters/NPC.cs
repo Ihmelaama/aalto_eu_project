@@ -240,6 +240,7 @@ public class NPC : Character {
   private void testUserTouch() {
   
     if(dialogueManager!=null && GestureManager.wasTouched && !GestureManager.wasDragged && GestureManager.testTouch3D(transform)!=Vector3.zero) {
+    //if(dialogueManager!=null && GestureManager.wasTouched && GestureManager.testTouch3D(transform)!=Vector3.zero) {
     dialogueManager.showDialogueMenu(transform);
     }
 

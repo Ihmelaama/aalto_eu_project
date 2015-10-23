@@ -25,6 +25,13 @@ public class WorldUpdater : MonoBehaviour {
 
 	}
   
+//------------
+  
+  void Start() {
+  WorldState.allowUserInput=true;
+  SoundManager.PlayMusic();
+  }
+  
 //---------------------------------------------------
 // EVENTS
 	
