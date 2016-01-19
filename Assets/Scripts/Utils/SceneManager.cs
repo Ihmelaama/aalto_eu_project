@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-
 public class SceneManager : MonoBehaviour {
 
 //-------------------------------------------------------
@@ -8,12 +7,17 @@ public class SceneManager : MonoBehaviour {
 
   public static SceneManager instance;
   
+  private GameObject quitPrompt;
+  
 //-------------------------------------------------------
 // EVENTS
   
   void Awake() {
   
     instance=this;
+    
+    quitPrompt=GameObject.Find("UI/Canvas/QuitPrompt");
+    if(quitPrompt!=null) quitPrompt.SetActive(false);
   
   }
   
@@ -31,6 +35,12 @@ public class SceneManager : MonoBehaviour {
   
   }
   
+//------------
+
+  public void promptQuit(bool b) {
+  if(quitPrompt!=null) quitPrompt.SetActive(b);
+  }
+
 //------------
 
   public void gotoIntro() {

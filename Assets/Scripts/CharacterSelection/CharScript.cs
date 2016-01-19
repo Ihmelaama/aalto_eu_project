@@ -15,7 +15,7 @@ public class CharScript : MonoBehaviour {
 
     if(!tapped) {
 		GameState.playerCharacterSprite=this.character;
-		Application.LoadLevel(1);
+    CharSelectScript.instance.loadLevel();
     tapped=true;
     }
 

@@ -7,6 +7,10 @@ public class WorldUpdater : MonoBehaviour {
 //---------------------------------------------------
 // VARIABLES
 
+  // settings ---
+  
+    public bool hasScriptedIntro=false;
+
   // utils ---
 
     private GestureManager gestureManager;
@@ -28,8 +32,12 @@ public class WorldUpdater : MonoBehaviour {
 //------------
   
   void Start() {
-  WorldState.allowUserInput=true;
-  SoundManager.PlayMusic();
+  
+    if(!hasScriptedIntro) {
+    WorldState.allowUserInput=true;
+    SoundManager.PlayMusic();
+    }
+  
   }
   
 //---------------------------------------------------

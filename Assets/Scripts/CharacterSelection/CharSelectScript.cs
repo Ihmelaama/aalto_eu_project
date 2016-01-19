@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
 
 public class CharSelectScript : MonoBehaviour {
+
+  public static int selectedLevelNum=0;
+  
+  public static CharSelectScript instance;
 
 	//publics
 	public GameObject[] buttons;
@@ -18,12 +22,21 @@ public class CharSelectScript : MonoBehaviour {
 
 	//private
 	private GameObject button;
+  
+  private GameObject loadingMessage;
 
 
 
 	// Use this for initialization
 	void Start () {
+  
 		createButtons();
+    
+    instance=this;
+    
+    loadingMessage=GameObject.Find("MainCanvas/LoadingMessage");
+    loadingMessage.SetActive(false);
+    
 	}
 	
 	// Update is called once per frame
@@ -50,5 +63,35 @@ public class CharSelectScript : MonoBehaviour {
 		}
 
 	}
-	
+  
+//---------------------------------------------------------------
+// PUBLIC SETTERS
+
+  public void selectLevel(int num) {
+  
+    CharSelectScript.selectedLevelNum=num;
+    GameState.currentWorld=num;
+  
+    switch(num) {
+    
+      case 1:
+      GameState.currentWorldName="Prague";
+      break;
+
+      case 2:
+      GameState.currentWorldName="Athens";
+      break;
+    
+    }
+
+  }
+  
+//------------
+  
+  public void loadLevel() {
+  loadingMessage.SetActive(true);  
+	Application.LoadLevel(CharSelectScript.selectedLevelNum);  
+  }
+  
+
 }

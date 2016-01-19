@@ -62,11 +62,19 @@ public class SlidingDashboard : MonoBehaviour {
 // PUBLIC SETTERS  
 
   public void toggleDashboard() {
-  toggleDashboard(!visible, true);
+  
+    if(WorldState.allowUserInput) {
+    toggleDashboard(!visible, true);
+    }
+  
   }
   
   public void toggleDashboard(bool b) {
-  toggleDashboard(b, true);
+  
+    if(WorldState.allowUserInput) {
+    toggleDashboard(b, true);
+    }
+  
   }  
 
   public void toggleDashboard(bool b, bool animate) {

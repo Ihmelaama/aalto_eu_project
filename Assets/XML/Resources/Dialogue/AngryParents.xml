@@ -1,0 +1,16 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>Run for it!</line>
+      <line>No! Go away!</line>
+      <line>Leave us alone!</line>
+      
+      <reply>No, please wait! Let's talk!</reply>                 
+    
+    </item>
+
+</xml>

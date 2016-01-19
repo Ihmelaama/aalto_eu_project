@@ -47,8 +47,8 @@ public class Player : Character {
       ItemManager.foundItem(item);
 
       // debug ---
-      //changeLifeValue(0, 0.3f);
-      //changeLifeValue(1, -0.3f);
+      changeLifeValue(0, 0.3f);
+      changeLifeValue(1, -0.3f);
 
     }
 

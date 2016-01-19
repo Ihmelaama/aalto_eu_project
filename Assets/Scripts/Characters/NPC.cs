@@ -11,9 +11,6 @@ public class NPC : Character {
     public float followPlayer=0f;
     public float avoidPlayer=0f;
 
-    public float followOtherNPC=0f;
-    public float avoidOtherNPC=0f;
-
     public float reactionRadius=10f;
     
     public string dialogueFile=null;
@@ -48,11 +45,11 @@ public class NPC : Character {
 
     player=GameObject.Find("Player");
     playerScript=player.GetComponent<Player>();
-
-    if(dialogueFile!=null) {
+    
+    if(dialogueFile!=null && dialogueFile.Length!=0) {
     dialogue=new Dialogue(dialogueFile);
     }
-    
+
     dialogueManager=GameObject.Find("Scripts").GetComponent<DialogueManager>();
 
   // set stuff ---
@@ -64,6 +61,18 @@ public class NPC : Character {
     reactionRadius=maxReactionRadius;
     }
 
+  }
+  
+//------------
+  
+  protected override void Start() {
+  
+    base.Start();
+    
+    if(dialogueFile==null || dialogueFile.Length==0) {
+    getCharacterDialogue();
+    }    
+  
   }
 
 //---------------------------------------------------
@@ -77,10 +86,6 @@ public class NPC : Character {
 
     reactToPlayer();
 
-  // react to other characters ---
-  
-    reactToOtherCharacters();
-    
   // test user touch ---
   
     testUserTouch();
@@ -176,6 +181,15 @@ public class NPC : Character {
 //---------------------------------------------------
 // PRIVATE SETTERS
 
+  private void getCharacterDialogue() {
+
+    dialogueFile="Dialogue/"+GameState.currentWorldName+"/"+characterIdString+"_dialogue";
+    dialogue=new Dialogue(dialogueFile);
+
+  }
+  
+//------------
+
   private void reactToPlayer() {
   
     if(player!=null) {
@@ -230,11 +244,6 @@ public class NPC : Character {
 
   }
 
-//------------
-
-  private void reactToOtherCharacters() {
-  }
-  
 //------------
 
   private void testUserTouch() {

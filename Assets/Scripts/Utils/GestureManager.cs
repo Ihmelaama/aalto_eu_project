@@ -92,12 +92,12 @@ public class GestureManager {
     lastTouch=currentTouch;
     firstTouch=Vector2.zero;      
     currentTouch=Vector2.zero;
-    touchHistory.Clear();
+    if(touchHistory!=null) touchHistory.Clear();
     wasTouched=false;
   
     dragVector=Vector2.zero;    
     dragVelocity=Vector2.zero;      
-    dragHistory.Clear();
+    if(dragHistory!=null) dragHistory.Clear();
     wasDragged=false;
 
   }

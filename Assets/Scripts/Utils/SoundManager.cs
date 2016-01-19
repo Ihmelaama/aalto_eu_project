@@ -143,11 +143,19 @@ public class SoundManager : MonoBehaviour {
 //------------  
 
   public void PlayMusic_() {
-  Fabric.EventManager.Instance.PostEvent("Music/Demo");
+  
+    if(GameState.currentWorld==1) {
+    Fabric.EventManager.Instance.PostEvent("Music/Demo");
+    }
+  
   }
 
   public static void PlayMusic() {
-  Fabric.EventManager.Instance.PostEvent("Music/Demo");
+
+    if(GameState.currentWorld==1) {
+    Fabric.EventManager.Instance.PostEvent("Music/Demo");
+    }
+  
   }  
   
 //------------  

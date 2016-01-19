@@ -111,7 +111,7 @@ public class RandomTextures : MonoBehaviour {
   
     List<Sprite> textures=new List<Sprite>();
     string path=null;
-  
+    
   //---  
   
     switch(type) {
@@ -139,7 +139,7 @@ public class RandomTextures : MonoBehaviour {
       break;
     
     }
-    
+
   //---  
       
     if(path!=null) {  

@@ -22,10 +22,14 @@ public class Character : MonoBehaviour {
     
   // private settings ---
   
-    private string characterIdString=null;
+    [HideInInspector]
+    public string characterIdString=null;
   
-    private float minDistanceFromDestination=0.75f;
-    private float stopDistanceFromDestination=0.25f;
+    [HideInInspector]
+    public float minDistanceFromDestination=0.75f;
+    
+    [HideInInspector]
+    public float stopDistanceFromDestination=0.25f;
 
     [System.NonSerialized]
     public float laziness=0.02f;   
@@ -306,6 +310,20 @@ public class Character : MonoBehaviour {
   }
   
 //---------------------------------------------------
+// PUBLIC GETTERS
+
+  public void getCharacterId() {
+  
+    if(graphicsSpriteRenderer.sprite!=null) {
+    
+      String s=graphicsSpriteRenderer.sprite.name;
+      characterIdString=s;
+    
+    }
+  
+  }
+  
+//---------------------------------------------------
 // PRIVATE SETTERS
 
   private void setCharacterSprite() {
@@ -334,19 +352,6 @@ public class Character : MonoBehaviour {
     graphicsSpriteRenderer.sprite=s;
     }
 
-  }
-  
-//------------
-
-  private void getCharacterId() {
-  
-    if(graphicsSpriteRenderer.sprite!=null) {
-    
-      String s=graphicsSpriteRenderer.sprite.name;
-      characterIdString=s;
-    
-    }
-  
   }
   
 //------------
@@ -406,7 +411,7 @@ public class Character : MonoBehaviour {
 //------------
 
   private void handleAnimations() {
-
+  
     if(walkVector.magnitude>0f) {
     graphicsAnimator.SetFloat("speed", walkVector.magnitude);
 

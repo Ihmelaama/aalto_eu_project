@@ -39,6 +39,14 @@ public class Dialogue {
     // load xml ---
 
       TextAsset textAsset=(TextAsset) Resources.Load(dialogueFile);
+      
+      if(textAsset==null) {
+      //Debug.Log("no character dialogue for "+dialogueFile+", will get random one");
+      dialogueFile=Helpful.getRandomString(randomDialogueFiles, null);
+      //Debug.Log("the randomized dialogue file is: "+dialogueFile);
+      textAsset=(TextAsset) Resources.Load(dialogueFile);
+      } 
+      
       XmlDocument xml=new XmlDocument();
       xml.LoadXml(textAsset.text);    
 
