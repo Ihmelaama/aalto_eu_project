@@ -1,0 +1,118 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="what_do_you_think">Hello, what do you think about me?</reply>
+
+    </item>
+    
+/// ---------------------------------------  
+
+  <item name="what_do_you_think">
+  
+    <line>I think you are perfect!</line>
+  
+    <reply goto-item="really_perfect">Oh, really?</reply>
+    <reply goto-item="nobodys_perfect">Thanks, but I think nobody is perfect. Why do you think that I am perfect?</reply>
+    <reply goto-item="has_boyfriend">Hey, hey! Stop flirt with me. You don’t  know I have boyfriend?</reply>      
+
+  </item>    
+  
+/// ---------------------------------------    
+  
+  <item name="really_perfect">
+    
+    <line>Of course! You are pretty, smart, sexy, friendly and cute!</line>
+    
+    <reply goto-item="what_is_best">Thank you! And what do you think is the best of me?</reply>
+    <reply goto-item="worlds_most_perfect">I know! And do you think that in the world exist anybody else who is perfect like me?</reply>    
+  
+  </item>
+  
+/// ---------------------------------------      
+  
+  <item name="nobodys_perfect">
+  
+    <line>Because you are girl who love sport as me.</line>       
+    <reply>Ok.</reply>                                                                                                                                  
+  
+  </item>
+  
+  <item name="what_is_best">
+  
+    <line>Everything! You are the most perfect person who I ever seen.</line>
+    <reply>Perfect!</reply>
+  
+  </item>
+
+  <item name="worlds_most_perfect">
+  
+    <line>Definitely no!</line>
+    <reply>Perfect answer!</reply>
+      
+  </item>
+  
+/// ---------------------------------------  
+
+  <item name="has_boyfriend">
+  
+    <line>Emm. No I don’t know it.</line>
+    <reply goto-item="sorry">How is this possible? Me and my boyfriend are the most popular couple on this school!</reply>
+    <reply goto-item="has_girlfriend">Ok btw you have girl friend?</reply>
+    
+  </item>  
+  
+  <item name="sorry">
+  
+    <line>Ok, ok sorry o__o</line>
+    <reply>Yeah.</reply>
+    
+  </item>
+  
+  <item name="has_girlfriend">
+  
+    <line>No I haven't</line>
+    <reply>Ok.</reply>
+  
+  </item>
+  
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>    
+  
+</xml>

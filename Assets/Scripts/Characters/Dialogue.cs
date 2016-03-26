@@ -69,6 +69,10 @@ public class Dialogue {
         dialogueItem.lines=new List<string>();
         dialogueItem.replies=new List<string>();
         dialogueItem.gotoItems=new List<string>();
+
+        if(attributes["eventName"]!=null) {
+        dialogueItem.eventName=attributes["eventName"].InnerText;
+        }
         
       // add dialogue item to default list or other list ---
 
@@ -83,6 +87,12 @@ public class Dialogue {
         
         }      
         
+      // get dialogue items event ----
+      
+        if(attributes["eventName"]!=null) {
+        //dialogueItem.eventName=attributes["eventName"].InnerText;
+        }
+
       // parse item's content ---
       
         XmlNodeList nodes=item.ChildNodes;
@@ -125,6 +135,11 @@ public class Dialogue {
 //------------  
   
   public DialogueItem getDialogueByName(string name) {
+ 
+    if(GameState.currentWorld==2 && otherDialogueItems[name].eventName=="win") {
+    SceneManager.instance.gotoGameWin();
+    }
+  
   return otherDialogueItems[name];
   }  
   
@@ -137,6 +152,7 @@ public class Dialogue {
   public struct DialogueItem {
   
     public string name;
+    public string eventName;
     public List<string> lines;
     public List<string> replies;
     public List<string> gotoItems;

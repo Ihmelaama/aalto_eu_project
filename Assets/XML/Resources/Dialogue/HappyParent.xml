@@ -1,0 +1,27 @@
+<xml>
+
+/// ---------------------------------------------------------------------
+/// default dialogue item
+
+    <item>
+    
+      <line>Well. Do you have anything to say for yourself?</line>
+      <reply goto-item="love">I'm sorry about my behaviour before. I'll be good from now on.</reply>                                
+      
+    </item>
+    
+    <item name="love">
+    
+      <line>We love you. We always have. Let's be a family again.</line>    
+      <reply goto-item="end">I love you too!</reply>  
+      
+    </item>
+    
+    <item name="end" eventName="win">
+    
+      <line>Let's go home.</line>
+      <reply>Can we make pancakes?</reply>
+      
+    </item>    
+
+</xml>

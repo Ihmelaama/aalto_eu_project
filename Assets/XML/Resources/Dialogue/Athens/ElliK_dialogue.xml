@@ -1,0 +1,99 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="who_are_you">Hello, who are you?</reply>
+
+    </item>
+    
+/// ---------------------------------------  
+
+  <item name="who_are_you">
+  
+    <line>It's me!</line>
+    <reply goto-item="adele">Are you adele?</reply>
+
+  </item>    
+  
+  <item name="adele">
+    
+    <line>Hahahaha no! I’m justagirl from a little village.</line>
+    <reply goto-item="how_are_you_today">Oh, how are you today?</reply>
+
+  </item>
+  
+  <item name="how_are_you_today">
+    
+    <line>I’m great thanks. The lovely weather makes me really happy.</line>
+    <reply goto-item="something_special">Are you gonna do something special?</reply>
+
+  </item>  
+  
+  <item name="something_special">
+    
+    <line>Yeah, I’ll go pick some flowers and have a walk with my dog.</line>
+    <reply goto-item="dogs_name">That’s great. What is your dog's name?</reply>
+
+  </item>    
+  
+  <item name="dogs_name">
+    
+    <line>Coffee! That’s because he’s brown.</line>
+    <reply goto-item="bubbles_the_cat">Awesome! I have a cat: Her name is Bubble.</reply>
+
+  </item>    
+  
+  <item name="bubbles_the_cat">
+  
+    <line>Oh, because she is fluffy?</line>
+    <reply goto-item="have_to_go">Hahaha, yeah and she's very heavy.</reply>
+  
+  </item>
+  
+  <item name="have_to_go">
+  
+    <line>I understand. So, I have to go. See you.</line>
+    <reply>See you.</reply>
+  
+  </item>  
+  
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>    
+
+</xml>

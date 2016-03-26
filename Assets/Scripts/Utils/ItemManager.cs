@@ -60,7 +60,7 @@ public class ItemManager : MonoBehaviour {
       if(npc!=null) {
       b=npc.receiveItem(item);      
       }
-      
+
       if(b) {
       npc.sayYes();
       } else {

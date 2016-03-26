@@ -1,0 +1,92 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="who_are_you">Hello!!! Who are you?</reply>
+
+    </item>
+    
+/// ---------------------------------------  
+
+  <item name="who_are_you">
+  
+    <line>I am “the robot for dance”</line>
+    <reply goto-item="what_do">Oh, wow! And what are you doing?</reply>
+
+  </item>    
+  
+  <item name="what_do">
+    
+    <line>I dance everytime and I help my friends!!</line>
+    <reply goto-item="what_dance">What dance do you do?</reply>
+
+  </item>
+  
+  <item name="what_dance">
+    
+    <line>I do break dance, modern dance and Hip-Hop.</line>
+    <reply goto-item="how_many_hours">Oh, wow! It’s really very nice. How many hours dance?</reply>
+
+  </item>  
+  
+  <item name="how_many_hours">
+    
+    <line>I dance 4 hours a day!!</line>
+    <reply goto-item="why_here">Oh!!! What are you doing here?</reply>
+
+  </item>    
+  
+  <item name="why_here">
+    
+    <line>Oh!!! What are you doing here?</line>
+    <reply goto-item="here_to_help">I’m here to help you.</reply>
+
+  </item>    
+  
+  <item name="here_to_help">
+  
+    <line>I’m here to help you.</line>
+    <reply>Wow!!! Thank you!!!</reply>
+  
+  </item>
+  
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>    
+  
+</xml>

@@ -1,0 +1,92 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="panfishbee">Hello! How are you?</reply>
+
+    </item>
+    
+/// ---------------------------------------  
+
+  <item name="panfishbee">
+  
+    <line>I’m the Panfishbee and I love helping people when thye are in jeopardy.</line>
+  
+    <reply goto-item="superhero">Oh so great! So are you something like a superhero?</reply>
+    <reply goto-item="happy_job">Do you feel happy about your job?</reply>
+
+  </item>    
+
+  <item name="superhero">
+  
+    <line>Not exactly, but I do my best, every single time, in case to save the world.</line>  
+    <reply goto-item="powers">Wow! How do you move with this tail?</reply>
+    <reply goto-item="ask_more">And let me ask you something more.</reply>
+    
+  </item>
+  
+  <item name="happy_job">
+  
+    <line>Firstly, it’s not a job! It’s a way of life, and I really love my “job” so I’m not tired at all and every single day I feel happier.</line>
+    <reply>Keep up the good "work". Just kidding! I love what you do. It was great to meet you!</reply>
+  
+  </item>
+  
+/// ---------------------------------------  
+
+  <item name="powers">
+  
+    <line>My powers start when I’m out on water.</line>
+    <reply>Oh! I want to see it, let's go find some water!</reply>
+  
+  </item>  
+  
+/// ---------------------------------------  
+
+  <item name="ask_more">
+  
+    <line>Yes, of course! You can ask whatever you really want, I am available to answer everything.</line>
+    <reply goto-item="panfishbee">Cool!</reply>
+  
+  </item>    
+  
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>    
+
+</xml>

@@ -9,17 +9,14 @@ public class AthensParent : NPC {
   // settings ---
   
     public GameObject otherParent;
+    public Sprite[] altSprites;
 
     private float minDistanceApart=1f;
     
-  // holders ---
-  
-    private Player player;
-
 //------------------------------------------------------
 // EVENTS
 
-	void Start() {
+	protected override void Start() {
   
     base.Start();
     
@@ -27,9 +24,13 @@ public class AthensParent : NPC {
     
     minDistanceFromDestination=1.75f;
     stopDistanceFromDestination=1.25f;    
-	
-    player=GameObject.Find("Player").GetComponent<Player>();
-  
+    
+    if(altSprites.Length>0) {
+    int rand=Random.Range(0, altSprites.Length);
+    characterSprite=altSprites[rand];
+    setCharacterSprite();
+    }
+
 	}
   
 //------------
@@ -42,8 +43,22 @@ public class AthensParent : NPC {
     moveTowards(otherParent.transform.position);
     }
     
-    //Debug.Log(player.lifeValues[0]);
-
+    if(playerScript.lifeValues[0]>0.9f) {
+    
+      if(dialogueFile!="Dialogue/Athens/HappyParent") {
+      setCharacterDialogue("Dialogue/HappyParent");
+      }
+    
+      avoidPlayer=0f;
+      followPlayer=1f;
+      
+      dif=transform.position-player.transform.position;
+      if(dif.magnitude>minDistanceApart+1f) {
+      moveTowards(player.transform.position);
+      }
+    
+    }
+    
 	}
   
 }

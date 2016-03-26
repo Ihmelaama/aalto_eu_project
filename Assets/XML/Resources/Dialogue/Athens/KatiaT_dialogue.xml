@@ -1,0 +1,117 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="where">Where are you going cat?</reply>
+
+    </item>
+    
+/// ---------------------------------------    
+
+    <item name="where">
+    
+      <line>I’m going to the park ghost-bird.</line>
+
+      <reply goto-item="what_there">What are you going to do there?</reply>
+      <reply goto-item="why_there">Why are you going there?</reply>
+      <reply goto-item="why_park">Why are you going to the park?</reply>
+
+    </item>
+    
+/// ---------------------------------------
+
+    <item name="what_there">
+    
+      <line>I’m going to do some volunteering work.</line>    
+      <reply goto-item="volunteer">Can I come with you?</reply>
+      <reply goto-item="no_volunteer">May I come with you?</reply>
+
+    </item>
+    
+    <item name="volunteer">
+    
+      <line>Of course mate! Everyone can become volunteer if they want to.</line>
+      <reply>Awesome! Let's go!</reply>
+    
+    </item>
+    
+    <item name="no_volunteer">
+    
+      <line>I’m sorry but it’s a personal thing.</line>
+      <reply>Ok, I understand. Good luck!</reply>
+
+    </item>    
+    
+/// ---------------------------------------    
+    
+    <item name="why_there">
+    
+      <line>I want to apologise to my friends for some bad actions.</line>    
+      
+      <reply>Ok. Good luck!</reply>
+
+    </item> 
+    
+/// ---------------------------------------    
+    
+    <item name="why_park">
+    
+      <line>I want to pick up some flowers.</line>      
+      <reply goto-item="flowers_why">Flowers? Why?</reply>
+      
+    </item>    
+    
+    <item name="flowers_why">
+    
+      <line>I want to give them to my grandma.</line>      
+      <reply goto-item="grandma">Is something wrong with her?</reply>
+          
+    </item>    
+    
+    <item name="grandma">
+    
+      <line>She has a serious illness :(</line>      
+      <reply goto-item="grandma">I'm very sorry to hear that :(</reply>
+          
+    </item>          
+    
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>      
+
+</xml>

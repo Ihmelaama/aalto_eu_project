@@ -63,7 +63,7 @@ public class SlidingDashboard : MonoBehaviour {
 
   public void toggleDashboard() {
   
-    if(WorldState.allowUserInput) {
+    if(!GameState.inIntro) {
     toggleDashboard(!visible, true);
     }
   

@@ -81,6 +81,10 @@ public class CharSelectScript : MonoBehaviour {
       case 2:
       GameState.currentWorldName="Athens";
       break;
+      
+      case 3:
+      GameState.currentWorldName="Helsinki";
+      break;
     
     }
 
@@ -89,6 +93,7 @@ public class CharSelectScript : MonoBehaviour {
 //------------
   
   public void loadLevel() {
+  Debug.Log("load lev!");
   loadingMessage.SetActive(true);  
 	Application.LoadLevel(CharSelectScript.selectedLevelNum);  
   }

@@ -111,7 +111,7 @@ public class DialogueMenu : MonoBehaviour {
 //---------
 
   public void sayThing() {
-    
+
     string str=currentDialogueItem.replies[currentSelectorPos];      
 
     // if conversation has somewhere to go

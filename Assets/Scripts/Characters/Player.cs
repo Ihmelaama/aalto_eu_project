@@ -47,8 +47,8 @@ public class Player : Character {
       ItemManager.foundItem(item);
 
       // debug ---
-      changeLifeValue(0, 0.3f);
-      changeLifeValue(1, -0.3f);
+      //changeLifeValue(0, 0.3f);
+      //changeLifeValue(1, -0.3f);
 
     }
 
@@ -59,7 +59,7 @@ public class Player : Character {
   public override void lifeValueFull(int lifeValueNum) {
 
     //Debug.Log("Full of "+Constants.lifeValueNames[lifeValueNum]+".");
-
+    
   }
   
 //------------  
@@ -69,5 +69,19 @@ public class Player : Character {
     //Debug.Log(Constants.lifeValueNames[lifeValueNum]+" is gone.");
     
   }  
+  
+//------------
+
+  public void useItem(Item item) {
+
+    if(GameState.currentWorld==2) {
+    
+      if(item.itemID==2) {
+      changeLifeValue(0, AthensSettings.badItemUsedValue);
+      }
+    
+    }
+  
+  }
 
 }

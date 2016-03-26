@@ -326,7 +326,7 @@ public class Character : MonoBehaviour {
 //---------------------------------------------------
 // PRIVATE SETTERS
 
-  private void setCharacterSprite() {
+  public void setCharacterSprite() {
 
     Sprite s;
   
@@ -443,13 +443,13 @@ public class Character : MonoBehaviour {
 
     // full of life ---
 
-      if(lifeValues[i]==1f) {
+      if(lifeValues[i]>0.99f) {
       lifeValueFull(i);
       }
    
     // out of life ---
     
-      if(lifeValues[i]==0f) {
+      if(lifeValues[i]<0.01f) {
       lifeValueEmpty(i);
       }
    

@@ -16,11 +16,14 @@ public class AthensIntro : MonoBehaviour {
 	void Start() {
   
     WorldState.allowUserInput=false;
+    GameState.inIntro=true;
   
     text=transform.Find("Text").GetComponent<Text>();
 
     text.text="You wake up to a sound of your parents murmuring in the living room. They sound worried.";
     // play murmur sound here
+    
+    Fabric.EventManager.Instance.PostEvent("A/Music/Main");
 
 	}
   
@@ -82,6 +85,7 @@ public class AthensIntro : MonoBehaviour {
       case 6:
       Destroy(gameObject);
       WorldState.allowUserInput=true;
+      GameState.inIntro=false;
       break;
     
     }

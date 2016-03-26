@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AthensLevel.unity
   - enabled: 1
+    path: Assets/Platformer/Scenes/platformer_test.unity
+  - enabled: 1
     path: Assets/Scenes/GameWin.unity

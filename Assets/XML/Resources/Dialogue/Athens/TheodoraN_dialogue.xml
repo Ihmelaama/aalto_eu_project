@@ -1,0 +1,165 @@
+<xml>
+
+/// ---------------------------------------
+
+    <item>
+    
+      <line>Hi!</line>
+      <line>What's up?</line>
+      <line>Hello!</line>
+      
+      <reply goto-item="movies">What kind of movies do you like?</reply>
+      <reply goto-item="music">What is your favourite kind of music?</reply>
+      <reply goto-item="free_time">What do you like to do on your free time?</reply>
+      <reply goto-item="aliens">Do you want to meet aliens?</reply>
+      <reply goto-item="time_travel">If you could travel in time where would you go?</reply>
+      <reply goto-item="grow_up">What are you going to do when you grow up?</reply>
+      <reply goto-item="favourite_colour">What is your favourite colour?</reply>
+      <reply goto-item="drawing">Do you like drawing?</reply>
+      <reply>Sorry. I have to go now.</reply>
+
+    </item>
+    
+/// ---------------------------------------  
+
+  <item name="know_more">
+  
+    <line>Ask me something</line>
+  
+    <reply goto-item="movies">What kind of movies do you like?</reply>
+    <reply goto-item="music">What is your favourite kind of music?</reply>
+    <reply goto-item="free_time">What do you like to do on your free time?</reply>
+    <reply goto-item="aliens">Do you want to meet aliens?</reply>
+    <reply goto-item="time_travel">If you could travel in time where would you go?</reply>
+    <reply goto-item="grow_up">What are you going to do when you grow up?</reply>
+    <reply goto-item="favourite_colour">What is your favourite colour?</reply>
+    <reply goto-item="drawing">Do you like drawing?</reply>
+    <reply goto-item="eat_what">So what would you like to eat?</reply>
+    <reply>Sorry. I have to go now.</reply>
+
+  </item>    
+    
+/// ---------------------------------------    
+
+    <item name="movies">
+    
+      <line>I love watching science fiction movies and TV series. I also love detective stories like Sherlock Holmes!</line>
+      <reply goto-item="good_movies">Have you watched any good movies lately?</reply>
+
+    </item>
+    
+    <item name="good_movies">
+    
+      <line>Unfortunately no! I’ve been so busy that I didn’t have time!</line>
+      <reply goto-item="know_more">Me too, dude. Me too.</reply>
+
+    </item>
+    
+/// ---------------------------------------
+
+    <item name="music">
+    
+      <line>I like rock music!</line>    
+      <reply goto-item="know_more">Keep rocking!</reply>
+
+    </item>
+
+/// ---------------------------------------    
+    
+    <item name="free_time">
+    
+      <line>I like to watch movies with my friends. I also like drawing.</line>
+      
+      <reply goto-item="movies">What kind of movies do you like?</reply>
+      <reply goto-item="favourite_colour">What is your favourite colour?</reply>
+    
+    </item> 
+    
+/// ---------------------------------------    
+    
+    <item name="aliens">
+    
+      <line>Of course! There are so many things I want to ask them!</line>
+      <reply goto-item="know_more">The truth is out there!</reply>
+ 
+    </item>      
+    
+/// ---------------------------------------    
+    
+    <item name="time_travel">
+    
+      <line>I would go to the future to see how different it is!</line>
+      <reply goto-item="know_more">The future is now! And now! And now again! And ... wait ... wait ... now!</reply>
+ 
+    </item>     
+    
+/// ---------------------------------------    
+    
+    <item name="grow_up">
+    
+      <line>I don’t  know yet!</line>
+      <reply goto-item="know_more">Me neither! Let's keep trying things until we find our things.</reply>
+ 
+    </item>     
+    
+/// ---------------------------------------    
+    
+    <item name="favourite_colour">
+    
+      <line>I have two favourite colours green and blue!</line>
+      <reply goto-item="know_more">I like them too!</reply>
+ 
+    </item>         
+    
+/// ---------------------------------------    
+    
+    <item name="drawing">
+    
+      <line>Yes and I wish all the time that I had talent!</line>
+      <reply goto-item="know_more">But you have a lot of talent! And style, too. Keep your style!</reply>
+ 
+    </item>  
+    
+/// ---------------------------------------    
+    
+    <item name="eat_what">
+    
+      <line>I would like to eat souvlaki</line>
+      <reply goto-item="know_more">I'm a little hungry now.</reply>
+ 
+    </item>       
+    
+/// ---------------------------------------------------------------------
+/// dialogue items when given stuff from inventory  
+
+    <item name="decline_item">
+    
+      <line>I don't really need that but thanks.</line>
+      <line>Mmm ... no.</line>
+      <line>Nope. Nope. Nope.</line>
+      
+      <reply>No? Really? ... I'm a little sad now.</reply> 
+
+    </item>
+
+    <item name="accept_item">
+    
+      <line>That's cool! Thank you!</line>
+      <line>Thanks!</line>
+      <line>Oh, how nice of you! Thanks!</line>
+      
+      <reply>No problem.</reply>
+
+    </item>
+    
+    <item name="accept_mission_item">
+    
+      <line>Awesome! Thank you! I needed this!</line>
+      <line>I've always wanted one of these!</line>
+      <line>I love it! Thank you!</line>
+      
+      <reply>Hey, no problem at all! Glad you like it!</reply>
+        
+    </item>            
+
+</xml>

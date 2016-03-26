@@ -113,7 +113,16 @@ public class SoundManager : MonoBehaviour {
   
   public static void PlayCharacterHello(string characterId, float delay) {         
 
-    string e="Char/Hello/"+characterId;
+    string e="";
+    
+    // temporary (yeah right) hack for Athens sounds
+    if(GameState.currentWorld==2) {
+    e="A/Char/"+characterId;
+    } else {
+    e="Char/Hello/"+characterId;
+    }
+    
+    Debug.Log(e);
 
     if(delay==0f) {
     Fabric.EventManager.Instance.PostEvent(e);  

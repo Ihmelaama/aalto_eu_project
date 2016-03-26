@@ -26,8 +26,11 @@ public class NPC : Character {
 
   // holders ---
   
-    private GameObject player;
-    private Player playerScript;
+    [HideInInspector]
+    public GameObject player;
+    
+    [HideInInspector]
+    public Player playerScript;
 
     [HideInInspector]
     public Dialogue dialogue;
@@ -68,7 +71,7 @@ public class NPC : Character {
   protected override void Start() {
   
     base.Start();
-    
+
     if(dialogueFile==null || dialogueFile.Length==0) {
     getCharacterDialogue();
     }    
@@ -139,8 +142,10 @@ public class NPC : Character {
   
     if(
     (willAcceptAnyItem || needsItemId==item.itemID) && 
-    !Helpful.ArrayContainsInt(willDeclineItems, item.itemID)
+    (willDeclineItems.Length==0 || !Helpful.ArrayContainsInt(willDeclineItems, item.itemID))
     ) {
+    
+      handleAthensItemGiven(item);
      
       int wasMission=MissionManager.checkIfMission(item, MissionManager.ActionType.give);
       
@@ -177,6 +182,13 @@ public class NPC : Character {
 
   return false;
   }  
+  
+//------------
+
+  public void setCharacterDialogue(string d) {
+  dialogueFile=d;
+  dialogue=new Dialogue(d);
+  }
   
 //---------------------------------------------------
 // PRIVATE SETTERS
@@ -252,6 +264,20 @@ public class NPC : Character {
     dialogueManager.showDialogueMenu(transform);
     }
 
+  }
+  
+//---------------------------------------------------
+// DISGUSTING SHORTCUTS
+
+  private void handleAthensItemGiven(Item item) {
+  
+    if(item.itemID==1) {
+    playerScript.changeLifeValue(0, AthensSettings.goodItemGivenValue);
+    
+    } else if(item.itemID==2) {
+    playerScript.changeLifeValue(0, AthensSettings.badItemGivenValue);
+    }
+  
   }
 
 }
