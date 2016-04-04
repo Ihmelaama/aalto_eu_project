@@ -9,7 +9,7 @@ public class ScoreCounter : MonoBehaviour {
 // VARIABLES
 
     public static ScoreCounter instance;
-  
+    
   // holders ---
   
     private Text scoreText;
@@ -32,10 +32,13 @@ public class ScoreCounter : MonoBehaviour {
   
 //------------
   
-  public void changeScore(int change) {
+  public void changeScore(int change, int sign) {
   
     score+=change;
-    scoreText.text=score.ToString();
+    string s=sign>0 ? "+" : "-" ;
+    scoreText.text=s+""+score.ToString();
+    
+    GameState.score+=change*sign;
   
   }
   

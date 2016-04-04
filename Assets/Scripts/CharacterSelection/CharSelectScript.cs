@@ -10,14 +10,14 @@ public class CharSelectScript : MonoBehaviour {
   
   public static CharSelectScript instance;
 
-	//publics
-	public GameObject[] buttons;
-    public GameObject[] buttons2;
-    public GameObject[] buttons3;
-
-    public GameObject Canvas;
-	public GameObject Canvas2;
-	public GameObject Canvas3;
+  //publics
+  public GameObject[] buttons;
+  public GameObject[] buttons2;
+  public GameObject[] buttons3;
+  
+  public GameObject Canvas;
+  public GameObject Canvas2;
+  public GameObject Canvas3;
 
 
 	//private

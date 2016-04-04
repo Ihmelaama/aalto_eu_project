@@ -52,7 +52,6 @@ public class Character : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D body;
     
-    private Sprite stillFrame;
     private List<Sprite> idleFrames;
     private List<Sprite> runFrames;
     private List<Sprite> jumpFrames;
@@ -61,6 +60,9 @@ public class Character : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     
     private Collider2D[] allColliders;
+    
+    private ScoreCounter goodCounter;
+    private ScoreCounter badCounter;
     
   // state ---
   
@@ -88,20 +90,16 @@ public class Character : MonoBehaviour {
 //---------------------------------------------------------
 // EVENTS
 
-  void Awake() {
+	void Awake() {
   
+    instance=this;
+
+  //---
+
     MonoBehaviour[] children=GetComponentsInChildren<MonoBehaviour>();
     for(int i=0; i<children.Length; i++) {
     children[i].tag=tag;
     }
-
-  }
-  
-//------------
-
-	void Start() {
-  
-    instance=this;
     
   //---
   
@@ -117,15 +115,19 @@ public class Character : MonoBehaviour {
   //---
 
     getAnimationSprites();
-    if(isAnimated && idleFrames!=null) spriteRenderer.sprite=idleFrames[0];
-    if(!isAnimated && stillFrame!=null) spriteRenderer.sprite=stillFrame;
+    if(idleFrames!=null) spriteRenderer.sprite=idleFrames[0];
 
     StartCoroutine(setAnimationFrame(1f/idleFrameRate, 0));
-    
+
   //---
   
     allColliders=gameObject.GetComponentsInChildren<Collider2D>();
-	
+    
+  //---
+  
+    goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
+	  badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
+    
 	}
   
 //------------
@@ -209,6 +211,17 @@ public class Character : MonoBehaviour {
 
 //---------------------------------------------------------
 // PUBLIC SETTERS
+
+  public void setScale() {
+  
+    float w=(float) spriteSheet.width;
+    float h=(float) spriteSheet.height;
+    
+    graphics.transform.localScale*=w/h/1.1f;  
+  
+  }
+
+//------------
 
   public void Drop() {
   
@@ -297,7 +310,14 @@ public class Character : MonoBehaviour {
   public void collectedItem(Item item) {
   
     if(isPlayer && ScoreCounter.instance!=null) {
-    ScoreCounter.instance.changeScore(item.value);
+    
+      if(item.value>0) {
+      goodCounter.changeScore(Mathf.Abs(item.value), 1);
+      
+      } else {
+      badCounter.changeScore(Mathf.Abs(item.value), -1);
+      }
+    
     }
   
   }  
@@ -307,77 +327,133 @@ public class Character : MonoBehaviour {
 
   private void getAnimationSprites() {
   
-    bool animated=false;
-
     if(spriteSheet==null && characterId!=null) {
     
       if(isPlayer && GameState.playerCharacterId!=null) {
       characterId=GameState.playerCharacterId;
       }
     
-      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/"+characterId);
-      if(spriteSheet!=null) animated=true;
+      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Still/"+characterId);
+      if(spriteSheet!=null) {
+      
+        getAnimationSprites_1();
+        setScale();
+        isAnimated=false;
+        return;
+      
+      }
+    
+      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/4_frames/"+characterId);
+      if(spriteSheet!=null) {
+      
+        getAnimationSprites_4();
+        setScale();
+        isAnimated=true;
+        return;
+      
+      }
+      
+      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/6_frames/"+characterId);
+      if(spriteSheet!=null) {
+      
+        getAnimationSprites_6();
+        setScale();
+        isAnimated=true;
+        return;
+      
+      }      
       
       if(spriteSheet==null) {
-      Resources.Load<Texture2D>("Platformer/Characters/Still/"+characterId);
-      animated=false;
+      isAnimated=false;
       }
       
-    }
-  
-    if(spriteSheet!=null) {
+    }  
 
-      int fullW=spriteSheet.width;
-      int fullH=spriteSheet.height;    
+  }
 
-    // animated sprite ---
+//------------  
 
-      if(animated) {
-      
-        int w=fullW/4;
-        int h=w;
-        Sprite sprite;
-        
-        idleFrames=new List<Sprite>();
-        for(int i=0; i<4; i++) {
-    
-          sprite=Sprite.Create(spriteSheet, new Rect(i*w, fullH-h, w, h), new Vector2(0.5f, 0f));
-          idleFrames.Add(sprite);
-        
-        }
-        
-        runFrames=new List<Sprite>();
-        for(int i=0; i<4; i++) {
-    
-          sprite=Sprite.Create(spriteSheet, new Rect(i*w, fullH-h*2, w, h), new Vector2(0.5f, 0f));
-          runFrames.Add(sprite);
-        
-        }    
-        
-        jumpFrames=new List<Sprite>();
-        for(int i=0; i<4; i++) {
-    
-          sprite=Sprite.Create(spriteSheet, new Rect(i*w, fullH-h*3, w, h), new Vector2(0.5f, 0f));
-          jumpFrames.Add(sprite);
-        
-        }      
-        
-    // still sprite ---
-            
-      } else {
-      }
-      
-    //---
-      
-      graphics.transform.localScale=Vector3.one*(fullW/150f);
-      
-    }
+  private void getAnimationSprites_1() {
+
+    int fullW=spriteSheet.width;
+    int fullH=spriteSheet.height;    
+
+    idleFrames=new List<Sprite>();
+    idleFrames[0]=Sprite.Create(spriteSheet, new Rect(0f, 0f, fullW, fullH), new Vector2(0.5f, 0f));
 
   }
   
+//------------
+
+  private void getAnimationSprites_4() {
+  
+    int fullW=spriteSheet.width;
+    int fullH=spriteSheet.height;
+    
+    float w=fullW/4;
+    float h=fullH/2f;    
+         
+    Sprite s;
+  
+  //---
+  
+    idleFrames=new List<Sprite>();
+    s=Sprite.Create(spriteSheet, new Rect(0f, h, w, h), new Vector2(0.5f, 0f));
+    idleFrames.Add(s);
+
+    jumpFrames=new List<Sprite>();
+    s=Sprite.Create(spriteSheet, new Rect(w, h, w, h), new Vector2(0.5f, 0f));
+    jumpFrames.Add(s);
+
+    runFrames=new List<Sprite>();
+    for(int i=0; i<4; i++) {
+  
+      s=Sprite.Create(spriteSheet, new Rect(i*w, 0f, w, h), new Vector2(0.5f, 0f));
+      runFrames.Add(s);
+    
+    }    
+    
+  }
+
+//------------
+  
+  private void getAnimationSprites_6() {
+  
+    int fullW=spriteSheet.width;
+    int fullH=spriteSheet.height;
+    
+    float w=fullW/6;
+    float h=fullH/2f;    
+         
+    Sprite s;
+  
+  //---
+  
+    idleFrames=new List<Sprite>();
+    s=Sprite.Create(spriteSheet, new Rect(0f, h, w, h), new Vector2(0.5f, 0f));
+    idleFrames.Add(s);
+
+    jumpFrames=new List<Sprite>();
+    
+    s=Sprite.Create(spriteSheet, new Rect(w, h, w, h), new Vector2(0.5f, 0f));
+    jumpFrames.Add(s);
+    
+    s=Sprite.Create(spriteSheet, new Rect(w*2f, h, w, h), new Vector2(0.5f, 0f));
+    jumpFrames.Add(s);
+
+    runFrames=new List<Sprite>();
+    for(int i=0; i<6; i++) {
+  
+      s=Sprite.Create(spriteSheet, new Rect(i*w, 0f, w, h), new Vector2(0.5f, 0f));
+      runFrames.Add(s);
+    
+    }      
+  
+  }  
+  
 //------------  
 
-  private IEnumerator setAnimationFrame(float wait, int frameNum) {
+  private IEnumerator setAnimationFrame(float wait, int frameNum=0) {
   
     yield return new WaitForSeconds(wait);
 
@@ -387,10 +463,9 @@ public class Character : MonoBehaviour {
 
         if(idleFrames!=null) {
 
+          frameNum= idleFrames.Count> 1 ? Random.Range(0, idleFrames.Count) : 0 ;
           spriteRenderer.sprite=idleFrames[frameNum];
-          
-          frameNum=Random.Range(0, 4);
-          StartCoroutine(setAnimationFrame(1f/idleFrameRate, frameNum));
+          StartCoroutine(setAnimationFrame(1f/idleFrameRate));
           
         }
         
@@ -399,11 +474,11 @@ public class Character : MonoBehaviour {
       case AnimationState.RUN:
       
         if(runFrames!=null) {
-      
+
           spriteRenderer.sprite=runFrames[frameNum];
         
           frameNum++;
-          if(frameNum>3) frameNum=0;      
+          if(frameNum>=runFrames.Count) frameNum=0;   
           StartCoroutine(setAnimationFrame(1f/runFrameRate, frameNum));      
 
         }
@@ -414,11 +489,15 @@ public class Character : MonoBehaviour {
       
         if(jumpFrames!=null) {
         
-          if(body.velocity.y>2f) spriteRenderer.sprite=jumpFrames[0];
-          if(body.velocity.y>0f && body.velocity.y<=2f) spriteRenderer.sprite=jumpFrames[1];
-          if(body.velocity.y<=0f && body.velocity.y>=-2f) spriteRenderer.sprite=jumpFrames[2];
-          if(body.velocity.y<-2f) spriteRenderer.sprite=jumpFrames[3];
+          if(jumpFrames.Count>1) {
+            
+            if(body.velocity.y>0f) spriteRenderer.sprite=jumpFrames[0];
+            if(body.velocity.y<=0f) spriteRenderer.sprite=jumpFrames[1];        
           
+          } else {
+          spriteRenderer.sprite=jumpFrames[0];
+          }
+        
           StartCoroutine(setAnimationFrame(1f/jumpFrameRate, 0)); 
           
         }
@@ -436,7 +515,7 @@ public class Character : MonoBehaviour {
     Vector3 v=graphics.transform.localScale;
     v.x=dir*Mathf.Abs(v.x);
     graphics.transform.localScale=v;  
-    
+
     faceDirection=dir;  
 
   }

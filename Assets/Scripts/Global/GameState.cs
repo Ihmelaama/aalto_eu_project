@@ -10,5 +10,7 @@ public class GameState {
   public static string playerCharacterId=null;
   
   public static bool inIntro=false;
+  
+  public static int score=0;
 
 }

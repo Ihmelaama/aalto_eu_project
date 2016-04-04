@@ -25,15 +25,46 @@ public class PlatformerCharacterSelectionButton : MonoBehaviour {
 
     if(characterId!=null) {
     
-      Texture2D spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/"+characterId);
-      if(spriteSheet==null) Resources.Load<Texture2D>("Platformer/Characters/Still/"+characterId);
+      Texture2D spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/4_frames/"+characterId);
+      int type=1;
+      
+      if(spriteSheet==null) {
+      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Animated/6_frames/"+characterId);
+      type=2;
+      }
+      
+      if(spriteSheet==null) {
+      spriteSheet=Resources.Load<Texture2D>("Platformer/Characters/Still/"+characterId);
+      type=3;
+      }
       
       float w=spriteSheet.width;
       float h=spriteSheet.height;
+      
+      float x=0f;
+      float y=h/2f;
+      
+      switch(type) {
+      
+        case 1:
+        w/=4f;
+        h/=2f;
+        break;
+        
+        case 2:
+        w/=6f;
+        h/=2f;
+        break;
+        
+        case 3:
+        y=0f;
+        break;
+        
+      }
 
       image=GetComponent<Image>();
-      image.sprite=Sprite.Create(spriteSheet, new Rect(0, h-h/4f, w/4f, h/4f), new Vector2(0.5f, 0.5f));
-  
+      image.sprite=Sprite.Create(spriteSheet, new Rect(x, y, w, h), new Vector2(0.5f, 0.5f));
+
     } else {
     
       Destroy(gameObject);
