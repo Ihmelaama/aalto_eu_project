@@ -17,3 +17,7 @@ EditorBuildSettings:
     path: Assets/Platformer/Scenes/platformer_test.unity
   - enabled: 1
     path: Assets/Scenes/GameWin.unity
+  - enabled: 1
+    path: Assets/Scenes/GameLose.unity
+  - enabled: 1
+    path: Assets/Platformer/Scenes/HelsinkiLevel.unity

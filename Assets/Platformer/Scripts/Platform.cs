@@ -17,6 +17,10 @@ public class Platform : MonoBehaviour {
     public float depth=0f;
     
     public bool playerCanMoveThrough=true;
+
+    public bool isDeadly=false;
+    public bool isElevator=false;
+    public bool isSuperBouncy=false;
     
     private float _scale=1f;
     private float _width=1f;

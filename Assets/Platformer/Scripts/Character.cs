@@ -19,8 +19,10 @@ public class Character : MonoBehaviour {
     public string characterId=null;
     public bool isPlayer=false;
     public Texture2D spriteSheet;
+    
+    public bool debugRun=false;
   
-    private float jumpForce=8f;
+    private float jumpForce=10f;
     private float directionalJumpForce=1f;
     private float directionalJumpThreshold=0.2f;
     
@@ -35,7 +37,7 @@ public class Character : MonoBehaviour {
     private float moveDurationLimit=1f;
     
     private float idleFrameRate=6f;
-    private float runFrameRate=6f;
+    private float runFrameRate=8f;
     private float jumpFrameRate=6f;
     
     private float throwForceX=3f;
@@ -125,15 +127,15 @@ public class Character : MonoBehaviour {
     
   //---
   
-    goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
-	  badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
+    if(GameObject.Find("GoodScore")!=null) goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
+	  if(GameObject.Find("BadScore")!=null) badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
     
 	}
   
 //------------
 	
 	void Update() {
-  
+   
     if(isPlayer) {
     getKeyboardInput();
     getGameControllerInput();
@@ -152,6 +154,12 @@ public class Character : MonoBehaviour {
   
     if(!onGround && animationState!=AnimationState.JUMP) {
     animationState=AnimationState.JUMP;
+    }
+    
+  //---
+  
+    if(debugRun) {
+    animationState=AnimationState.RUN;
     }
 
 	}
@@ -186,7 +194,7 @@ public class Character : MonoBehaviour {
     onGround=true;
     setCurrentGround(c.gameObject);
     }
-
+    
   } 
 
 //----------- 
@@ -312,15 +320,34 @@ public class Character : MonoBehaviour {
     if(isPlayer && ScoreCounter.instance!=null) {
     
       if(item.value>0) {
-      goodCounter.changeScore(Mathf.Abs(item.value), 1);
+      
+        if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);
       
       } else {
-      badCounter.changeScore(Mathf.Abs(item.value), -1);
+      
+        if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1);
+      
       }
     
     }
   
   }  
+  
+//------------
+
+  public void Die() {
+  
+    isPlayer=false;
+    
+    if(SceneManager.instance!=null) {
+    SceneManager.instance.gotoGameLose();
+    
+    } else {
+    Debug.Log("dead");
+    }
+  
+  
+  }
   
 //---------------------------------------------------------
 // PRIVATE SETTERS
@@ -654,7 +681,18 @@ public class Character : MonoBehaviour {
   private void setCurrentGround(GameObject g) {
   
     if(g.tag=="Platform") {
-    currentGround=g; 
+    
+      currentGround=g; 
+    
+      Platform p=g.GetComponent<Platform>();
+      if(p!=null) {
+
+        if(p.isDeadly) {
+        Die();
+        }
+        
+      }
+    
     }
   
   }  

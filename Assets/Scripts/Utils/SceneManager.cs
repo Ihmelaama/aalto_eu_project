@@ -34,6 +34,19 @@ public class SceneManager : MonoBehaviour {
     Application.LoadLevel("GameWin");
   
   }
+
+//------------
+
+  public void gotoGameLose() {
+  StartCoroutine(gotoGameLose_());  
+  }
+  
+  IEnumerator gotoGameLose_() {
+  
+    yield return new WaitForSeconds(4f);
+    Application.LoadLevel("GameLose");
+  
+  }  
   
 //------------
 
