@@ -13,6 +13,9 @@ public class MovingPlatform : Platform {
   private float position=0f;
   private float deg=0f;
   
+  private Vector2 velocity=Vector2.zero;
+  private Vector2 prevPos=Vector2.zero;
+  
 //----------------------------------------------
 	
   public override void Start() {
@@ -41,11 +44,33 @@ public class MovingPlatform : Platform {
     //---
 
       Vector2 pos=originalPosition+movementRange*position;
+      velocity=pos-prevPos;
+      prevPos=pos;
+
       transform.position=pos;
       
     }
 
   }
-	
+  
+//------------
+
+  public override void OnCollisionStay2D(Collision2D collision) {
+  
+    if(collision.collider.transform.parent!=null) {
+    
+      string tag=collision.collider.transform.parent.tag;
+
+      if(tag!="Platform") {
+            
+        Rigidbody2D b=collision.collider.transform.parent.gameObject.GetComponent<Rigidbody2D>();   
+        if(b!=null) b.AddForce(velocity*1000f);
+
+      }
+
+    }
+
+  }
+
 }
 }
