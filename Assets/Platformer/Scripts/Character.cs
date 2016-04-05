@@ -681,18 +681,16 @@ public class Character : MonoBehaviour {
   private void setCurrentGround(GameObject g) {
   
     if(g.tag=="Platform") {
+    currentGround=g; 
+    }
     
-      currentGround=g; 
-    
-      Platform p=g.GetComponent<Platform>();
-      if(p!=null) {
+    Platform p=g.GetComponent<Platform>();
+    if(p!=null) {
 
-        if(p.isDeadly) {
-        Die();
-        }
-        
+      if(p.isDeadly) {
+      Die();
       }
-    
+      
     }
   
   }  
