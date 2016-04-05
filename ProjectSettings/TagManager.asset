@@ -9,6 +9,8 @@ TagManager:
   - Ground
   - ItemDatabase
   - Item
+  - Platform
+  - Liquid
   layers:
   - Default
   - TransparentFX
