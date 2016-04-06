@@ -67,7 +67,7 @@ public class CameraFollow : MonoBehaviour {
       Vector3 dif=target.position-futureCameraPos;
       float targetVelocityX=targetBody.velocity.x;
       float targetVelocityY=targetBody.velocity.y;
-    
+      
     // anticipate horizontal movement ---
     
       if(Mathf.Abs(targetBody.velocity.x)>0.1f) {
@@ -86,7 +86,7 @@ public class CameraFollow : MonoBehaviour {
         if(mode==FollowMode.ANTICIPATE) {
         anticipatePosition(0);
         }
-  
+        
     // stop following ---
       
       } else {
@@ -117,6 +117,12 @@ public class CameraFollow : MonoBehaviour {
         futureCameraPos.y+=y;
       
       }
+      
+    // follow horizontal movement if anticipation too slow --- 
+    
+      if(Mathf.Abs(dif.x)>6f) {
+      futureCameraPos.x+=dif.x/5f;
+      }     
       
     // set position ---
     

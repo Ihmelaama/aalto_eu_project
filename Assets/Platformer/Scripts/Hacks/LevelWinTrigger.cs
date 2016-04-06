@@ -24,7 +24,9 @@ public class LevelWinTrigger : MonoBehaviour {
         Character character=g.GetComponent<Character>();
         character.stopMovement();
         
-        LevelManager.instance.showUI();
+        LevelManager.instance.showUI(true);
+        
+        SoundManager.instance.playVesalaLevelEndSound(true);
 
       }
     

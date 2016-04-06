@@ -179,5 +179,112 @@ public class SoundManager : MonoBehaviour {
     Fabric.EventManager.Instance.PostEvent(eventName);  
   
   } 
+  
+//------------
+
+  public void playVesalaIntroMusic() {
+  }
+  
+//------------  
+
+  public void playVesalaMusic() {
+  
+    Fabric.EventManager.Instance.PostEvent("V/Music/Main Stop");
+    Fabric.EventManager.Instance.PostEvent("V/Music/Main");
+  
+  }  
+  
+//------------
+
+  public void playVesalaPickupSound(bool positive) {
+  
+    if(positive) {
+    
+      if(WorldState.randomSoundsOn) {
+      Fabric.EventManager.Instance.PostEvent("V/Sfx/PickUpPos Random");
+      
+      } else {
+      Debug.Log("pos");      
+      Fabric.EventManager.Instance.PostEvent("V/Sfx/PickUpPos");
+      }
+    
+    } else {
+  
+      if(WorldState.randomSoundsOn) {
+      Fabric.EventManager.Instance.PostEvent("V/Sfx/PickUpNeg Random");
+      
+      } else {
+      Debug.Log("neg");
+      Fabric.EventManager.Instance.PostEvent("V/Sfx/PickUpNeg");
+      }    
+  
+    }
+
+  }  
+  
+//------------
+  
+  public void playVesalaPowerUpSound() {
+  
+    if(WorldState.randomSoundsOn) {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/PowerUp Random");
+    
+    } else {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/PowerUp");
+    }
+  
+  }
+  
+//------------
+
+  public void playVesalaUISound() {
+  
+    if(WorldState.randomSoundsOn) {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/UI Random");
+    
+    } else {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/UI");
+    }
+    
+  }
+  
+//------------
+
+  public void playVesalaJumpSound() {
+  
+    if(WorldState.randomSoundsOn) {  
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/Jump Random");
+    
+    } else {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/Jump");
+    }
+
+  }  
+  
+//------------
+
+  public void playVesalaFootStepSound() {
+  
+    if(WorldState.randomSoundsOn) {  
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/FS Random");
+    
+    } else {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/FS");
+    }
+
+  }    
+  
+//------------
+
+  public void playVesalaLevelEndSound(bool win) {
+  
+    if(win) {  
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/Winning Sound");
+    
+    } else {
+    Fabric.EventManager.Instance.PostEvent("V/Sfx/Game Over");
+    }  
+  
+  }
 
 }

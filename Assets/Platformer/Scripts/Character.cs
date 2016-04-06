@@ -22,7 +22,9 @@ public class Character : MonoBehaviour {
     
     public bool debugRun=false;
   
-    private float jumpForce=10f;
+    [HideInInspector]
+    public float jumpForce=10f;
+    
     private float directionalJumpForce=1f;
     private float directionalJumpThreshold=0.2f;
     
@@ -88,6 +90,8 @@ public class Character : MonoBehaviour {
     private AnimationState animationState=AnimationState.IDLE;
     
     private bool isAnimated=false;
+    
+    private bool isDead=false;
 
 //---------------------------------------------------------
 // EVENTS
@@ -286,6 +290,8 @@ public class Character : MonoBehaviour {
       onGround=false;    
       currentGround=null;
       unignoreCollider();
+      
+      SoundManager.instance.playVesalaJumpSound();
 
     }
     
@@ -338,12 +344,12 @@ public class Character : MonoBehaviour {
     
       if(item.value>0) {
       
-        if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);
+        if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);      
       
       } else if(item.value<0) {
       
-        if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1);
-      
+        if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1); 
+
       }
     
     }
@@ -354,14 +360,22 @@ public class Character : MonoBehaviour {
 
   public void Die() {
   
-    isPlayer=false;
-    stopMovement();
-    
-    if(SceneManager.instance!=null) {
-    SceneManager.instance.gotoGameLose();
-    
-    } else {
-    Debug.Log("dead");
+    if(!isDead) {
+  
+      isPlayer=false;
+      stopMovement();
+      
+      if(LevelManager.instance!=null) {
+      LevelManager.instance.showUI(false);
+   
+      } else {
+      Debug.Log("dead");
+      }
+      
+      SoundManager.instance.playVesalaLevelEndSound(false);
+      
+      isDead=true;
+      
     }
   
   
@@ -519,12 +533,16 @@ public class Character : MonoBehaviour {
       case AnimationState.RUN:
       
         if(runFrames!=null) {
-
+        
           spriteRenderer.sprite=runFrames[frameNum];
         
           frameNum++;
           if(frameNum>=runFrames.Count) frameNum=0;   
           StartCoroutine(setAnimationFrame(1f/runFrameRate, frameNum));      
+          
+          if(frameNum==0) {
+          SoundManager.instance.playVesalaFootStepSound();
+          }          
 
         }
 

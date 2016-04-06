@@ -11,7 +11,8 @@ public class LevelManager : MonoBehaviour {
   public static LevelManager instance;
   public GameObject[] levels;
   public GameObject levelWinUI=null;
-  
+  public GameObject levelLoseUI=null;
+    
   private GameObject currentLevel=null;
   private List<int> usedLevels=new List<int>();
   
@@ -35,11 +36,15 @@ public class LevelManager : MonoBehaviour {
 //---------------------------------------------------
 // PUBLIC SETTERS  
 
-  public void showUI() {
+  public void showUI(bool win) {
   
-    if(levelWinUI!=null) {
+    if(win && levelWinUI!=null) {
     levelWinUI.SetActive(true);
     }
+    
+    if(!win && levelLoseUI!=null) {
+    levelLoseUI.SetActive(true);
+    }    
     
     if(Clock.instance!=null) Clock.instance.stopTime();
   
@@ -83,14 +88,23 @@ public class LevelManager : MonoBehaviour {
     
     if(levelWinUI!=null) levelWinUI.SetActive(false);   
     
-    if(Clock.instance!=null) {
-    Clock.instance.setTime(Clock.instance.defaultTime);    
+    if(Clock.instance!=null) {    
     Clock.instance.startTime();
     }
     
     WorldState.allowUserInput=true; 
-
+    
+    SoundManager.instance.playVesalaMusic();
+    
   }
+  
+//------------
+
+  public void restartLevel() {
+
+    Debug.Log("restart!");
+
+  }  
 
 }
 }

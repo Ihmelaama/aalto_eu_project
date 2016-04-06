@@ -7,10 +7,17 @@ public class Item : MonoBehaviour {
 //---------------------------------------------------------
 // VARIABLES
 
+    public enum PowerUpType {
+    NONE,
+    BOOST_JUMP
+    }
+
   // settings ---
 
     public int id=-1;
     public int value=0;
+    public PowerUpType powerUp=PowerUpType.NONE;
+    public float powerUpValue=0f;
     
   // holders ---
   
@@ -50,8 +57,29 @@ public class Item : MonoBehaviour {
       if(character!=null && character.isPlayer) {
         
         character.collectedItem(this);
-        if(Inventory.instance!=null) Inventory.instance.addItem(id, sprite, gameObject, character);
+        
+        if(Inventory.instance!=null && id!=-1) {
+        Inventory.instance.addItem(id, sprite, gameObject, character);
+        transform.parent=GameObject.Find("SharedItemHolder").transform;
+        }
+        
         gameObject.SetActive(false);
+        
+        if(powerUp!=PowerUpType.NONE) {
+        applyPowerUp(character);
+        }
+        
+      // sound ---
+      
+        if(value<0) {
+        SoundManager.instance.playVesalaPickupSound(false);  
+        
+        } else if(id==-1 || powerUp==PowerUpType.NONE) {
+        SoundManager.instance.playVesalaPickupSound(true);  
+        
+        } else {
+        SoundManager.instance.playVesalaPowerUpSound();  
+        }
       
       }
       
@@ -89,6 +117,21 @@ public class Item : MonoBehaviour {
   public void Destroy() {
   Destroy(gameObject);
   }  
+  
+//---------------------------------------------------------
+// PRIVATE SETTERS  
+
+  private void applyPowerUp(Character c) {
+  
+    switch(powerUp) {
+    
+      case PowerUpType.BOOST_JUMP:
+      c.jumpForce+=powerUpValue;
+      break;
+    
+    }
+  
+  }
   
 }
 }

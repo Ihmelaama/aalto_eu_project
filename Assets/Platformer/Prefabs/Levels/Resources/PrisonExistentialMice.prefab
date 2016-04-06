@@ -7463,7 +7463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a346fd82cd094786fe70971d6eb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gotoNextLevel: 1
   nextLevel: -1
 --- !u!212 &21200106
 SpriteRenderer:

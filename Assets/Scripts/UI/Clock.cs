@@ -9,13 +9,8 @@ public class Clock : MonoBehaviour {
 
   public static Clock instance;
   
-  public int defaultTime=120;
-
-  // available time in seconds
-  private int time=120;
-  
+  private int time=0;
   private Text text;
-  
   private bool isRunning=false;
   
 //-----------------------------------------------------------------
@@ -54,34 +49,13 @@ public class Clock : MonoBehaviour {
 
   // set time in seconds
   public void setTime(int t) {
-  time=t;
+  //time=t;
   }
-
+  
 //-----------------------------------------------------------------
-// PRIVATE SETTERS
+// PUBLIC GETTERS  
 
-  IEnumerator timer(float wait) {
-  
-    yield return new WaitForSeconds(wait);
-    
-    if(isRunning) {
-    time--;
-    writeText();
-    }
-
-    if(time<=0) {
-    
-      if(SceneManager.instance!=null) SceneManager.instance.gotoGameLose();
-    
-    } else {
-    StartCoroutine(timer(1f));
-    }
-
-  }
-  
-//-------------
-
-  private void writeText() {
+  public string getTimeString() {
   
     float min=time/60f;
     float sec=(min-Mathf.Floor(min))*60f;
@@ -92,7 +66,41 @@ public class Clock : MonoBehaviour {
     if(minStr.Length<2) minStr="0"+minStr;
     if(secStr.Length<2) secStr="0"+secStr;
     
-    text.text=minStr+":"+secStr;
+    return minStr+":"+secStr;  
+  
+  }
+
+//-----------------------------------------------------------------
+// PRIVATE SETTERS
+
+  IEnumerator timer(float wait) {
+  
+    yield return new WaitForSeconds(wait);
+    
+    if(isRunning) {
+    time++;
+    writeText();
+    }
+    
+    StartCoroutine(timer(1f));    
+
+    /*
+    if(time<=0) {
+    
+      if(SceneManager.instance!=null) SceneManager.instance.gotoGameLose();
+    
+    } else {
+    StartCoroutine(timer(1f));
+    }
+    */
+
+  }
+  
+//-------------
+
+  private void writeText() {
+
+    text.text=getTimeString();
   
   }
   

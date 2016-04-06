@@ -64,17 +64,21 @@ public class MovingPlatform : Platform {
 
   //---
   
-    position=Mathf.Sin(Mathf.Deg2Rad*deg)+1f;
-    position/=2f;     
-      
-    Vector3 p=new Vector3();
-    p.x=pos.x;
-    p.y=pos.y;
-    p.z=originalZ;
-    transform.position=p;
+    if(Application.isPlaying) {
   
-    velocity=pos-prevPos;
-    prevPos=pos;
+      position=Mathf.Sin(Mathf.Deg2Rad*deg)+1f;
+      position/=2f;     
+        
+      Vector3 p=new Vector3();
+      p.x=pos.x;
+      p.y=pos.y;
+      p.z=originalZ;
+      transform.position=p;
+    
+      velocity=pos-prevPos;
+      prevPos=pos;
+    
+    }
           
   }
 
@@ -96,20 +100,21 @@ public class MovingPlatform : Platform {
         }
         
       }
-
+      
       if(tag!="Platform" && isTriggered) {
 
-        Rigidbody2D b=collision.collider.transform.parent.gameObject.GetComponent<Rigidbody2D>();   
-        
+        Rigidbody2D b=collision.collider.gameObject.GetComponent<Rigidbody2D>();
+        if(b==null) b=collision.collider.transform.parent.gameObject.GetComponent<Rigidbody2D>();   
+
         Vector2 v=velocity;
         v.x*=750f;
-        
+ 
         if(v.y>0f) {
         v.y*=400f;
         } else {
         v.y*=1000f;
         }
-        
+
         if(b!=null) b.AddForce(v);
 
       }
