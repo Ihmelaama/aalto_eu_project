@@ -19252,11 +19252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: V/Music/Main Stop
   _eventID: 0
-  _overrideEventTriggerAction: 0
+  _overrideEventTriggerAction: 1
   _overrideParameters:
     _overrideIncomingEventAction: 0
     _incomingEventAction: 0
-    _overrideEventAction: 0
+    _overrideEventAction: 1
     _type: 0
     _floatParameter: 1
     _stringParameter: 
@@ -29331,11 +29331,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: V/Sfx/Moving Platform Stop
   _eventID: 0
-  _overrideEventTriggerAction: 0
+  _overrideEventTriggerAction: 1
   _overrideParameters:
     _overrideIncomingEventAction: 0
     _incomingEventAction: 0
-    _overrideEventAction: 0
+    _overrideEventAction: 1
     _type: 0
     _floatParameter: 1
     _stringParameter: 
@@ -33378,11 +33378,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: V/Music/Intro Stop
   _eventID: 0
-  _overrideEventTriggerAction: 0
+  _overrideEventTriggerAction: 1
   _overrideParameters:
     _overrideIncomingEventAction: 0
     _incomingEventAction: 0
-    _overrideEventAction: 0
+    _overrideEventAction: 1
     _type: 0
     _floatParameter: 1
     _stringParameter: 
