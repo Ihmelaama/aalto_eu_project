@@ -11,6 +11,7 @@ TagManager:
   - Item
   - Platform
   - Liquid
+  - NotGround
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - User Input
   - NPC
   - Item
-  - 
+  - NotGround
   - 
   - 
   - 

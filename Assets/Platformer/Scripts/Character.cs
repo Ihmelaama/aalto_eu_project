@@ -40,8 +40,8 @@ public class Character : MonoBehaviour {
     private float runFrameRate=8f;
     private float jumpFrameRate=6f;
     
-    private float throwForceX=3f;
-    private float throwForceY=3f;
+    private float throwForceX=6f;
+    private float throwForceY=6f;
     
   // holders ---
   
@@ -136,7 +136,7 @@ public class Character : MonoBehaviour {
 	
 	void Update() {
    
-    if(isPlayer) {
+    if(isPlayer && WorldState.allowUserInput) {
     getKeyboardInput();
     getGameControllerInput();
     }
@@ -145,11 +145,11 @@ public class Character : MonoBehaviour {
     handleHorizontalMovementInAir();
     
   //---
-    
+
     Vector2 v=body.velocity;
     v.x=horizontalSpeed;
-    body.velocity=v;  
-    
+    body.velocity=v;
+
   //---
   
     if(!onGround && animationState!=AnimationState.JUMP) {
@@ -219,6 +219,14 @@ public class Character : MonoBehaviour {
 
 //---------------------------------------------------------
 // PUBLIC SETTERS
+
+  public void moveToPosition(Vector2 pos) {
+  
+    transform.position=pos;
+  
+  }
+  
+//------------
 
   public void setScale() {
   
@@ -297,6 +305,15 @@ public class Character : MonoBehaviour {
   
 //------------
 
+  public void stopMovement() {
+  
+    moveLeft(false);
+    moveRight(false);
+  
+  }
+  
+//------------
+
   public void throwItem(GameObject g) {
   
     Vector3 v;
@@ -323,7 +340,7 @@ public class Character : MonoBehaviour {
       
         if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);
       
-      } else {
+      } else if(item.value<0) {
       
         if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1);
       
@@ -338,6 +355,7 @@ public class Character : MonoBehaviour {
   public void Die() {
   
     isPlayer=false;
+    stopMovement();
     
     if(SceneManager.instance!=null) {
     SceneManager.instance.gotoGameLose();
@@ -651,7 +669,7 @@ public class Character : MonoBehaviour {
       }
 
     }
-  
+
   }
   
 //------------
@@ -730,7 +748,11 @@ public class Character : MonoBehaviour {
 // HELPFUL
 
   private bool touchedGround(Collision2D collision) {
-
+  
+    if(collision.collider.tag=="NotGround") {
+    return false;
+    }
+  
     Vector2 colliderMin=groundCollider.bounds.center;
     colliderMin.y-=groundCollider.bounds.extents.y-0.1f;
 
@@ -748,6 +770,10 @@ public class Character : MonoBehaviour {
 //------------
   
   private bool touchedGround(Collider2D collider) {
+
+    if(collider.tag=="NotGround") {
+    return false;
+    }  
          
     Bounds b=collider.bounds;
     Vector2 center=(Vector2) collider.bounds.center;

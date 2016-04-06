@@ -26,6 +26,8 @@ public class CameraFollow : MonoBehaviour {
     private float anticipationRadiusY=3f;
 
   // holders ---
+  
+    public static CameraFollow instance;
 
     public Transform target;
     private Rigidbody2D targetBody;
@@ -41,6 +43,8 @@ public class CameraFollow : MonoBehaviour {
 // EVENTS
 
 	void Start() {
+  
+    instance=this;
   
     if(target!=null) {
     
@@ -121,7 +125,18 @@ public class CameraFollow : MonoBehaviour {
     }
     
   }
+
+//----------------------------------------------------------
+// PUBLIC SETTERS
+
+  public void setToTarget() {
   
+    if(target!=null) {
+    centerToTarget(true);
+    }
+  
+  }
+
 //----------------------------------------------------------
 // PRIVATE SETTERS
 
@@ -166,6 +181,7 @@ public class CameraFollow : MonoBehaviour {
 
     Vector3 pos=target.transform.position;
     pos.z=transform.position.z;
+    futureCameraPos=pos;
     
     if(move) transform.position=pos;
 
