@@ -26,6 +26,8 @@ public class CameraFollow : MonoBehaviour {
     private float anticipationRadiusY=3f;
 
   // holders ---
+  
+    public static CameraFollow instance;
 
     public Transform target;
     private Rigidbody2D targetBody;
@@ -41,6 +43,8 @@ public class CameraFollow : MonoBehaviour {
 // EVENTS
 
 	void Start() {
+  
+    instance=this;
   
     if(target!=null) {
     
@@ -58,66 +62,81 @@ public class CameraFollow : MonoBehaviour {
 	
   void FixedUpdate() {
   
-    Vector3 dif=target.position-futureCameraPos;
-    float targetVelocityX=targetBody.velocity.x;
-    float targetVelocityY=targetBody.velocity.y;
+    if(target!=null) {
   
-  // anticipate horizontal movement ---
-  
-    if(Mathf.Abs(targetBody.velocity.x)>0.1f) {
+      Vector3 dif=target.position-futureCameraPos;
+      float targetVelocityX=targetBody.velocity.x;
+      float targetVelocityY=targetBody.velocity.y;
     
-      if(mode!=FollowMode.ANTICIPATE) {
-      lerpHurry=0f;
-      }
-      
-      if(
-      Mathf.Abs(dif.x)>followRadiusX && 
-      dif.x/Mathf.Abs(dif.x)==targetBody.velocity.x/Mathf.Abs(targetBody.velocity.x)
-      ) {
-      mode=FollowMode.ANTICIPATE;
-      }
-      
-      if(mode==FollowMode.ANTICIPATE) {
-      anticipatePosition(0);
-      }
-
-  // stop following ---
+    // anticipate horizontal movement ---
     
-    } else {
-
-      if(mode!=FollowMode.NONE) {
+      if(Mathf.Abs(targetBody.velocity.x)>0.1f) {
       
-        mode=FollowMode.NONE;
-        lerpHurry=0f; 
-        futureCameraPos=transform.position;
+        if(mode!=FollowMode.ANTICIPATE) {
+        lerpHurry=0f;
+        }
         
-      }
-
-    } 
-    
-  // follow vertical movement ---
-
-    if(Mathf.Abs(dif.y)>followRadiusY) {
+        if(
+        Mathf.Abs(dif.x)>followRadiusX && 
+        dif.x/Mathf.Abs(dif.x)==targetBody.velocity.x/Mathf.Abs(targetBody.velocity.x)
+        ) {
+        mode=FollowMode.ANTICIPATE;
+        }
+        
+        if(mode==FollowMode.ANTICIPATE) {
+        anticipatePosition(0);
+        }
+  
+    // stop following ---
       
-      float d=Mathf.Abs(Mathf.Abs(dif.y)-followRadiusY);
-      d/=anticipationRadiusY;
-      futureCameraPos.y=Mathf.Lerp(futureCameraPos.y, target.position.y, d*lerpSpeedY);
-
-    }
-    
-    if(targetVelocityY<-8f) {
-    
-      float y=(targetVelocityY+8f)/12f;
-      futureCameraPos.y+=y;
-    
-    }
-    
-  // set position ---
+      } else {
   
-    transform.position=Vector3.Lerp(transform.position, futureCameraPos, 0.1f);
-
+        if(mode!=FollowMode.NONE) {
+        
+          mode=FollowMode.NONE;
+          lerpHurry=0f; 
+          futureCameraPos=transform.position;
+          
+        }
+  
+      } 
+      
+    // follow vertical movement ---
+  
+      if(Mathf.Abs(dif.y)>followRadiusY) {
+        
+        float d=Mathf.Abs(Mathf.Abs(dif.y)-followRadiusY);
+        d/=anticipationRadiusY;
+        futureCameraPos.y=Mathf.Lerp(futureCameraPos.y, target.position.y, d*lerpSpeedY);
+  
+      }
+      
+      if(targetVelocityY<-8f) {
+      
+        float y=(targetVelocityY+8f)/12f;
+        futureCameraPos.y+=y;
+      
+      }
+      
+    // set position ---
+    
+      transform.position=Vector3.Lerp(transform.position, futureCameraPos, 0.1f);
+    
+    }
+    
   }
+
+//----------------------------------------------------------
+// PUBLIC SETTERS
+
+  public void setToTarget() {
   
+    if(target!=null) {
+    centerToTarget(true);
+    }
+  
+  }
+
 //----------------------------------------------------------
 // PRIVATE SETTERS
 
@@ -162,6 +181,7 @@ public class CameraFollow : MonoBehaviour {
 
     Vector3 pos=target.transform.position;
     pos.z=transform.position.z;
+    futureCameraPos=pos;
     
     if(move) transform.position=pos;
 

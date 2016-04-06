@@ -7,7 +7,8 @@ public class ItemReceiver : MonoBehaviour {
 
   public enum Behaviour {
   NONE,
-  ADVANCE_SPRITE
+  ADVANCE_SPRITE,
+  MAKE_PHYSICAL
   }
 
 //---------------------------------------------------------------------
@@ -17,7 +18,8 @@ public class ItemReceiver : MonoBehaviour {
 
     public int acceptsItemId=-1;
     public int maxAmount=-1;
-    
+
+    public bool destroyItem=false;    
     public Behaviour behaviour;
     
     public Sprite[] sprites;
@@ -74,14 +76,15 @@ public class ItemReceiver : MonoBehaviour {
 
       if(maxAmount<0 || itemCounter<maxAmount) {
 
-        itemCounter++;
-        item.Destroy();
-        
-        receivedItem();
-        
         if(itemCounter>=maxAmount) {
+        
         itemsFull();
+        } else {        
+        receivedItem(item);
+        itemCounter++;        
         }
+        
+        if(destroyItem) item.Destroy();        
       
       }
     
@@ -91,12 +94,16 @@ public class ItemReceiver : MonoBehaviour {
   
 //------------
 
-  private void receivedItem() {
+  private void receivedItem(Item item) {
   
     switch(behaviour) {
     
       case Behaviour.ADVANCE_SPRITE:
       advanceSprite();
+      break;
+      
+      case Behaviour.MAKE_PHYSICAL:
+      makePhysical(item);
       break;
     
     }
@@ -117,6 +124,20 @@ public class ItemReceiver : MonoBehaviour {
     
     if(spriteRenderer!=null && currentSprite<sprites.Length) {
     spriteRenderer.sprite=sprites[currentSprite];
+    }
+  
+  }  
+  
+//------------
+
+  private void makePhysical(Item item) {
+  
+    Rigidbody2D[] bodies=GetComponentsInChildren<Rigidbody2D>();
+    
+    for(int i=0; i<bodies.Length; i++) {
+    
+      bodies[i].isKinematic=false;
+    
     }
   
   }  

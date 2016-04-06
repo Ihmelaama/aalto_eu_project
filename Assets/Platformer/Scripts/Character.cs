@@ -19,8 +19,10 @@ public class Character : MonoBehaviour {
     public string characterId=null;
     public bool isPlayer=false;
     public Texture2D spriteSheet;
+    
+    public bool debugRun=false;
   
-    private float jumpForce=8f;
+    private float jumpForce=10f;
     private float directionalJumpForce=1f;
     private float directionalJumpThreshold=0.2f;
     
@@ -35,11 +37,11 @@ public class Character : MonoBehaviour {
     private float moveDurationLimit=1f;
     
     private float idleFrameRate=6f;
-    private float runFrameRate=6f;
+    private float runFrameRate=8f;
     private float jumpFrameRate=6f;
     
-    private float throwForceX=3f;
-    private float throwForceY=3f;
+    private float throwForceX=6f;
+    private float throwForceY=6f;
     
   // holders ---
   
@@ -125,16 +127,16 @@ public class Character : MonoBehaviour {
     
   //---
   
-    goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
-	  badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
+    if(GameObject.Find("GoodScore")!=null) goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
+	  if(GameObject.Find("BadScore")!=null) badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
     
 	}
   
 //------------
 	
 	void Update() {
-  
-    if(isPlayer) {
+   
+    if(isPlayer && WorldState.allowUserInput) {
     getKeyboardInput();
     getGameControllerInput();
     }
@@ -143,15 +145,21 @@ public class Character : MonoBehaviour {
     handleHorizontalMovementInAir();
     
   //---
-    
+
     Vector2 v=body.velocity;
     v.x=horizontalSpeed;
-    body.velocity=v;  
-    
+    body.velocity=v;
+
   //---
   
     if(!onGround && animationState!=AnimationState.JUMP) {
     animationState=AnimationState.JUMP;
+    }
+    
+  //---
+  
+    if(debugRun) {
+    animationState=AnimationState.RUN;
     }
 
 	}
@@ -186,7 +194,7 @@ public class Character : MonoBehaviour {
     onGround=true;
     setCurrentGround(c.gameObject);
     }
-
+    
   } 
 
 //----------- 
@@ -211,6 +219,14 @@ public class Character : MonoBehaviour {
 
 //---------------------------------------------------------
 // PUBLIC SETTERS
+
+  public void moveToPosition(Vector2 pos) {
+  
+    transform.position=pos;
+  
+  }
+  
+//------------
 
   public void setScale() {
   
@@ -289,6 +305,15 @@ public class Character : MonoBehaviour {
   
 //------------
 
+  public void stopMovement() {
+  
+    moveLeft(false);
+    moveRight(false);
+  
+  }
+  
+//------------
+
   public void throwItem(GameObject g) {
   
     Vector3 v;
@@ -312,15 +337,35 @@ public class Character : MonoBehaviour {
     if(isPlayer && ScoreCounter.instance!=null) {
     
       if(item.value>0) {
-      goodCounter.changeScore(Mathf.Abs(item.value), 1);
       
-      } else {
-      badCounter.changeScore(Mathf.Abs(item.value), -1);
+        if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);
+      
+      } else if(item.value<0) {
+      
+        if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1);
+      
       }
     
     }
   
   }  
+  
+//------------
+
+  public void Die() {
+  
+    isPlayer=false;
+    stopMovement();
+    
+    if(SceneManager.instance!=null) {
+    SceneManager.instance.gotoGameLose();
+    
+    } else {
+    Debug.Log("dead");
+    }
+  
+  
+  }
   
 //---------------------------------------------------------
 // PRIVATE SETTERS
@@ -624,7 +669,7 @@ public class Character : MonoBehaviour {
       }
 
     }
-  
+
   }
   
 //------------
@@ -655,6 +700,15 @@ public class Character : MonoBehaviour {
   
     if(g.tag=="Platform") {
     currentGround=g; 
+    }
+    
+    Platform p=g.GetComponent<Platform>();
+    if(p!=null) {
+
+      if(p.isDeadly) {
+      Die();
+      }
+      
     }
   
   }  
@@ -694,7 +748,11 @@ public class Character : MonoBehaviour {
 // HELPFUL
 
   private bool touchedGround(Collision2D collision) {
-
+  
+    if(collision.collider.tag=="NotGround") {
+    return false;
+    }
+  
     Vector2 colliderMin=groundCollider.bounds.center;
     colliderMin.y-=groundCollider.bounds.extents.y-0.1f;
 
@@ -712,6 +770,10 @@ public class Character : MonoBehaviour {
 //------------
   
   private bool touchedGround(Collider2D collider) {
+
+    if(collider.tag=="NotGround") {
+    return false;
+    }  
          
     Bounds b=collider.bounds;
     Vector2 center=(Vector2) collider.bounds.center;

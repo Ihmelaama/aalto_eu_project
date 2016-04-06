@@ -17,6 +17,10 @@ public class Platform : MonoBehaviour {
     public float depth=0f;
     
     public bool playerCanMoveThrough=true;
+
+    public bool isDeadly=false;
+    public bool isElevator=false;
+    public bool isSuperBouncy=false;
     
     private float _scale=1f;
     private float _width=1f;
@@ -37,26 +41,41 @@ public class Platform : MonoBehaviour {
     
     private SpriteRenderer bottomLeft;
     private SpriteRenderer bottom;
-    private SpriteRenderer bottomRight;         
+    private SpriteRenderer bottomRight; 
+    
+    [HideInInspector]
+    public Rigidbody2D body;       
        
 //---------------------------------------------------------
 // EVENTS
 
-	void Start() {
+	public virtual void Start() {
   
     collider=GetComponent<BoxCollider2D>();
     handleSize();
+    
+    body=GetComponent<Rigidbody2D>();
 	
 	}
   
 //-----------
 	
-	void Update() {
+	public virtual void Update() {
   
     handleSize();
     handleDepth();
 	
 	}
+  
+//------------
+
+  public virtual void OnCollisionEnter2D(Collision2D collision) {
+  }
+
+//------------
+
+  public virtual void OnCollisionStay2D(Collision2D collision) {
+  }
 
 //---------------------------------------------------------
 // PRIVATE SETTERS
