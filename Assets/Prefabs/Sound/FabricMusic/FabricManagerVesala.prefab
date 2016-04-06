@@ -3773,7 +3773,8 @@ GameObject:
   - 4: {fileID: 486514}
   - 114: {fileID: 11427438}
   - 114: {fileID: 11473620}
-  - 114: {fileID: 11434104}
+  - 114: {fileID: 11429000}
+  - 114: {fileID: 11456060}
   m_Layer: 0
   m_Name: RandomMusic
   m_TagString: Untagged
@@ -13855,7 +13856,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .421696514
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -17337,7 +17338,7 @@ MonoBehaviour:
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
   _volume: 1
-  _volumeRandomization: 0
+  _volumeRandomization: .250105798
   _mute: 0
   _overrideParentPitch: 0
   _pitch: 1
@@ -17980,7 +17981,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .749894202
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -17989,9 +17990,9 @@ MonoBehaviour:
   _override2DProperties: 0
   _pan2D: 0
   _pan2DRandomization: 0
-  _override3DProperties: 0
+  _override3DProperties: 1
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
@@ -18208,6 +18209,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: Char/No/MariannaA
   _eventID: 0
+  _overrideEventTriggerAction: 0
+  _overrideParameters:
+    _overrideIncomingEventAction: 0
+    _incomingEventAction: 0
+    _overrideEventAction: 0
+    _type: 0
+    _floatParameter: 1
+    _stringParameter: 
+    _switchPresetData:
+      _sourcePreset: 
+      _targetPreset: 
+    _dspParameterData:
+      _dspType: 0
+      _parameter: 
+      _value: 0
+      _time: 0
+      _curve: .5
+    _transitionToSnapshotData:
+      _snapshot: 
+      _timeToReach: 0
+--- !u!114 &11429000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: V/Music/Main Stop
+  _eventID: -472956218
   _overrideEventTriggerAction: 0
   _overrideParameters:
     _overrideIncomingEventAction: 0
@@ -18837,7 +18871,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -18886,7 +18920,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -19239,39 +19273,6 @@ MonoBehaviour:
   _musicExitCueTime: 0
   _markers: []
   _regions: []
---- !u!114 &11434104
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventName: V/Music/Main Stop
-  _eventID: 0
-  _overrideEventTriggerAction: 1
-  _overrideParameters:
-    _overrideIncomingEventAction: 0
-    _incomingEventAction: 0
-    _overrideEventAction: 1
-    _type: 0
-    _floatParameter: 1
-    _stringParameter: 
-    _switchPresetData:
-      _sourcePreset: 
-      _targetPreset: 
-    _dspParameterData:
-      _dspType: 0
-      _parameter: 
-      _value: 0
-      _time: 0
-      _curve: .5
-    _transitionToSnapshotData:
-      _snapshot: 
-      _timeToReach: 0
 --- !u!114 &11434270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19528,11 +19529,11 @@ MonoBehaviour:
   m_Script: {fileID: -71199202, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInstances: 1
+  _maxInstances: 0
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -19581,7 +19582,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -19606,7 +19607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventName: V/Sfx/FS Random
-  _eventID: 0
+  _eventID: 408380531
   _overrideEventTriggerAction: 0
   _overrideParameters:
     _overrideIncomingEventAction: 0
@@ -19830,7 +19831,7 @@ MonoBehaviour:
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
   _volume: 1
-  _volumeRandomization: 0
+  _volumeRandomization: .223752856
   _mute: 0
   _overrideParentPitch: 0
   _pitch: 1
@@ -20045,7 +20046,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -20094,7 +20095,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -20246,7 +20247,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -20295,7 +20296,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -22188,7 +22189,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -22237,7 +22238,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -23759,7 +23760,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -23808,7 +23809,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -26563,6 +26564,41 @@ MonoBehaviour:
   _musicExitCueTime: 0
   _markers: []
   _regions: []
+--- !u!114 &11456060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2066047398, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchPresetData:
+    _sourcePreset: 
+    _targetPreset: 
+  transitionToSnapshotData:
+    _snapshot: 
+    _timeToReach: 0
+  _eventName: _UnSet_
+  _eventAction: 0
+  _trigger: 0
+  _eventValue: 
+  _eventParameter: 1
+  _eventParameterName: 
+  _delay: 0
+  _probability: 100
+  _eventTriggerType: 0
+  _ignoreGameObject: 0
+  _addToQueue: 0
+  _min: 0
+  _max: 1
+  _dspType: 0
+  _timeToTarget: 0
+  _curve: .5
+  _parentGameObject: {fileID: 172236}
+  _useEventID: 0
 --- !u!114 &11456268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28008,7 +28044,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -29088,7 +29124,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 0
+  _volume: 1
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -31528,7 +31564,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .331131101
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -31818,7 +31854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventName: V/Music/Main
-  _eventID: 0
+  _eventID: 826812156
   _overrideEventTriggerAction: 0
   _overrideParameters:
     _overrideIncomingEventAction: 0
@@ -33116,7 +33152,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -33165,7 +33201,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -34311,7 +34347,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .653130531
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -34360,7 +34396,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _dontPlay: 0
@@ -35300,7 +35336,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .331131101
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0

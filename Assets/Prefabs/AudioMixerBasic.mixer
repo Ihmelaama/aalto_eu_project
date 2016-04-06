@@ -92,6 +92,7 @@ AudioMixerGroupController:
   m_Pitch: 11983fc5456de42b69996b938b1ea374
   m_Effects:
   - {fileID: 24440880}
+  - {fileID: 24403944}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -147,6 +148,7 @@ AudioMixerGroupController:
   m_Pitch: 0a1ec0c3ed9034ac5bf57cba9865084c
   m_Effects:
   - {fileID: 24436704}
+  - {fileID: 24430168}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -164,6 +166,19 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &24403944
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 779c3609e478f439196e0cc51fe0d846
+  m_EffectName: Send
+  m_MixLevel: a3a23db35852043f090ac4a296541710
+  m_Parameters: []
+  m_SendTarget: {fileID: 24430168}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &24407986
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -174,6 +189,33 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 5e26a2fe48ad14e208399181f8d63041
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &24430168
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 92fccddb41159414c97459cb55876e3a
+  m_EffectName: Duck Volume
+  m_MixLevel: a098a6a8fdb6a4bd49fdebff8fdaf4cf
+  m_Parameters:
+  - m_ParameterName: Threshold
+    m_GUID: f84f32648c89e47f4bd725472943c78e
+  - m_ParameterName: Ratio
+    m_GUID: 1215c5745ccf149f19a6e88516aee838
+  - m_ParameterName: Attack Time
+    m_GUID: 7bf441160007f4e8a80dd6ceadb7c52a
+  - m_ParameterName: Release Time
+    m_GUID: 60eca7bda43aa496fb7888c2fcb42161
+  - m_ParameterName: Make-up Gain
+    m_GUID: 9fdf836588217435f9bc8eb1beb74ba4
+  - m_ParameterName: Knee
+    m_GUID: 429142461657e442ca6505fa9e93195d
+  - m_ParameterName: Sidechain Mix
+    m_GUID: 55f23970ac237478ebcf2ca7e6a6aa38
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -253,7 +295,9 @@ AudioMixerSnapshotController:
   m_FloatValues:
     b81356a13559e4d4895ac3abd6a43f7d: -2.57383132
     907187f27be5e4d52a8ef08b52867394: -10.8677759
+    a3a23db35852043f090ac4a296541710: -19.4781799
     05166027f3574427c96ba822b08f860d: 0
     207b8f88e761647ec8059ad18c5c11cf: 2.85022593
+    884286fbdcde74f55bd72de11987df29: 3.70415211
     2e50ec3cf2d884f5d8ec61e3f7948f12: -4.72447634
   m_TransitionOverrides: {}
