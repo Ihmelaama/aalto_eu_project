@@ -88,8 +88,11 @@ public class MovingPlatform : Platform {
   
     if(collision.collider.transform.parent!=null) {
     
-      string tag=collision.collider.transform.parent.tag;
+      Transform t=collision.collider.transform;
+      t.parent.SetParent(transform);
 
+      string tag=t.parent.tag;
+                
       if(triggeredByPlayer && tag=="Player") {
       
         isTriggered=true;
@@ -98,16 +101,17 @@ public class MovingPlatform : Platform {
         StopCoroutine(untriggerCoroutine);
         untriggerCoroutine=null;
         }
-        
+
       }
       
+      /*
       if(tag!="Platform" && isTriggered) {
 
         Rigidbody2D b=collision.collider.gameObject.GetComponent<Rigidbody2D>();
         if(b==null) b=collision.collider.transform.parent.gameObject.GetComponent<Rigidbody2D>();   
 
         Vector2 v=velocity;
-        v.x*=750f;
+        v.x*=1000f;
  
         if(v.y>0f) {
         v.y*=400f;
@@ -118,6 +122,7 @@ public class MovingPlatform : Platform {
         if(b!=null) b.AddForce(v);
 
       }
+      */
  
     }
 
@@ -129,6 +134,22 @@ public class MovingPlatform : Platform {
   
       string tag=collision.collider.transform.parent.tag;
       
+      Transform t=collision.collider.transform;
+      t.parent.SetParent(null);      
+      
+      Rigidbody2D rb=t.parent.GetComponent<Rigidbody2D>();
+      
+      /*
+      if(rb!=null) {
+      
+        Vector2 v=velocity;
+        v.x*=10f;
+        v.y=rb.velocity.y;
+        rb.velocity=v;
+      
+      }
+      */
+      
       if(triggeredByPlayer && tag=="Player") {
       
         if(untriggerCoroutine!=null) {
@@ -137,7 +158,7 @@ public class MovingPlatform : Platform {
         }      
 
         untriggerCoroutine=StartCoroutine(untrigger());
-
+        
       }
 
   }  

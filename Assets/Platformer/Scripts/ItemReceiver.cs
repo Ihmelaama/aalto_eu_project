@@ -8,7 +8,8 @@ public class ItemReceiver : MonoBehaviour {
   public enum Behaviour {
   NONE,
   ADVANCE_SPRITE,
-  MAKE_PHYSICAL
+  MAKE_PHYSICAL,
+  DISAPPEAR
   }
 
 //---------------------------------------------------------------------
@@ -105,6 +106,10 @@ public class ItemReceiver : MonoBehaviour {
       case Behaviour.MAKE_PHYSICAL:
       makePhysical(item);
       break;
+      
+      case Behaviour.DISAPPEAR:
+      Destroy(gameObject);
+      break;      
     
     }
   

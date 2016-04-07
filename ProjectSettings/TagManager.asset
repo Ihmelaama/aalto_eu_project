@@ -12,6 +12,7 @@ TagManager:
   - Platform
   - Liquid
   - NotGround
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine;               
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,15 +9,17 @@ public class LevelManager : MonoBehaviour {
 // VARIABLES
 
   public static LevelManager instance;
+
   public GameObject[] levels;
   public GameObject levelWinUI=null;
   public GameObject levelLoseUI=null;
     
   private GameObject currentLevel=null;
+  private int currentLevelNum=-1;  
   private List<int> usedLevels=new List<int>();
   
   public int defaultLevel=-1;
-  
+
 //---------------------------------------------------
 // EVENTS  
 
@@ -29,7 +31,14 @@ public class LevelManager : MonoBehaviour {
     levels[i].SetActive(false);
     }
     
-    activateLevel(defaultLevel);
+    if(WorldState.restartedLevel!=-1) {
+    
+      activateLevel(WorldState.restartedLevel);
+      WorldState.restartedLevel=-1;
+      
+    } else {
+    activateLevel(defaultLevel);    
+    }
 	
 	}
   
@@ -47,6 +56,7 @@ public class LevelManager : MonoBehaviour {
     }    
     
     if(Clock.instance!=null) Clock.instance.stopTime();
+    GameState.time=Clock.instance.getTimeString();
   
   }
   
@@ -78,6 +88,7 @@ public class LevelManager : MonoBehaviour {
     if(currentLevel!=null) currentLevel.SetActive(false);
     levels[levelNum].SetActive(true);
     currentLevel=levels[levelNum];
+    currentLevelNum=levelNum;
     
     Transform spawnPoint=currentLevel.transform.Find("PlayerSpawn");
     
@@ -97,12 +108,20 @@ public class LevelManager : MonoBehaviour {
     SoundManager.instance.playVesalaMusic();
     
   }
+
+//------------
+
+  public void Quit() {
+  Clock.time=0;
+  Application.LoadLevel("Intro");  
+  }
   
 //------------
 
   public void restartLevel() {
 
-    Debug.Log("restart!");
+    WorldState.restartedLevel=currentLevelNum;
+    Application.LoadLevel("HelsinkiLevel");
 
   }  
 

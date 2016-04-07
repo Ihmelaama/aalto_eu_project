@@ -57,7 +57,6 @@ public class CharSelectScript : MonoBehaviour {
 			button.transform.SetParent(Canvas2.transform, false);
 		}
 
-    Debug.Log("wtf: "+buttons3.Length);
 		for(int x = buttons3.Length-1; x>=0; x--){
 			button = Instantiate (buttons3[x], new Vector3 (0, 0), Quaternion.identity) as GameObject;
 			button.transform.SetParent(Canvas3.transform, false);

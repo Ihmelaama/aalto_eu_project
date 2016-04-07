@@ -286,5 +286,11 @@ public class SoundManager : MonoBehaviour {
     }  
   
   }
+  
+//-----------
+
+  public void toggleSoundMode() {
+  WorldState.randomSoundsOn=!WorldState.randomSoundsOn;
+  }
 
 }

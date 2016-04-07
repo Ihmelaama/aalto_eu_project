@@ -20,11 +20,13 @@ public class Character : MonoBehaviour {
     public bool isPlayer=false;
     public Texture2D spriteSheet;
     
+    public bool isDeadly=false;
+     
     public bool debugRun=false;
   
     [HideInInspector]
     public float jumpForce=10f;
-    
+
     private float directionalJumpForce=1f;
     private float directionalJumpThreshold=0.2f;
     
@@ -171,11 +173,27 @@ public class Character : MonoBehaviour {
 //-----------
 
   void OnCollisionEnter2D(Collision2D c) {
-  
+
     if(touchedGround(c)) {
     onGround=true;
     setCurrentGround(c.collider.gameObject);
-    }        
+    }  
+    
+  // check platform properties ---  
+  
+    if(tag=="Player") {
+    
+      Platform p=c.collider.transform.GetComponent<Platform>();
+
+      if(p!=null && p.isDeadly) { 
+      Die();
+      }
+      
+      if(p!=null && p.isSuperBouncy) { 
+      SuperBounce();
+      }      
+
+    }
 
   }
   
@@ -378,6 +396,16 @@ public class Character : MonoBehaviour {
       
     }
   
+  
+  }
+  
+//------------
+
+  public void SuperBounce() {
+  
+    Vector2 velocity=body.velocity;
+    velocity.y*=-1.3f;
+    body.velocity=velocity;
   
   }
   

@@ -9,7 +9,7 @@ public class Clock : MonoBehaviour {
 
   public static Clock instance;
   
-  private int time=0;
+  public static int time=0;
   private Text text;
   private bool isRunning=false;
   
@@ -49,7 +49,8 @@ public class Clock : MonoBehaviour {
 
   // set time in seconds
   public void setTime(int t) {
-  //time=t;
+  Debug.Log("set time: "+t);
+  time=t;
   }
   
 //-----------------------------------------------------------------

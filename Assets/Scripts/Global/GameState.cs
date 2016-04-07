@@ -12,5 +12,6 @@ public class GameState {
   public static bool inIntro=false;
   
   public static int score=0;
+  public static string time=null;
 
 }
