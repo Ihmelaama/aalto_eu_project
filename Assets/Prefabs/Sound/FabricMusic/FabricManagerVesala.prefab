@@ -13856,7 +13856,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: .421696514
+  _volume: .732824504
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -30643,7 +30643,7 @@ MonoBehaviour:
   m_Script: {fileID: -139544205, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontDestroyOnLoad: 1
+  _dontDestroyOnLoad: 0
   _audioSourcePool: 0
   _showAllInstances: 1
   _enableVirtualization: 0
