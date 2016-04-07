@@ -3027,7 +3027,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 17
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -3038,7 +3038,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sound
+  m_Text: 'Change
+
+    sounds'
 --- !u!222 &1875321442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3189,6 +3191,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6153664, guid: 204340a9e441c4a4d90bc1326c58ae8b, type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 56fbd7cca79167243bb02c8deb526f61, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 204340a9e441c4a4d90bc1326c58ae8b, type: 2}
   m_IsPrefabParent: 0
