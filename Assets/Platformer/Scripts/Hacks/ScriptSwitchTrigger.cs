@@ -7,6 +7,9 @@ public class ScriptSwitchTrigger : MonoBehaviour {
 //---------------------------------------------------
 // VARIABLES
 
+  public int type=0;
+
+
 //---------------------------------------------------
 // EVENTS
 
@@ -39,8 +42,19 @@ public class ScriptSwitchTrigger : MonoBehaviour {
   
     if(g!=null) {
     
-      Character characterScript=g.GetComponent<Character>();
-      if(characterScript!=null) characterScript.enabled=b;
+      if(type==0) {
+    
+        Character characterScript=g.GetComponent<Character>();
+        if(characterScript!=null) characterScript.enabled=b;
+      
+      } else if(type==1) {
+      
+        if(g.tag=="Player") {
+        Rigidbody2D body=GetComponent<Rigidbody2D>();
+        body.isKinematic=false;
+        }
+      
+      }
     
     }
 

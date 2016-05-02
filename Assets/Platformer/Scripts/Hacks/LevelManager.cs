@@ -104,7 +104,7 @@ public class LevelManager : MonoBehaviour {
     }
     
     WorldState.allowUserInput=true; 
-    
+
     SoundManager.instance.playVesalaMusic();
     
   }

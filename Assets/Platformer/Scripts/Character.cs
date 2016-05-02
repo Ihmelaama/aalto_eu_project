@@ -133,8 +133,13 @@ public class Character : MonoBehaviour {
     
   //---
   
-    if(GameObject.Find("GoodScore")!=null) goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
-	  if(GameObject.Find("BadScore")!=null) badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
+    if(GameObject.Find("GoodScore")!=null) {
+    goodCounter=GameObject.Find("GoodScore").gameObject.GetComponent<ScoreCounter>();
+    }
+    
+    if(GameObject.Find("BadScore")!=null) {
+    badCounter=GameObject.Find("BadScore").gameObject.GetComponent<ScoreCounter>();
+    }
     
 	}
   
@@ -362,11 +367,15 @@ public class Character : MonoBehaviour {
     
       if(item.value>0) {
       
-        if(goodCounter!=null) goodCounter.changeScore(Mathf.Abs(item.value), 1);      
-      
+        if(goodCounter!=null) {
+        goodCounter.changeScore(Mathf.Abs(item.value), 1); 
+        }
+        
       } else if(item.value<0) {
       
-        if(badCounter!=null) badCounter.changeScore(Mathf.Abs(item.value), -1); 
+        if(badCounter!=null) {
+        badCounter.changeScore(Mathf.Abs(item.value), -1);    
+        }
 
       }
     
@@ -466,7 +475,7 @@ public class Character : MonoBehaviour {
     int fullH=spriteSheet.height;    
 
     idleFrames=new List<Sprite>();
-    idleFrames[0]=Sprite.Create(spriteSheet, new Rect(0f, 0f, fullW, fullH), new Vector2(0.5f, 0f));
+    idleFrames.Add(Sprite.Create(spriteSheet, new Rect(0f, 0f, fullW, fullH), new Vector2(0.5f, 0f)));
 
   }
   
